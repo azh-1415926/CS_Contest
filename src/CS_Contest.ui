@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CS_Contest</class>
+ <widget class="QMainWindow" name="CS_Contest">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:black;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QWidget" name="areaOfTop" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>780</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
+    <widget class="QLabel" name="textOfTitle">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>-40</y>
+       <width>491</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文彩云</family>
+       <pointsize>48</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>XX</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+    </widget>
+    <widget class="QWidget" name="areaOfTime" native="true">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>10</y>
+       <width>300</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;</string>
+     </property>
+     <widget class="QLCDNumber" name="timeOfYMD">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>140</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="smallDecimalPoint">
+       <bool>false</bool>
+      </property>
+      <property name="digitCount">
+       <number>10</number>
+      </property>
+      <property name="mode">
+       <enum>QLCDNumber::Hex</enum>
+      </property>
+     </widget>
+     <widget class="QLCDNumber" name="timeOfHMS">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>20</y>
+        <width>140</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="smallDecimalPoint">
+       <bool>false</bool>
+      </property>
+      <property name="digitCount">
+       <number>8</number>
+      </property>
+      <property name="mode">
+       <enum>QLCDNumber::Hex</enum>
+      </property>
+      <property name="intValue" stdset="0">
+       <number>0</number>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="areaOfBottom" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>780</width>
+      <height>480</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
+    <widget class="QWidget" name="areaOfStart" native="true">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>360</width>
+       <height>300</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:lightblue;</string>
+     </property>
+     <widget class="QLabel" name="textOfStart">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>50</y>
+        <width>330</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>华文琥珀</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>开始</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="areaOfSearch" native="true">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>340</y>
+       <width>360</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:lightgreen;</string>
+     </property>
+     <widget class="QLabel" name="textOfSearch">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>15</y>
+        <width>330</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>华文琥珀</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>查询记录</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="areaOfAbout" native="true">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>20</y>
+       <width>360</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:orange;</string>
+     </property>
+     <widget class="QLabel" name="textOfAbout">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>15</y>
+        <width>330</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>华文琥珀</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>关于</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="areaOfMore" native="true">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>140</y>
+       <width>360</width>
+       <height>300</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:red;</string>
+     </property>
+     <widget class="QLabel" name="textOfMore">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>50</y>
+        <width>330</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>华文琥珀</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>敬请期待</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open File</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
