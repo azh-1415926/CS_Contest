@@ -3,6 +3,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QDateTime>
+#include <QMessageBox>
 
 CS_Contest::CS_Contest(QWidget* parent)
     : QMainWindow(parent)
@@ -19,7 +20,7 @@ CS_Contest::CS_Contest(QWidget* parent)
     connect(timer,QTimer::timeout,this,updateTime);
     // reset flagOfClick
     connect(timer,QTimer::timeout,this,[&](){
-        this->flagOfClick=0;
+        this->flagOfClick=1;
     });
     // start timer
     timer->start(1000);
@@ -44,11 +45,41 @@ CS_Contest::~CS_Contest()
 
 void CS_Contest::clickPoint(const QPoint &p)
 {
-
+    int baseOfX,baseOfY,baseOfWidth,baseOfHeight;
+    int x,y,width,height;
+    QWidget* areas[]={
+        ui->areaOfStart,
+        ui->areaOfSearch,
+        ui->areaOfAbout,
+        ui->areaOfMore
+    };
+    QString names[]={
+        "areaOfStart",
+        "areaOfSearch",
+        "areaOfAbout",
+        "areaOfMore"
+    };
+    ui->areaOfBottom->geometry().getRect(&baseOfX,&baseOfY,&baseOfWidth,&baseOfHeight);
+    // get position of area,and compare it with p
+    for(int i=0;i<sizeof(areas)/sizeof(QWidget*);i++){
+        areas[i]->geometry().getRect(&x,&y,&width,&height);
+        x+=baseOfX;
+        y+=baseOfY;
+        // if(p.x()<=baseOfX||p.y()<=baseOfY||p.x()>=baseOfX+baseOfWidth||p.y()>=baseOfHeight)
+        //     return;
+        if(p.x()>=x&&p.x()<=x+width&&p.y()>=y&&p.y()<=y+height){
+            names[i].append(",x:"+QString::number(x)+",y:"+QString::number(y)+",width:"+QString::number(width)+",height"+QString::number(height));
+            QMessageBox::about(nullptr,"test",names[i]);
+            return;
+        }
+    }
 }
 
 void CS_Contest::mousePressEvent(QMouseEvent *e)
 {
     // handle by function: clickPoint()
-    clickPoint(QPoint(e->position().x(),e->position().y()));
+    if(flagOfClick){
+        clickPoint(QPoint(e->position().x(),e->position().y()));
+        flagOfClick=0;
+    }
 }
