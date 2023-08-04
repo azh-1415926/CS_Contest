@@ -13,7 +13,7 @@ CS_Contest::CS_Contest(QWidget* parent)
     // set Windows's title
     this->setWindowTitle("CS_Contest");
     // set title
-    ui->textOfTitle->setText("阳光养猪场");
+    ui->textOfTitle->setText("知识竞赛答题");
     // show Time
     QTimer* timer=new QTimer(this);
     connect(timer,QTimer::timeout,this,updateTime);
