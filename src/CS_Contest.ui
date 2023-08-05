@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>CS_Contest</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color:black;</string>

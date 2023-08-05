@@ -11,8 +11,6 @@ CS_Contest::CS_Contest(QWidget* parent)
     , flagOfClick(0)
 {
     ui->setupUi(this);
-    // set Windows's title
-    this->setWindowTitle("CS_Contest");
     // set title
     ui->textOfTitle->setText("知识竞赛答题");
     // show Time
