@@ -1,7 +1,12 @@
 #pragma once
-#include "ui_CS_Contest.h"
+#include "ui/ui_CS_Contest.h"
 #include <QMainWindow>
 #include <QMouseEvent>
+
+#include "widgetOfStart.h"
+#include "widgetOfSearch.h"
+#include "widgetOfAbout.h"
+#include "widgetOfMore.h"
 
 class CS_Contest : public QMainWindow {
     Q_OBJECT
@@ -20,4 +25,8 @@ protected:
 private:
     Ui_CS_Contest* ui;
     int flagOfClick;
+    widgetOfStart* windowOfStart;
+    widgetOfSearch* windowOfSearch;
+    widgetOfAbout* windowOfAbout;
+    widgetOfMore* windowOfMore;
 };

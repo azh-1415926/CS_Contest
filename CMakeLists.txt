@@ -19,7 +19,8 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 add_executable(${PROJECT_NAME}
     WIN32 # If you need a terminal for debug, please comment this statement 
-    ${srcs} 
-) 
+    ${srcs}
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets) # Qt5 Shared Library
 # target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets) # Qt5 Shared Library
