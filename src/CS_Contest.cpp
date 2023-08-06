@@ -9,6 +9,10 @@ CS_Contest::CS_Contest(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui_CS_Contest)
     , flagOfClick(0)
+    , windowOfStart(new widgetOfStart)
+    , windowOfSearch(new widgetOfSearch)
+    , windowOfAbout(new widgetOfAbout)
+    , windowOfMore(new widgetOfMore)
 {
     ui->setupUi(this);
     // set title
@@ -39,23 +43,29 @@ void CS_Contest::updateTime(){
 CS_Contest::~CS_Contest()
 {
     delete ui;
+    delete windowOfStart;
+    delete windowOfSearch;
+    delete windowOfAbout;
+    delete windowOfMore;
 }
 
 void CS_Contest::clickPoint(const QPoint &p)
 {
     int baseOfX,baseOfY,baseOfWidth,baseOfHeight;
     int x,y,width,height;
+    // main window show areas
     QWidget* areas[]={
         ui->areaOfStart,
         ui->areaOfSearch,
         ui->areaOfAbout,
         ui->areaOfMore
     };
-    QString names[]={
-        "areaOfStart",
-        "areaOfSearch",
-        "areaOfAbout",
-        "areaOfMore"
+    // other windows
+    QWidget* windows[]={
+        windowOfStart,
+        windowOfSearch,
+        windowOfAbout,
+        windowOfMore
     };
     ui->areaOfBottom->geometry().getRect(&baseOfX,&baseOfY,&baseOfWidth,&baseOfHeight);
     // get position of area,and compare it with p
@@ -66,8 +76,9 @@ void CS_Contest::clickPoint(const QPoint &p)
         // if(p.x()<=baseOfX||p.y()<=baseOfY||p.x()>=baseOfX+baseOfWidth||p.y()>=baseOfHeight)
         //     return;
         if(p.x()>=x&&p.x()<=x+width&&p.y()>=y&&p.y()<=y+height){
-            names[i].append(",x:"+QString::number(x)+",y:"+QString::number(y)+",width:"+QString::number(width)+",height"+QString::number(height));
-            QMessageBox::about(nullptr,"test",names[i]);
+            // if not show,show it
+            if(windows[i]->isHidden())
+                windows[i]->show();
             return;
         }
     }
