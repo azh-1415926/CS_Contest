@@ -8,7 +8,7 @@
 CS_Contest::CS_Contest(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui_CS_Contest)
-    , flagOfClick(0)
+    , flagOfClick(1)
     , windowOfStart(new widgetOfStart)
     , windowOfSearch(new widgetOfSearch)
     , windowOfAbout(new widgetOfAbout)
