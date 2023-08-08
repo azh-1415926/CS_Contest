@@ -12,7 +12,7 @@ class CS_Contest : public QMainWindow {
     Q_OBJECT
     
 public:
-    CS_Contest(QWidget* parent = nullptr);
+    explicit CS_Contest(QWidget* parent = nullptr);
     ~CS_Contest();
 
 public slots:

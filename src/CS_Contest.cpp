@@ -3,7 +3,6 @@
 #include <QTimer>
 #include <QTime>
 #include <QDateTime>
-#include <QMessageBox>
 
 CS_Contest::CS_Contest(QWidget* parent)
     : QMainWindow(parent)
