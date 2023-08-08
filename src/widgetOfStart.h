@@ -1,6 +1,7 @@
 #pragma once
 #include "ui/ui_widgetOfStart.h"
 #include <QWidget>
+#include <QEvent>
 
 class widgetOfStart : public QWidget {
     Q_OBJECT
@@ -9,6 +10,12 @@ class widgetOfStart : public QWidget {
         explicit widgetOfStart(QWidget* parent=nullptr);
         ~widgetOfStart();
 
+    protected:
+        bool eventFilter(QObject* obj,QEvent* e) override;
+
     private:
         Ui_widgetOfStart* ui;
+        QRect* border;
+        void paintBorder(QWidget* widget);
+        void clickRadioButton(clickLabel* label);
 };
