@@ -9,20 +9,20 @@
 
 经过初步设计的界面如下
 
-![CS_Contest_01](https://github.com/azh-1415926/CS_Contest/tree/main/image/image/CS_Contest_01.png)
+![CS_Contest_01](https://github.com/azh-1415926/CS_Contest/tree/main/image/CS_Contest_01.png)
 
 调整部分比例，且能自动等比例缩放
 
 最终定稿为
 
-![CS_Contest](https://github.com/azh-1415926/CS_Contest/tree/main/image/image/CS_Contest.png)
+![CS_Contest](https://github.com/azh-1415926/CS_Contest/tree/main/image/CS_Contest.png)
 
 开始窗口示例图中,有三个按钮，用于切换其他子窗口
 
 目前展示的是答题页窗口，鼠标悬浮在选项上方会出现蓝色选框，且点击蓝色选框内的文字也能直接选择该选项
 
-![StartWindow_QuestionPage_01](https://github.com/azh-1415926/CS_Contest/tree/main/image/image/StartWindow_QuestionPage_01.png)
+![StartWindow_QuestionPage_01](https://github.com/azh-1415926/CS_Contest/tree/main/image/StartWindow_QuestionPage_01.png)
 
 接下来是选择页窗口，选择题库导入路径，并列举所有题型
 
-![StartWindow_SelectPage_01](https://github.com/azh-1415926/CS_Contest/tree/main/image/image/StartWindow_SelectPage_01.png)
+![StartWindow_SelectPage_01](https://github.com/azh-1415926/CS_Contest/tree/main/image/StartWindow_SelectPage_01.png)
