@@ -41,6 +41,7 @@ widgetOfStart::widgetOfStart(QWidget *parent)
         dynamic_cast<QWidget*>(options[i])->setAttribute(Qt::WA_Hover,true);
         options[i]->installEventFilter(this);
     }
+    this->installEventFilter(this);
     // click these labels can click buttons
     for(int i=1;i<sizeof(options)/sizeof(QObject*);i+=2)
         connect((clickLabel*)options[i],clickLabel::clicked,this,clickRadioButton);
@@ -67,6 +68,12 @@ bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
     };
     // find item in objs,and watch hover event
     for(int i=0;i<sizeof(objs)/sizeof(QObject*);i++){
+        // // repaint when parent repaint
+        // if(obj==this&&e->type()==QEvent::Paint){
+        //     // ui->optionsOfQuestion->repaint();
+        //     ui->optionsOfQuestion->update();
+        //     return true;
+        // }
         if(e->type()!=QEvent::HoverEnter&&e->type()!=QEvent::HoverLeave)
             break;
         if(obj==objs[i]){
@@ -85,16 +92,19 @@ bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
                 border->setWidth(rect1.width()+rect2.width());
                 border->setHeight(rect2.height());
             }
-            ui->optionsOfQuestion->repaint();
+            ui->optionsOfQuestion->update();
             return true;
         }
     }
-    // draw rect on optionsOfQuestion
-    if(obj==ui->optionsOfQuestion&&e->type()==QEvent::Paint)
+    if(obj==ui->optionsOfQuestion&&e->type()==QEvent::Paint){
         paintBorder(dynamic_cast<QWidget*>(obj));
-    // repaint when parent repaint
-    if(obj==this&&e->type()==QEvent::Paint)
-        ui->optionsOfQuestion->repaint();
+        return true;
+    }else if(obj==this&&e->type()==QEvent::Resize){
+        if(border!=nullptr)
+            delete border;
+        border=nullptr;
+        return true;
+    }
     return QWidget::eventFilter(obj,e);
 }
 
