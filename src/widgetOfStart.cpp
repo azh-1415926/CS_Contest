@@ -7,46 +7,13 @@
 widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui_widgetOfStart)
+    , border(nullptr)
     , reader(new excelReader)
 {
     ui->setupUi(this);
-    // add action for buttons
-    QStackedWidget* windows=this->ui->stackOfWindows;
-    QPushButton* buttons[]={
-        ui->buttonOfQuestion,
-        ui->buttonOfSelect,
-        ui->buttonOfCollect
-    };
-    QWidget* pages[]={
-        ui->pageOfQuestion,
-        ui->pageOfSelect,
-        ui->pageOfCollect
-    };
-    for(int i=0;i<sizeof(buttons)/sizeof(QPushButton*);i++){
-        connect(buttons[i],QPushButton::clicked,this,[windows,buttons,pages,i](){
-            windows->setCurrentIndex(windows->indexOf(pages[i]));
-        });
-    }
-    // install filter for options
-    QObject* options[]={
-        ui->optionOfA,
-        ui->textOfA,
-        ui->optionOfB,
-        ui->textOfB,
-        ui->optionOfC,
-        ui->textOfC,
-        ui->optionOfD,
-        ui->textOfD
-    };
-    ui->optionsOfQuestion->installEventFilter(this);
-    for(int i=0;i<sizeof(options)/sizeof(QObject*);i++){
-        dynamic_cast<QWidget*>(options[i])->setAttribute(Qt::WA_Hover,true);
-        options[i]->installEventFilter(this);
-    }
-    this->installEventFilter(this);
-    // click these labels can click buttons
-    for(int i=1;i<sizeof(options)/sizeof(QObject*);i+=2)
-        connect((clickLabel*)options[i],clickLabel::clicked,this,clickRadioButton);
+    initalStackWindow();
+    initalQuestionPage();
+    initalSelectPage();
 }
 
 widgetOfStart::~widgetOfStart()
@@ -96,12 +63,75 @@ bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
         paintBorder(dynamic_cast<QWidget*>(obj));
         return true;
     }else if(obj==this&&e->type()==QEvent::Resize){
-        if(border!=nullptr)
+        if(border!=nullptr){
             delete border;
-        border=nullptr;
+            border=nullptr;
+        }
         return true;
     }
     return QWidget::eventFilter(obj,e);
+}
+
+void widgetOfStart::getPath()
+{
+    const QString& filepath=QFileDialog::getOpenFileName(this, QStringLiteral("select excel file"), "",QStringLiteral("Exel file(*.xls *.xlsx)"));
+    if(!filepath.isEmpty()){
+        pathOfExcecl=filepath;
+        ui->textOfPath->setText(pathOfExcecl);
+    }
+}
+
+void widgetOfStart::initalStackWindow()
+{
+    // add action for buttons
+    QStackedWidget* windows=this->ui->stackOfWindows;
+    QPushButton* buttons[]={
+        ui->buttonOfQuestion,
+        ui->buttonOfSelect,
+        ui->buttonOfCollect
+    };
+    QWidget* pages[]={
+        ui->pageOfQuestion,
+        ui->pageOfSelect,
+        ui->pageOfCollect
+    };
+    for(int i=0;i<sizeof(buttons)/sizeof(QPushButton*);i++){
+        connect(buttons[i],QPushButton::clicked,this,[windows,buttons,pages,i](){
+            windows->setCurrentIndex(windows->indexOf(pages[i]));
+        });
+    }
+}
+
+void widgetOfStart::initalQuestionPage()
+{
+    // install filter for options
+    QObject* options[]={
+        ui->optionOfA,
+        ui->textOfA,
+        ui->optionOfB,
+        ui->textOfB,
+        ui->optionOfC,
+        ui->textOfC,
+        ui->optionOfD,
+        ui->textOfD
+    };
+    ui->optionsOfQuestion->installEventFilter(this);
+    for(int i=0;i<sizeof(options)/sizeof(QObject*);i++){
+        dynamic_cast<QWidget*>(options[i])->setAttribute(Qt::WA_Hover,true);
+        options[i]->installEventFilter(this);
+    }
+    this->installEventFilter(this);
+    // click these labels can click buttons
+    for(int i=1;i<sizeof(options)/sizeof(QObject*);i+=2)
+        connect((clickLabel*)options[i],clickLabel::clicked,this,clickRadioButton);
+}
+
+void widgetOfStart::initalSelectPage()
+{
+    // alter the textOfPath
+    connect(ui->inputButton,QRadioButton::clicked,this,getPath);
+    if(!pathOfExcecl.isEmpty())
+        ui->textOfPath->setText(pathOfExcecl);
 }
 
 void widgetOfStart::paintBorder(QWidget *widget)
@@ -137,10 +167,4 @@ void widgetOfStart::clickRadioButton(clickLabel* label)
         }
         i++;
     }
-}
-
-const QString &widgetOfStart::getPath()
-{
-    const QString& filepath=QFileDialog::getOpenFileName(this, QStringLiteral("select excel file"), "",QStringLiteral("Exel file(*.xls *.xlsx)"));
-    return filepath;
 }

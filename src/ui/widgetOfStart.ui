@@ -242,21 +242,21 @@
        <item>
         <layout class="QHBoxLayout" name="layoutOfSelect">
          <item>
-          <widget class="QLabel" name="textOfPath">
+          <widget class="QLabel" name="titleOfPath">
            <property name="text">
             <string>选择题库导入路径 :</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="titleOfPath">
+          <widget class="QLabel" name="textOfPath">
            <property name="text">
             <string>路径</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="addPathButton">
+          <widget class="QPushButton" name="inputButton">
            <property name="text">
             <string>导入</string>
            </property>

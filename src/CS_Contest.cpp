@@ -16,15 +16,25 @@ CS_Contest::CS_Contest(QWidget* parent)
     ui->setupUi(this);
     // set title
     ui->textOfTitle->setText("知识竞赛答题");
-    // show Time
-    QTimer* timer=new QTimer(this);
-    connect(timer,QTimer::timeout,this,updateTime);
-    // reset flagOfClick
-    connect(timer,QTimer::timeout,this,[&](){
-        this->flagOfClick=1;
-    });
-    // start timer
-    timer->start(1000);
+    initalTimer();
+}
+
+CS_Contest::~CS_Contest()
+{
+    delete ui;
+    delete windowOfStart;
+    delete windowOfSearch;
+    delete windowOfAbout;
+    delete windowOfMore;
+}
+
+void CS_Contest::mousePressEvent(QMouseEvent *e)
+{
+    // handle by function: clickPoint()
+    if(flagOfClick){
+        clickPoint(QPoint(e->position().x(),e->position().y()));
+        flagOfClick=0;
+    }
 }
 
 void CS_Contest::updateTime(){
@@ -37,15 +47,6 @@ void CS_Contest::updateTime(){
     // show the time
     ui->timeOfYMD->display(timeOfYMD);
     ui->timeOfHMS->display(timeOfHMS);
-}
-
-CS_Contest::~CS_Contest()
-{
-    delete ui;
-    delete windowOfStart;
-    delete windowOfSearch;
-    delete windowOfAbout;
-    delete windowOfMore;
 }
 
 void CS_Contest::clickPoint(const QPoint &p)
@@ -72,8 +73,6 @@ void CS_Contest::clickPoint(const QPoint &p)
         areas[i]->geometry().getRect(&x,&y,&width,&height);
         x+=baseOfX;
         y+=baseOfY;
-        // if(p.x()<=baseOfX||p.y()<=baseOfY||p.x()>=baseOfX+baseOfWidth||p.y()>=baseOfHeight)
-        //     return;
         if(p.x()>=x&&p.x()<=x+width&&p.y()>=y&&p.y()<=y+height){
             // if not show,show it
             if(windows[i]->isHidden())
@@ -83,11 +82,15 @@ void CS_Contest::clickPoint(const QPoint &p)
     }
 }
 
-void CS_Contest::mousePressEvent(QMouseEvent *e)
+void CS_Contest::initalTimer()
 {
-    // handle by function: clickPoint()
-    if(flagOfClick){
-        clickPoint(QPoint(e->position().x(),e->position().y()));
-        flagOfClick=0;
-    }
+    // show Time
+    QTimer* timer=new QTimer(this);
+    connect(timer,QTimer::timeout,this,updateTime);
+    // reset flagOfClick
+    connect(timer,QTimer::timeout,this,[&](){
+        this->flagOfClick=1;
+    });
+    // start timer
+    timer->start(1000);
 }

@@ -15,12 +15,12 @@ public:
     explicit CS_Contest(QWidget* parent = nullptr);
     ~CS_Contest();
 
+protected:
+    void mousePressEvent(QMouseEvent* e) override;
+
 public slots:
     void updateTime();
     void clickPoint(const QPoint& p);
-
-protected:
-    void mousePressEvent(QMouseEvent* e) override;
 
 private:
     Ui_CS_Contest* ui;
@@ -29,4 +29,5 @@ private:
     widgetOfSearch* windowOfSearch;
     widgetOfAbout* windowOfAbout;
     widgetOfMore* windowOfMore;
+    void initalTimer();
 };
