@@ -65,6 +65,7 @@ void excelReader::readExcel(const QString& pathOfExcel)
         for(int j=0;j<columns;j++){
             rowData.push_back(var.at(j).toString());
         }
+        data.push_back(rowData);
     }
     workbook->dynamicCall("Close()");
     // read end

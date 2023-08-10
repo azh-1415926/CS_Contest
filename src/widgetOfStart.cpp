@@ -77,9 +77,21 @@ void widgetOfStart::loadData()
     ui->tableOfQuestionType->setColumnCount(2);
     ui->tableOfQuestionType->setRowCount(5);
     ui->tableOfQuestionType->setItem(0,0,new QTableWidgetItem("Rows"));
-    ui->tableOfQuestionType->setItem(1,0,new QTableWidgetItem("Columns"));
     ui->tableOfQuestionType->setItem(0,1,new QTableWidgetItem(QString::number(reader->getRows())));
+    ui->tableOfQuestionType->setItem(1,0,new QTableWidgetItem("Columns"));
     ui->tableOfQuestionType->setItem(1,1,new QTableWidgetItem(QString::number(reader->getColumns())));
+    ui->tableOfQuestionType->setItem(2,0,new QTableWidgetItem("Data Rows"));
+    ui->tableOfQuestionType->setItem(2,1,new QTableWidgetItem(QString::number(reader->getData().length())));
+    ui->tableOfQuestionType->setItem(3,0,new QTableWidgetItem("Data Columns"));
+    ui->tableOfQuestionType->setItem(3,1,new QTableWidgetItem(QString::number(reader->getData()[0].length())));
+    int rows=reader->getRows();
+    QList<int> indexOfRows;
+    for(int i=0;i<reader->getData().length();i++){
+        if(reader->getData()[i][1]=="C")
+            indexOfRows.push_back(i);
+    }
+    ui->tableOfQuestionType->setItem(4,0,new QTableWidgetItem("C"));
+    ui->tableOfQuestionType->setItem(4,1,new QTableWidgetItem(QString::number(indexOfRows.length())));
 }
 
 void widgetOfStart::getPath()
