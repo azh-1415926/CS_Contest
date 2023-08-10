@@ -1,9 +1,11 @@
 #include "excelReader.h"
 
-
-
-excelReader::excelReader()
-    : excel(new QAxObject("Excel.Application"))
+excelReader::excelReader(QObject* parent)
+    : QObject(parent)
+    , rows(0)
+    , columns(0)
+    , readFlag(0)
+    , excel(new QAxObject("Excel.Application"))
 {
     // not show the window
     excel->dynamicCall("SetVisible (bool Visible)","false");
@@ -17,11 +19,32 @@ excelReader::~excelReader()
     delete excel;
 }
 
-bool excelReader::readExcel(const QString &pathOfExcel)
+bool excelReader::isRead()
+{
+    return readFlag==1;
+}
+
+const QVector<QVector<QString>> &excelReader::getData()
+{
+    return this->data;
+}
+
+int excelReader::getRows()
+{
+    return rows;
+}
+
+int excelReader::getColumns()
+{
+    return columns;
+}
+
+void excelReader::readExcel(const QString& pathOfExcel)
 {
 
-    if(pathOfExcel.isEmpty())
-        return false;
+    if(pathOfExcel.isEmpty()){
+        return;
+    }
     QAxObject *workbooks = excel->querySubObject("WorkBooks");
     workbooks->dynamicCall("Open (const QString&)", pathOfExcel);
     QAxObject *workbook=excel->querySubObject("ActiveWorkBook");
@@ -30,20 +53,21 @@ bool excelReader::readExcel(const QString &pathOfExcel)
     // read data
     QAxObject *usedRange=worksheet->querySubObject("UsedRange");
     QVariant all=usedRange->dynamicCall("value");
-    rows=usedRange->querySubObject("Rows")->property("Row").toInt();
-    columns=usedRange->querySubObject("Columns")->property("Columns").toInt();
-    foreach(QVariant varOfRows,all.toList()){
+    const QVariantList& rowsOflist=all.toList();
+    const QVariantList& columnsOfList=rowsOflist.at(0).toList();
+    rows=rowsOflist.length();
+    columns=columnsOfList.length();
+    // rows=usedRange->querySubObject("Rows")->property("Row").toInt();
+    // columns=usedRange->querySubObject("Columns")->property("Columns").toInt();
+    for(int i=0;i<rows;i++){
         QVector<QString> rowData;
-        foreach(QVariant var,varOfRows.toList()){
-            rowData.push_back(var.toString());
+        const QVariantList& var=rowsOflist.at(i).toList();
+        for(int j=0;j<columns;j++){
+            rowData.push_back(var.at(j).toString());
         }
-        data.push_back(rowData);
     }
     workbook->dynamicCall("Close()");
-    return true;
-}
-
-const QVector<QVector<QString>> &excelReader::getData()
-{
-    return this->data;
+    // read end
+    emit readed();
+    readFlag=1;
 }

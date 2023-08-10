@@ -3,16 +3,27 @@
 #include <QObject>
 #include <QAxObject>
 
-class excelReader {
+class excelReader : public QObject {
+    Q_OBJECT
+
     public:
-        excelReader();
+        explicit excelReader(QObject* parent=nullptr);
         ~excelReader();
-        bool readExcel(const QString& pathOfExcel);
+        bool isRead();
         const QVector<QVector<QString>>& getData();
+        int getRows();
+        int getColumns();
+
+    public slots:
+        void readExcel(const QString& pathOfExcel);
+
+    signals:
+        void readed();
 
     private:
         int rows;
         int columns;
+        int readFlag;
         QAxObject* excel;
         QVector<QVector<QString>> data;
 };

@@ -17,6 +17,10 @@ class widgetOfStart : public QWidget
 
     public slots:
         void getPath();
+        void loadData();
+
+    signals:
+        void loadExcel(const QString& pathOfExcel);
 
     private:
         Ui_widgetOfStart *ui;
@@ -28,5 +32,4 @@ class widgetOfStart : public QWidget
         void initalSelectPage();
         void paintBorder(QWidget *widget);
         void clickRadioButton(clickLabel *label);
-        void readExcel();
 };

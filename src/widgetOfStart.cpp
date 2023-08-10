@@ -72,12 +72,23 @@ bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
     return QWidget::eventFilter(obj,e);
 }
 
+void widgetOfStart::loadData()
+{
+    ui->tableOfQuestionType->setColumnCount(2);
+    ui->tableOfQuestionType->setRowCount(5);
+    ui->tableOfQuestionType->setItem(0,0,new QTableWidgetItem("Rows"));
+    ui->tableOfQuestionType->setItem(1,0,new QTableWidgetItem("Columns"));
+    ui->tableOfQuestionType->setItem(0,1,new QTableWidgetItem(QString::number(reader->getRows())));
+    ui->tableOfQuestionType->setItem(1,1,new QTableWidgetItem(QString::number(reader->getColumns())));
+}
+
 void widgetOfStart::getPath()
 {
     const QString& filepath=QFileDialog::getOpenFileName(this, QStringLiteral("select excel file"), "",QStringLiteral("Exel file(*.xls *.xlsx)"));
     if(!filepath.isEmpty()){
         pathOfExcecl=filepath;
         ui->textOfPath->setText(pathOfExcecl);
+        emit loadExcel(pathOfExcecl);
     }
 }
 
@@ -130,8 +141,12 @@ void widgetOfStart::initalSelectPage()
 {
     // alter the textOfPath
     connect(ui->inputButton,QRadioButton::clicked,this,getPath);
-    if(!pathOfExcecl.isEmpty())
+    connect(this,loadExcel,reader,excelReader::readExcel);
+    connect(reader,excelReader::readed,this,loadData);
+    if(!pathOfExcecl.isEmpty()){
         ui->textOfPath->setText(pathOfExcecl);
+        emit loadExcel(pathOfExcecl);
+    }
 }
 
 void widgetOfStart::paintBorder(QWidget *widget)
