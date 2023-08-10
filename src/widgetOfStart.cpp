@@ -1,11 +1,13 @@
 #include "widgetOfStart.h"
 #include <QRect>
 #include <QPainter>
+#include <QFileDialog>
 #include <QMessageBox>
 
 widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui_widgetOfStart)
+    , reader(new excelReader)
 {
     ui->setupUi(this);
     // add action for buttons
@@ -68,12 +70,6 @@ bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
     };
     // find item in objs,and watch hover event
     for(int i=0;i<sizeof(objs)/sizeof(QObject*);i++){
-        // // repaint when parent repaint
-        // if(obj==this&&e->type()==QEvent::Paint){
-        //     // ui->optionsOfQuestion->repaint();
-        //     ui->optionsOfQuestion->update();
-        //     return true;
-        // }
         if(e->type()!=QEvent::HoverEnter&&e->type()!=QEvent::HoverLeave)
             break;
         if(obj==objs[i]){
@@ -141,4 +137,10 @@ void widgetOfStart::clickRadioButton(clickLabel* label)
         }
         i++;
     }
+}
+
+const QString &widgetOfStart::getPath()
+{
+    const QString& filepath=QFileDialog::getOpenFileName(this, QStringLiteral("select excel file"), "",QStringLiteral("Exel file(*.xls *.xlsx)"));
+    return filepath;
 }
