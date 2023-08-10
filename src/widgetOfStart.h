@@ -27,6 +27,7 @@ class widgetOfStart : public QWidget
         QRect *border;
         excelReader *reader;
         QString pathOfExcecl;
+        QList<QPair<QString,QList<int>>> questionType;
         void initalStackWindow();
         void initalQuestionPage();
         void initalSelectPage();

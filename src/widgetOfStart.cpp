@@ -20,6 +20,7 @@ widgetOfStart::~widgetOfStart()
 {
     delete ui;
     delete border;
+    delete reader;
 }
 
 bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
@@ -74,24 +75,49 @@ bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
 
 void widgetOfStart::loadData()
 {
-    ui->tableOfQuestionType->setColumnCount(2);
-    ui->tableOfQuestionType->setRowCount(5);
-    ui->tableOfQuestionType->setItem(0,0,new QTableWidgetItem("Rows"));
-    ui->tableOfQuestionType->setItem(0,1,new QTableWidgetItem(QString::number(reader->getRows())));
-    ui->tableOfQuestionType->setItem(1,0,new QTableWidgetItem("Columns"));
-    ui->tableOfQuestionType->setItem(1,1,new QTableWidgetItem(QString::number(reader->getColumns())));
-    ui->tableOfQuestionType->setItem(2,0,new QTableWidgetItem("Data Rows"));
-    ui->tableOfQuestionType->setItem(2,1,new QTableWidgetItem(QString::number(reader->getData().length())));
-    ui->tableOfQuestionType->setItem(3,0,new QTableWidgetItem("Data Columns"));
-    ui->tableOfQuestionType->setItem(3,1,new QTableWidgetItem(QString::number(reader->getData()[0].length())));
-    int rows=reader->getRows();
-    QList<int> indexOfRows;
-    for(int i=0;i<reader->getData().length();i++){
-        if(reader->getData()[i][1]=="C")
-            indexOfRows.push_back(i);
+    char charOfType[]={
+        /* 计算机应用基础 数据库结构 数据库原理 */
+        'C','J','K',
+        /* 网络 软件工程 操作系统 */
+        'W','R','Z',
+        /* 多媒体技术 硬件系统 移动互联网应用 */
+        'D','Y','H',
+        /* 数据表示和计算 离散数学 知识产权*/
+        'S','L','Q',
+        /* 1-6 C,C++,Java,JavaScript,C#,Python */
+        '1','2','3','4','5','6'
+    };
+    QString stringOfType[]={
+        "计算机应用基础","数据库结构","数据库原理","网络","软件工程","操作系统",
+        "多媒体技术","硬件系统","移动互联网应用","数据表示和计算","离散数学","知识产权",
+        "C","C++","Java","JavaScript","C#","Python"
+    };
+    int sumOfType=sizeof(charOfType)/sizeof(char);
+    for(int i=0;i<sumOfType;i++){
+        QList<int> num;
+        num.push_back(0);
+        questionType.push_back(QPair<QString,QList<int>>(stringOfType[i],num));
     }
-    ui->tableOfQuestionType->setItem(4,0,new QTableWidgetItem("C"));
-    ui->tableOfQuestionType->setItem(4,1,new QTableWidgetItem(QString::number(indexOfRows.length())));
+    ui->tableOfQuestionType->setColumnCount(3);
+    ui->tableOfQuestionType->setRowCount(sumOfType);
+    for(int i=0;i<reader->getData().length();i++){
+        for(int j=0;j<sumOfType;j++){
+            if(reader->getData()[i][1]==charOfType[j]){
+                questionType[j].second.push_back(i);
+                break;
+            }
+        }
+    }
+    for(int i=0;i<sumOfType;i++){
+        questionType[i].second[0]=questionType[i].second.length()-1;
+        // string of type
+        ui->tableOfQuestionType->setItem(i,0,new QTableWidgetItem(questionType[i].first));
+        // char of type
+        ui->tableOfQuestionType->setItem(i,1,new QTableWidgetItem(QString(charOfType[i])));
+        // sum of type
+        ui->tableOfQuestionType->setItem(i,2,new QTableWidgetItem(QString::number(questionType[i].second[0])));
+    }
+    
 }
 
 void widgetOfStart::getPath()
