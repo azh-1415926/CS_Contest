@@ -93,10 +93,17 @@ void widgetOfStart::loadData()
         "C","C++","Java","JavaScript","C#","Python"
     };
     int sumOfType=sizeof(charOfType)/sizeof(char);
-    for(int i=0;i<sumOfType;i++){
-        QList<int> num;
-        num.push_back(0);
-        questionType.push_back(QPair<QString,QList<int>>(stringOfType[i],num));
+    if(!questionType.isEmpty()){
+        for(int i=0;i<sumOfType;i++){
+            questionType[i].second.clear();
+            questionType[i].second.push_back(0);
+        }
+    }else{
+        for(int i=0;i<sumOfType;i++){
+            QList<int> num;
+            num.push_back(0);
+            questionType.push_back(QPair<QString,QList<int>>(stringOfType[i],num));
+        }
     }
     ui->tableOfQuestionType->setColumnCount(3);
     ui->tableOfQuestionType->setRowCount(sumOfType);
@@ -117,7 +124,6 @@ void widgetOfStart::loadData()
         // sum of type
         ui->tableOfQuestionType->setItem(i,2,new QTableWidgetItem(QString::number(questionType[i].second[0])));
     }
-    
 }
 
 void widgetOfStart::getPath()

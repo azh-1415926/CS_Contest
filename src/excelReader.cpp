@@ -59,6 +59,8 @@ void excelReader::readExcel(const QString& pathOfExcel)
     columns=columnsOfList.length();
     // rows=usedRange->querySubObject("Rows")->property("Row").toInt();
     // columns=usedRange->querySubObject("Columns")->property("Columns").toInt();
+    if(!data.isEmpty())
+        data.clear();
     for(int i=0;i<rows;i++){
         QVector<QString> rowData;
         const QVariantList& var=rowsOflist.at(i).toList();
