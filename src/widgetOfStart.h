@@ -31,10 +31,10 @@ class widgetOfStart : public QWidget
         Ui_widgetOfStart *ui;
         QRect *border;
         excelReader *reader;
-        int currQustionType;
+        int currQuestionType;
         int currQuestionIndex;
         int currAnswer;
-        QString pathOfExcecl;
+        QString pathOfExcel;
         QList<int> progress;
         QList<QPair<QString,QList<int>>> questionType;
         void initalStackWindow();
@@ -43,4 +43,5 @@ class widgetOfStart : public QWidget
         void paintBorder(QWidget *widget);
         void clickRadioButton(clickLabel *label);
         void switchQuestionByIndex(int i);
+        void loadSetting();
 };

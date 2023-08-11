@@ -88,7 +88,7 @@ void CS_Contest::initalTimer()
     QTimer* timer=new QTimer(this);
     connect(timer,QTimer::timeout,this,updateTime);
     // reset flagOfClick
-    connect(timer,QTimer::timeout,this,[&](){
+    connect(timer,QTimer::timeout,this,[=](){
         this->flagOfClick=1;
     });
     // start timer

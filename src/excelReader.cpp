@@ -51,7 +51,7 @@ void excelReader::readExcel(const QString& pathOfExcel)
     if(pathOfExcel.isEmpty()){
         return;
     }
-    reloadFlag=(path==pathOfExcel)?(0):(1);
+    reloadFlag=(path.isEmpty()||path==pathOfExcel)?(0):(1);
     path=pathOfExcel;
     QAxObject *workbooks = excel->querySubObject("WorkBooks");
     workbooks->dynamicCall("Open (const QString&)", pathOfExcel);
