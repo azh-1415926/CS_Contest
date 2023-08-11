@@ -5,6 +5,7 @@ excelReader::excelReader(QObject* parent)
     , rows(0)
     , columns(0)
     , readFlag(0)
+    , reloadFlag(0)
     , excel(new QAxObject("Excel.Application"))
 {
     // not show the window
@@ -22,6 +23,11 @@ excelReader::~excelReader()
 bool excelReader::isRead()
 {
     return readFlag==1;
+}
+
+bool excelReader::isReload()
+{
+    return reloadFlag==1;
 }
 
 const QVector<QVector<QString>> &excelReader::getData()
@@ -45,6 +51,8 @@ void excelReader::readExcel(const QString& pathOfExcel)
     if(pathOfExcel.isEmpty()){
         return;
     }
+    reloadFlag=(path==pathOfExcel)?(0):(1);
+    path=pathOfExcel;
     QAxObject *workbooks = excel->querySubObject("WorkBooks");
     workbooks->dynamicCall("Open (const QString&)", pathOfExcel);
     QAxObject *workbook=excel->querySubObject("ActiveWorkBook");
@@ -71,6 +79,6 @@ void excelReader::readExcel(const QString& pathOfExcel)
     }
     workbook->dynamicCall("Close()");
     // read end
-    emit readed();
     readFlag=1;
+    emit readed();
 }

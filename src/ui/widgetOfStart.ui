@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>StartWindow</string>
   </property>
-  <layout class="QVBoxLayout" name="layoutOfWindow">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QWidget" name="groupOfButtons" native="true">
      <layout class="QHBoxLayout" name="layoutOfJumpButton">
@@ -96,7 +96,7 @@
        <item row="3" column="2" colspan="2">
         <widget class="QLabel" name="sumOfQuestions">
          <property name="text">
-          <string>TextLabel</string>
+          <string>题目总数</string>
          </property>
         </widget>
        </item>
@@ -240,11 +240,11 @@
      <widget class="QWidget" name="pageOfSelect">
       <layout class="QVBoxLayout" name="layoutOfSelectPage">
        <item>
-        <layout class="QHBoxLayout" name="layoutOfSelect">
+        <layout class="QHBoxLayout" name="layoutOfLoadExcel">
          <item>
           <widget class="QLabel" name="titleOfPath">
            <property name="text">
-            <string>选择题库导入路径 :</string>
+            <string>选择题库路径 :</string>
            </property>
           </widget>
          </item>
@@ -261,6 +261,20 @@
             <string>导入</string>
            </property>
           </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="layoutOfSelectQuestionType">
+         <item>
+          <widget class="QLabel" name="titleOfSelectType">
+           <property name="text">
+            <string>选择题型 :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="questionType"/>
          </item>
         </layout>
        </item>

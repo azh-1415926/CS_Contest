@@ -3,6 +3,9 @@
 #include <QPainter>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
 
 widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)
@@ -10,7 +13,7 @@ widgetOfStart::widgetOfStart(QWidget *parent)
     , border(nullptr)
     , reader(new excelReader)
     ,currQustionType(0)
-    ,currQuestionIndex(0)
+    ,currQuestionIndex(1)
 {
     ui->setupUi(this);
     initalStackWindow();
@@ -75,10 +78,37 @@ bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
     return QWidget::eventFilter(obj,e);
 }
 
+void widgetOfStart::saveSetting()
+{
+    if(pathOfExcecl.isEmpty())
+        return;
+    QJsonObject json;
+    QJsonArray arrayOfProcess;
+    QJsonDocument doc;
+    QFile file("./settings.json");
+    // insert settings to json
+    json.insert("pathOfExcel",pathOfExcecl);
+    json.insert("currQuestionType",currQustionType);
+    json.insert("currQuestionIndex",currQuestionIndex);
+    for(int i=0;i<progress.length();i++)
+        arrayOfProcess.push_back(progress[i]);
+    json.insert("process",arrayOfProcess);
+    // save settings
+    if(!file.open(QIODevice::WriteOnly|QIODevice::Truncate)){
+        QTextStream stream(&file);
+        stream.setEncoding(QStringConverter::Utf8);
+        doc.setObject(json);
+        stream<<doc.toJson();
+        file.close();
+    }else{
+        QMessageBox::warning(nullptr,"error","save \"settings.json\" is failed!");
+    }
+}
+
 void widgetOfStart::loadData()
 {
     char charOfType[]={
-        /* 计算机应用基础 数据库结构 数据库原理 */
+        /* 计算机应用基础 数据结构 数据库原理 */
         'C','J','K',
         /* 网络 软件工程 操作系统 */
         'W','R','Z',
@@ -90,7 +120,7 @@ void widgetOfStart::loadData()
         '1','2','3','4','5','6'
     };
     QString stringOfType[]={
-        "计算机应用基础","数据库结构","数据库原理","网络","软件工程","操作系统",
+        "计算机应用基础","数据结构","数据库原理","网络","软件工程","操作系统",
         "多媒体技术","硬件系统","移动互联网应用","数据表示和计算","离散数学","知识产权",
         "C","C++","Java","JavaScript","C#","Python"
     };
@@ -117,6 +147,14 @@ void widgetOfStart::loadData()
             }
         }
     }
+    // set process 0
+    if(reader->isReload()){
+        progress.clear();
+        for(int i=0;i<sumOfType;i++){
+            progress.push_back(1);
+        }
+    }
+    // show all types
     for(int i=0;i<sumOfType;i++){
         questionType[i].second[0]=questionType[i].second.length()-1;
         // string of type
@@ -126,20 +164,36 @@ void widgetOfStart::loadData()
         // sum of type
         ui->tableOfQuestionType->setItem(i,2,new QTableWidgetItem(QString::number(questionType[i].second[0])));
     }
+    // clear the combobox
+    if(ui->questionType->count()!=0)
+        ui->questionType->clear();
+    // add question types
+    for(int i=0;i<sumOfType;i++){
+        ui->questionType->addItem(stringOfType[i]);
+    }
+    emit ready();
+}
+
+void widgetOfStart::selectQuestionType(int i)
+{
+    currQustionType=i;
+    currQuestionIndex=progress[currQustionType];
+    ui->sumOfQuestions->setText(QString::number(questionType[currQustionType].second[0]));
+    switchQuestionByIndex(currQuestionIndex);
 }
 
 void widgetOfStart::switchPreQuestion()
 {
     if(currQuestionIndex<=1)
         return;
-    switchQuestionByIndex(currQuestionIndex--);
+    switchQuestionByIndex(--currQuestionIndex);
 }
 
 void widgetOfStart::switchNextQuestion()
 {
-    if(currQuestionIndex>=questionType[currQustionType].second.length())
+    if(currQuestionIndex>=questionType[currQustionType].second[0])
         return;
-    switchQuestionByIndex(currQuestionIndex++);
+    switchQuestionByIndex(++currQuestionIndex);
 }
 
 void widgetOfStart::getPath()
@@ -203,8 +257,16 @@ void widgetOfStart::initalSelectPage()
 {
     // alter the textOfPath
     connect(ui->inputButton,QRadioButton::clicked,this,getPath);
+    // read excel
     connect(this,loadExcel,reader,excelReader::readExcel);
+    // handle data
     connect(reader,excelReader::readed,this,loadData);
+    // show question
+    connect(this,ready,this,[=](){
+        ui->questionType->setCurrentIndex(currQustionType);
+    });
+    // questionType changed
+    connect(ui->questionType,QComboBox::currentIndexChanged,this,selectQuestionType);
     if(!pathOfExcecl.isEmpty()){
         ui->textOfPath->setText(pathOfExcecl);
         emit loadExcel(pathOfExcecl);
@@ -252,6 +314,8 @@ void widgetOfStart::switchQuestionByIndex(int i)
         return;
     const QVector<QVector<QString>>& data=reader->getData();
     int index=questionType[currQustionType].second[i];
+    progress[currQustionType]=i;
+    ui->indexOfCurrentQuestion->setText(QString::number(i));
     // set question
     ui->textOfQuestion->setText(data[index][2]);
     // set options

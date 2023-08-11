@@ -17,22 +17,26 @@ class widgetOfStart : public QWidget
 
     public slots:
         void getPath();
+        void saveSetting();
         void loadData();
+        void selectQuestionType(int i);
         void switchPreQuestion();
         void switchNextQuestion();
 
     signals:
         void loadExcel(const QString& pathOfExcel);
+        void ready();
 
     private:
         Ui_widgetOfStart *ui;
         QRect *border;
         excelReader *reader;
-        QString pathOfExcecl;
-        QList<QPair<QString,QList<int>>> questionType;
         int currQustionType;
         int currQuestionIndex;
         int currAnswer;
+        QString pathOfExcecl;
+        QList<int> progress;
+        QList<QPair<QString,QList<int>>> questionType;
         void initalStackWindow();
         void initalQuestionPage();
         void initalSelectPage();

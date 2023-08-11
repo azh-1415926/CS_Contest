@@ -10,6 +10,7 @@ class excelReader : public QObject {
         explicit excelReader(QObject* parent=nullptr);
         ~excelReader();
         bool isRead();
+        bool isReload();
         const QVector<QVector<QString>>& getData();
         int getRows();
         int getColumns();
@@ -24,6 +25,8 @@ class excelReader : public QObject {
         int rows;
         int columns;
         int readFlag;
+        int reloadFlag;
+        QString path;
         QAxObject* excel;
         QVector<QVector<QString>> data;
 };
