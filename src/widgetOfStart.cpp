@@ -9,6 +9,8 @@ widgetOfStart::widgetOfStart(QWidget *parent)
     , ui(new Ui_widgetOfStart)
     , border(nullptr)
     , reader(new excelReader)
+    ,currQustionType(0)
+    ,currQuestionIndex(0)
 {
     ui->setupUi(this);
     initalStackWindow();
@@ -126,6 +128,20 @@ void widgetOfStart::loadData()
     }
 }
 
+void widgetOfStart::switchPreQuestion()
+{
+    if(currQuestionIndex<=1)
+        return;
+    switchQuestionByIndex(currQuestionIndex--);
+}
+
+void widgetOfStart::switchNextQuestion()
+{
+    if(currQuestionIndex>=questionType[currQustionType].second.length())
+        return;
+    switchQuestionByIndex(currQuestionIndex++);
+}
+
 void widgetOfStart::getPath()
 {
     const QString& filepath=QFileDialog::getOpenFileName(this, QStringLiteral("select excel file"), "",QStringLiteral("Exel file(*.xls *.xlsx)"));
@@ -179,6 +195,8 @@ void widgetOfStart::initalQuestionPage()
     // click these labels can click buttons
     for(int i=1;i<sizeof(options)/sizeof(QObject*);i+=2)
         connect((clickLabel*)options[i],clickLabel::clicked,this,clickRadioButton);
+    connect(ui->fowardButton,QPushButton::clicked,this,switchPreQuestion);
+    connect(ui->nextButton,QPushButton::clicked,this,switchNextQuestion);
 }
 
 void widgetOfStart::initalSelectPage()
@@ -226,4 +244,21 @@ void widgetOfStart::clickRadioButton(clickLabel* label)
         }
         i++;
     }
+}
+
+void widgetOfStart::switchQuestionByIndex(int i)
+{
+    if(!reader->isRead())
+        return;
+    const QVector<QVector<QString>>& data=reader->getData();
+    int index=questionType[currQustionType].second[i];
+    // set question
+    ui->textOfQuestion->setText(data[index][2]);
+    // set options
+    ui->textOfA->setText(data[index][3]);
+    ui->textOfB->setText(data[index][4]);
+    ui->textOfC->setText(data[index][5]);
+    ui->textOfD->setText(data[index][6]);
+    currAnswer=data[index][7].toInt();
+    QMessageBox::about(nullptr,"answer",data[index][7]);
 }

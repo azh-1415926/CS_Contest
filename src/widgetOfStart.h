@@ -18,6 +18,8 @@ class widgetOfStart : public QWidget
     public slots:
         void getPath();
         void loadData();
+        void switchPreQuestion();
+        void switchNextQuestion();
 
     signals:
         void loadExcel(const QString& pathOfExcel);
@@ -28,9 +30,13 @@ class widgetOfStart : public QWidget
         excelReader *reader;
         QString pathOfExcecl;
         QList<QPair<QString,QList<int>>> questionType;
+        int currQustionType;
+        int currQuestionIndex;
+        int currAnswer;
         void initalStackWindow();
         void initalQuestionPage();
         void initalSelectPage();
         void paintBorder(QWidget *widget);
         void clickRadioButton(clickLabel *label);
+        void switchQuestionByIndex(int i);
 };
