@@ -27,11 +27,12 @@ class widgetOfStart : public QWidget
     private:
         Ui_widgetOfStart *ui;
         excelReader *reader;
-        int currQuestionType;
-        int currQuestionIndex;
-        int currAnswer;
+        int currTypeOfQuestion;
+        int currIndexOfQuestion;
+        int flagOfInital;
         QString pathOfExcel;
-        QList<int> progress;
+        QList<int> progressOfQuestion;
+        QList<int> progressOfCollect;
         QList<QPair<QString,QList<int>>> questionType;
         void initalStackWindow();
         void initalQuestionPage();

@@ -12,8 +12,8 @@ widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui_widgetOfStart)
     , reader(new excelReader)
-    ,currQuestionType(0)
-    ,currQuestionIndex(1)
+    , currTypeOfQuestion(0)
+    , currIndexOfQuestion(1)
 {
     ui->setupUi(this);
     initalStackWindow();
@@ -33,16 +33,22 @@ void widgetOfStart::saveSetting()
     if(pathOfExcel.isEmpty())
         return;
     QJsonObject json;
-    QJsonArray arrayOfProcess;
+    QJsonArray arrayOfQuestionProcess;
+    QJsonArray arrayOfCollectProcess;
     QJsonDocument doc;
     QFile file("./settings.json");
     // insert settings to json
     json.insert("pathOfExcel",pathOfExcel);
-    json.insert("currQuestionType",currQuestionType);
-    json.insert("currQuestionIndex",currQuestionIndex);
-    for(int i=0;i<progress.length();i++)
-        arrayOfProcess.push_back(progress[i]);
-    json.insert("process",arrayOfProcess);
+    json.insert("currTypeOfQuestion",currTypeOfQuestion);
+    json.insert("currIndexOfQuestion",currIndexOfQuestion);
+    //save progress for question
+    for(int i=0;i<progressOfQuestion.length();i++)
+        arrayOfQuestionProcess.push_back(progressOfQuestion[i]);
+    json.insert("progressOfQuestion",arrayOfQuestionProcess);
+    // save progress for collect
+    for(int i=0;i<progressOfCollect.length();i++)
+        arrayOfCollectProcess.push_back(progressOfCollect[i]);
+    json.insert("progressOfCollect",arrayOfCollectProcess);
     // save settings
     if(file.open(QIODevice::WriteOnly|QIODevice::Truncate)){
         QTextStream stream(&file);
@@ -98,10 +104,11 @@ void widgetOfStart::loadData()
         }
     }
     // set process 0
-    if(reader->isReload()||progress.isEmpty()){
-        progress.clear();
+    if(reader->isReload()||progressOfQuestion.isEmpty()){
+        progressOfQuestion.clear();
+        progressOfCollect.clear();
         for(int i=0;i<sumOfType;i++){
-            progress.push_back(1);
+            progressOfQuestion.push_back(1);
         }
     }
     // show all types
@@ -115,7 +122,7 @@ void widgetOfStart::loadData()
         ui->tableOfQuestionType->setItem(i,2,new QTableWidgetItem(QString::number(questionType[i].second[0])));
     }
     // clear the combobox
-    int currType=currQuestionType;
+    int currType=currTypeOfQuestion;
     if(ui->questionType->count()!=0)
         ui->questionType->clear();
     // add question types
@@ -128,24 +135,24 @@ void widgetOfStart::loadData()
 
 void widgetOfStart::selectQuestionType(int i)
 {
-    currQuestionType=i;
-    currQuestionIndex=progress[currQuestionType];
-    ui->sumOfQuestions->setText(QString::number(questionType[currQuestionType].second[0]));
-    switchQuestionByIndex(currQuestionIndex);
+    currTypeOfQuestion=i;
+    currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
+    ui->sumOfQuestions->setText(QString::number(questionType[currTypeOfQuestion].second[0]));
+    switchQuestionByIndex(currIndexOfQuestion);
 }
 
 void widgetOfStart::switchPreQuestion()
 {
-    if(currQuestionIndex<=1)
+    if(currIndexOfQuestion<=1)
         return;
-    switchQuestionByIndex(--currQuestionIndex);
+    switchQuestionByIndex(--currIndexOfQuestion);
 }
 
 void widgetOfStart::switchNextQuestion()
 {
-    if(currQuestionIndex>=questionType[currQuestionType].second[0])
+    if(currIndexOfQuestion>=questionType[currTypeOfQuestion].second[0])
         return;
-    switchQuestionByIndex(++currQuestionIndex);
+    switchQuestionByIndex(++currIndexOfQuestion);
 }
 
 void widgetOfStart::getPath()
@@ -196,7 +203,7 @@ void widgetOfStart::initalSelectPage()
     connect(reader,excelReader::readed,this,loadData);
     // show question
     connect(this,ready,this,[=](){
-        ui->questionType->setCurrentIndex(currQuestionType);
+        ui->questionType->setCurrentIndex(currTypeOfQuestion);
     });
     // questionType changed
     connect(ui->questionType,QComboBox::currentIndexChanged,this,selectQuestionType);
@@ -207,8 +214,8 @@ void widgetOfStart::switchQuestionByIndex(int i)
     if(!reader->isRead())
         return;
     const QVector<QVector<QString>>& data=reader->getData();
-    int index=questionType[currQuestionType].second[i];
-    progress[currQuestionType]=i;
+    int index=questionType[currTypeOfQuestion].second[i];
+    progressOfQuestion[currTypeOfQuestion]=i;
     ui->indexOfCurrentQuestion->setText(QString::number(i));
     // set question
     ui->textOfQuestion->setText(QString::number(i)+". "+data[index][2]);
@@ -217,7 +224,7 @@ void widgetOfStart::switchQuestionByIndex(int i)
     emit updateTextOfOption(1,data[index][4]);
     emit updateTextOfOption(2,data[index][5]);
     emit updateTextOfOption(3,data[index][6]);
-    currAnswer=data[index][7].toInt();
+    // currAnswerOfQuestion=data[index][7].toInt();
     // QMessageBox::about(nullptr,"answer",data[index][7]);
 }
 
@@ -236,14 +243,17 @@ void widgetOfStart::loadSetting()
             QMessageBox::warning(nullptr,"json parse error","json 格式错误!");
         json=doc.object();
         pathOfExcel=json.value("pathOfExcel").toString();
-        currQuestionType=json.value("currQuestionType").toInt();
-        currQuestionIndex=json.value("currQuestionIndex").toInt();
-        QJsonArray arrayOfProcess=json.value("process").toArray();
-        for(int i=0;i<arrayOfProcess.count();i++)
-            progress.push_back(arrayOfProcess[i].toInt());
+        currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
+        currIndexOfQuestion=json.value("currIndexOfQuestion").toInt();
+        QJsonArray arrayOfQuestionProcess=json.value("progressOfQuestion").toArray();
+        for(int i=0;i<arrayOfQuestionProcess.count();i++)
+            progressOfQuestion.push_back(arrayOfQuestionProcess[i].toInt());
+        QJsonArray arrayOfCollectProcess=json.value("progressOfCollect").toArray();
+        for(int i=0;i<arrayOfCollectProcess.count();i++)
+            progressOfCollect.push_back(arrayOfCollectProcess[i].toInt());
         emit loadExcel(pathOfExcel);
-        QTimer* timer=new QTimer(this);
-        connect(timer,QTimer::timeout,this,saveSetting);
-        timer->start(1000);
     }
+    QTimer* timer=new QTimer(this);
+    connect(timer,QTimer::timeout,this,saveSetting);
+    timer->start(1000);
 }
