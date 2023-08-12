@@ -14,12 +14,15 @@ widgetOfStart::widgetOfStart(QWidget *parent)
     , reader(new excelReader)
     , currTypeOfQuestion(0)
     , currIndexOfQuestion(1)
+    , currIndexOfCollection(0)
+    , flagOfInital(0)
 {
     ui->setupUi(this);
     initalStackWindow();
     initalQuestionPage();
-    initalSelectPage();
-    loadSetting();
+    initalSelectionPage();
+    initalCollectionPage();
+    // loadSetting();
 }
 
 widgetOfStart::~widgetOfStart()
@@ -46,9 +49,15 @@ void widgetOfStart::saveSetting()
         arrayOfQuestionProcess.push_back(progressOfQuestion[i]);
     json.insert("progressOfQuestion",arrayOfQuestionProcess);
     // save progress for collect
-    for(int i=0;i<progressOfCollect.length();i++)
-        arrayOfCollectProcess.push_back(progressOfCollect[i]);
-    json.insert("progressOfCollect",arrayOfCollectProcess);
+    QJsonArray first;
+    QJsonArray second;
+    for(int i=0;i<progressOfCollection.length();i++){
+        first.push_back(progressOfCollection[i].first);
+        second.push_back(progressOfCollection[i].second);
+    }
+    arrayOfCollectProcess.push_back(first);
+    arrayOfCollectProcess.push_back(second);
+    json.insert("progressOfCollection",arrayOfCollectProcess);
     // save settings
     if(file.open(QIODevice::WriteOnly|QIODevice::Truncate)){
         QTextStream stream(&file);
@@ -59,6 +68,45 @@ void widgetOfStart::saveSetting()
     }else{
         QMessageBox::warning(nullptr,"error","save \"settings.json\" is failed!");
     }
+}
+
+void widgetOfStart::loadSetting()
+{
+    if(flagOfInital==1)
+        return;
+    QJsonObject json;
+    QJsonDocument doc;
+    QFile file("./settings.json");
+    if(file.open(QIODevice::ReadOnly|QFile::Text)){
+        QJsonParseError error;
+        QTextStream stream(&file);
+        QString str=stream.readAll();
+        file.close();
+        doc=QJsonDocument::fromJson(str.toUtf8(),&error);
+        if(error.error!=QJsonParseError::NoError&&!doc.isNull())
+            QMessageBox::warning(nullptr,"json parse error","json 格式错误!");
+        json=doc.object();
+        pathOfExcel=json.value("pathOfExcel").toString();
+        currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
+        currIndexOfQuestion=json.value("currIndexOfQuestion").toInt();
+        QJsonArray arrayOfQuestionProcess=json.value("progressOfQuestion").toArray();
+        for(int i=0;i<arrayOfQuestionProcess.count();i++)
+            progressOfQuestion.push_back(arrayOfQuestionProcess[i].toInt());
+        QJsonArray arrayOfCollectProcess=json.value("progressOfCollection").toArray();
+        for(int i=0;i<arrayOfCollectProcess.count();i++){
+            const QJsonArray& array=arrayOfCollectProcess[i].toArray();
+            const QJsonArray& first=array[0].toArray();
+            const QJsonArray& second=array[1].toArray();
+            for(int j=0;j<first.count();j++){
+                progressOfCollection.push_back(QPair<int,int>(first[i].toInt(),second[i].toInt()));
+            }
+        }
+        emit loadExcel(pathOfExcel);
+    }
+    QTimer* timer=new QTimer(this);
+    connect(timer,QTimer::timeout,this,saveSetting);
+    timer->start(1000);
+    flagOfInital=1;
 }
 
 void widgetOfStart::loadData()
@@ -106,7 +154,7 @@ void widgetOfStart::loadData()
     // set process 0
     if(reader->isReload()||progressOfQuestion.isEmpty()){
         progressOfQuestion.clear();
-        progressOfCollect.clear();
+        progressOfCollection.clear();
         for(int i=0;i<sumOfType;i++){
             progressOfQuestion.push_back(1);
         }
@@ -150,9 +198,23 @@ void widgetOfStart::switchPreQuestion()
 
 void widgetOfStart::switchNextQuestion()
 {
-    if(currIndexOfQuestion>=questionType[currTypeOfQuestion].second[0])
+    if(currTypeOfQuestion>=questionType.length()||currIndexOfQuestion>=questionType[currTypeOfQuestion].second[0])
         return;
     switchQuestionByIndex(++currIndexOfQuestion);
+}
+
+void widgetOfStart::switchPreCollection()
+{
+    if(currIndexOfCollection<=0)
+        return;
+    switchCollectionByIndex(--currIndexOfCollection);
+}
+
+void widgetOfStart::switchNextCollection()
+{
+    if(currIndexOfCollection>=progressOfCollection.length())
+        return;
+    switchCollectionByIndex(++currIndexOfCollection);
 }
 
 void widgetOfStart::getPath()
@@ -176,8 +238,8 @@ void widgetOfStart::initalStackWindow()
     };
     QWidget* pages[]={
         ui->pageOfQuestion,
-        ui->pageOfSelect,
-        ui->pageOfCollect
+        ui->pageOfSelection,
+        ui->pageOfCollection
     };
     for(int i=0;i<sizeof(buttons)/sizeof(QPushButton*);i++){
         connect(buttons[i],QPushButton::clicked,this,[windows,buttons,pages,i](){
@@ -188,12 +250,20 @@ void widgetOfStart::initalStackWindow()
 
 void widgetOfStart::initalQuestionPage()
 {
-    connect(ui->fowardButton,QPushButton::clicked,this,switchPreQuestion);
-    connect(ui->nextButton,QPushButton::clicked,this,switchNextQuestion);
-    connect(this,updateTextOfOption,ui->optionsOfQuestion,clickOptions::setTextOfOption);
+    connect(ui->fowardQuestionButton,QPushButton::clicked,this,switchPreQuestion);
+    connect(ui->nextQuestionButton,QPushButton::clicked,this,switchNextQuestion);
+    connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
+    connect(ui->collectQuestionButton,QPushButton::clicked,this,[=](){
+        static int flag;
+        flag=!flag;
+        if(flag)
+            ui->collectQuestionButton->setText("⭐");
+        else
+            ui->collectQuestionButton->setText("☆");
+    });
 }
 
-void widgetOfStart::initalSelectPage()
+void widgetOfStart::initalSelectionPage()
 {
     // alter the textOfPath
     connect(ui->inputButton,QRadioButton::clicked,this,getPath);
@@ -209,6 +279,21 @@ void widgetOfStart::initalSelectPage()
     connect(ui->questionType,QComboBox::currentIndexChanged,this,selectQuestionType);
 }
 
+void widgetOfStart::initalCollectionPage()
+{
+    connect(ui->fowardCollectionButton,QPushButton::clicked,this,switchPreCollection);
+    connect(ui->nextCollectionButton,QPushButton::clicked,this,switchNextCollection);
+    connect(this,updateTextOfCollection,ui->optionsOfCollection,clickOptions::setTextOfOption);
+    connect(ui->cancelCollectionButton,QPushButton::clicked,this,[=](){
+        static int flag;
+        flag=!flag;
+        if(flag)
+            ui->cancelCollectionButton->setText("☆");
+        else
+            ui->cancelCollectionButton->setText("⭐");
+    });
+}
+
 void widgetOfStart::switchQuestionByIndex(int i)
 {
     if(!reader->isRead())
@@ -220,40 +305,30 @@ void widgetOfStart::switchQuestionByIndex(int i)
     // set question
     ui->textOfQuestion->setText(QString::number(i)+". "+data[index][2]);
     // set options
-    emit updateTextOfOption(0,data[index][3]);
-    emit updateTextOfOption(1,data[index][4]);
-    emit updateTextOfOption(2,data[index][5]);
-    emit updateTextOfOption(3,data[index][6]);
+    emit updateTextOfQuestion(0,data[index][3]);
+    emit updateTextOfQuestion(1,data[index][4]);
+    emit updateTextOfQuestion(2,data[index][5]);
+    emit updateTextOfQuestion(3,data[index][6]);
     // currAnswerOfQuestion=data[index][7].toInt();
     // QMessageBox::about(nullptr,"answer",data[index][7]);
 }
 
-void widgetOfStart::loadSetting()
+void widgetOfStart::switchCollectionByIndex(int i)
 {
-    QJsonObject json;
-    QJsonDocument doc;
-    QFile file("./settings.json");
-    if(file.open(QIODevice::ReadOnly|QFile::Text)){
-        QJsonParseError error;
-        QTextStream stream(&file);
-        QString str=stream.readAll();
-        file.close();
-        doc=QJsonDocument::fromJson(str.toUtf8(),&error);
-        if(error.error!=QJsonParseError::NoError&&!doc.isNull())
-            QMessageBox::warning(nullptr,"json parse error","json 格式错误!");
-        json=doc.object();
-        pathOfExcel=json.value("pathOfExcel").toString();
-        currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
-        currIndexOfQuestion=json.value("currIndexOfQuestion").toInt();
-        QJsonArray arrayOfQuestionProcess=json.value("progressOfQuestion").toArray();
-        for(int i=0;i<arrayOfQuestionProcess.count();i++)
-            progressOfQuestion.push_back(arrayOfQuestionProcess[i].toInt());
-        QJsonArray arrayOfCollectProcess=json.value("progressOfCollect").toArray();
-        for(int i=0;i<arrayOfCollectProcess.count();i++)
-            progressOfCollect.push_back(arrayOfCollectProcess[i].toInt());
-        emit loadExcel(pathOfExcel);
-    }
-    QTimer* timer=new QTimer(this);
-    connect(timer,QTimer::timeout,this,saveSetting);
-    timer->start(1000);
+    if(!reader->isRead())
+        return;
+    const QVector<QVector<QString>>& data=reader->getData();
+    int row=progressOfCollection[i].first;
+    int column=progressOfCollection[i].second;
+    int index=questionType[row].second[column];
+    ui->indexOfCurrentCollection->setText(QString::number(i));
+    // set question
+    ui->textOfCollection->setText(QString::number(i)+". "+data[index][2]);
+    // set options
+    emit updateTextOfCollection(0,data[index][3]);
+    emit updateTextOfCollection(1,data[index][4]);
+    emit updateTextOfCollection(2,data[index][5]);
+    emit updateTextOfCollection(3,data[index][6]);
+    // currAnswerOfQuestion=data[index][7].toInt();
+    // QMessageBox::about(nullptr,"answer",data[index][7]);
 }

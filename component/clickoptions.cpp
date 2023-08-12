@@ -94,6 +94,7 @@ void clickOptions::initalOptions()
         labels[i]->setText("option "+str);
         labels[i]->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
         labels[i]->setWordWrap(true);
+        connect(labels[i],clickLabel::clicked,buttons[i],QRadioButton::setChecked);
         QHBoxLayout* layout=new QHBoxLayout(this);
         layout->addWidget(buttons[i],1);
         layout->addWidget(labels[i],5);

@@ -14,29 +14,37 @@ class widgetOfStart : public QWidget
     public slots:
         void getPath();
         void saveSetting();
+        void loadSetting();
         void loadData();
         void selectQuestionType(int i);
         void switchPreQuestion();
         void switchNextQuestion();
+        void switchPreCollection();
+        void switchNextCollection();
 
     signals:
         void loadExcel(const QString& pathOfExcel);
         void ready();
-        void updateTextOfOption(int i,const QString& text);
+        void updateTextOfQuestion(int i,const QString& text);
+        void updateTextOfCollection(int i,const QString& text);
+        void collectQuestion();
+        void cancelCollection();
 
     private:
         Ui_widgetOfStart *ui;
         excelReader *reader;
         int currTypeOfQuestion;
         int currIndexOfQuestion;
+        int currIndexOfCollection;
         int flagOfInital;
         QString pathOfExcel;
         QList<int> progressOfQuestion;
-        QList<int> progressOfCollect;
+        QList<QPair<int,int>> progressOfCollection;
         QList<QPair<QString,QList<int>>> questionType;
         void initalStackWindow();
         void initalQuestionPage();
-        void initalSelectPage();
+        void initalSelectionPage();
+        void initalCollectionPage();
         void switchQuestionByIndex(int i);
-        void loadSetting();
+        void switchCollectionByIndex(int i);
 };

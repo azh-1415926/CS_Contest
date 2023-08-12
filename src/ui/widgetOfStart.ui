@@ -50,7 +50,7 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="pageOfQuestion">
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,4,0">
+      <layout class="QVBoxLayout" name="layoutOfPage0" stretch="1,4,0">
        <property name="spacing">
         <number>10</number>
        </property>
@@ -69,7 +69,7 @@
        <item>
         <widget class="QLabel" name="textOfQuestion">
          <property name="text">
-          <string>1. 题目标题</string>
+          <string>答题页</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -81,7 +81,7 @@
          <property name="title">
           <string/>
          </property>
-         <layout class="QVBoxLayout" name="layoutOfOptions" stretch="">
+         <layout class="QVBoxLayout" name="layoutOfOptions">
           <property name="spacing">
            <number>5</number>
           </property>
@@ -103,21 +103,21 @@
        <item>
         <layout class="QGridLayout" name="layoutOfOperateButton">
          <item row="0" column="1">
-          <widget class="QPushButton" name="collectButton">
+          <widget class="QPushButton" name="collectQuestionButton">
            <property name="text">
-            <string>☆/⭐</string>
+            <string>☆</string>
            </property>
           </widget>
          </item>
          <item row="0" column="2">
-          <widget class="QPushButton" name="nextButton">
+          <widget class="QPushButton" name="nextQuestionButton">
            <property name="text">
             <string>→</string>
            </property>
           </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QPushButton" name="fowardButton">
+          <widget class="QPushButton" name="fowardQuestionButton">
            <property name="text">
             <string>←</string>
            </property>
@@ -147,10 +147,10 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pageOfSelect">
-      <layout class="QVBoxLayout" name="layoutOfSelectPage">
+     <widget class="QWidget" name="pageOfSelection">
+      <layout class="QVBoxLayout" name="layoutOfPage1">
        <item>
-        <layout class="QHBoxLayout" name="layoutOfLoadExcel">
+        <layout class="QHBoxLayout" name="layoutOfLoad">
          <item>
           <widget class="QLabel" name="titleOfPath">
            <property name="text">
@@ -175,7 +175,7 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="layoutOfSelectQuestionType">
+        <layout class="QHBoxLayout" name="layoutOfSelectType">
          <item>
           <widget class="QLabel" name="titleOfSelectType">
            <property name="text">
@@ -193,7 +193,101 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pageOfCollect"/>
+     <widget class="QWidget" name="pageOfCollection">
+      <layout class="QVBoxLayout" name="layoutOfPage2" stretch="1,4,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="textOfCollection">
+         <property name="text">
+          <string>收藏页</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="clickOptions" name="optionsOfCollection">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="layoutOfOptions_2">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="layoutOfOperateCollection">
+         <item row="0" column="1">
+          <widget class="QPushButton" name="cancelCollectionButton">
+           <property name="text">
+            <string>⭐</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QPushButton" name="nextCollectionButton">
+           <property name="text">
+            <string>→</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="fowardCollectionButton">
+           <property name="text">
+            <string>←</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="sumOfCollection">
+           <property name="text">
+            <string>题目总数</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="indexOfCurrentCollection">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>题号显示</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
