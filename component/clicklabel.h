@@ -10,14 +10,14 @@ public:
     explicit clickLabel(QWidget* parent = nullptr);
     ~clickLabel();
 
+protected:
+    void mousePressEvent(QMouseEvent* e) override;
+
 signals:
     void clicked(clickLabel* label);
 
 public slots:
     ;
-
-protected:
-    void mousePressEvent(QMouseEvent* e) override;
 
 private:
     ;

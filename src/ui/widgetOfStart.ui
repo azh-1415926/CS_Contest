@@ -50,7 +50,10 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="pageOfQuestion">
-      <layout class="QGridLayout" name="layoutOfQuestionPage" rowstretch="1,4,1,0" columnminimumwidth="0,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,4,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
        <property name="leftMargin">
         <number>10</number>
        </property>
@@ -63,63 +66,22 @@
        <property name="bottomMargin">
         <number>10</number>
        </property>
-       <property name="spacing">
-        <number>10</number>
-       </property>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="collectButton">
-         <property name="text">
-          <string>☆/⭐</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="fowardButton">
-         <property name="text">
-          <string>←</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="indexOfCurrentQuestion">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="text">
-          <string>题号显示</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2" colspan="2">
-        <widget class="QLabel" name="sumOfQuestions">
-         <property name="text">
-          <string>题目总数</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
+       <item>
         <widget class="QLabel" name="textOfQuestion">
          <property name="text">
           <string>1. 题目标题</string>
          </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="nextButton">
-         <property name="text">
-          <string>→</string>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="QGroupBox" name="optionsOfQuestion">
+       <item>
+        <widget class="clickOptions" name="optionsOfQuestion">
          <property name="title">
           <string/>
          </property>
-         <layout class="QVBoxLayout" name="layoutOfOptions" stretch="1,1,1,1">
+         <layout class="QVBoxLayout" name="layoutOfOptions" stretch="">
           <property name="spacing">
            <number>5</number>
           </property>
@@ -135,105 +97,53 @@
           <property name="bottomMargin">
            <number>5</number>
           </property>
-          <item>
-           <layout class="QHBoxLayout" name="layoutOfOptionA" stretch="0,15">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QRadioButton" name="optionOfA">
-              <property name="text">
-               <string>A</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="clickLabel" name="textOfA">
-              <property name="text">
-               <string>选项 A</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="layoutOfOptionB" stretch="0,15">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QRadioButton" name="optionOfB">
-              <property name="text">
-               <string>B</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="clickLabel" name="textOfB">
-              <property name="text">
-               <string>选项 B</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="layoutOfOptionC" stretch="0,15">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QRadioButton" name="optionOfC">
-              <property name="text">
-               <string>C</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="clickLabel" name="textOfC">
-              <property name="text">
-               <string>选项 C</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="layoutOfOptionD" stretch="0,15">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QRadioButton" name="optionOfD">
-              <property name="text">
-               <string>D</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="clickLabel" name="textOfD">
-              <property name="text">
-               <string>选项 D</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
          </layout>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QScrollBar" name="scrollOfQuestion">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
+       <item>
+        <layout class="QGridLayout" name="layoutOfOperateButton">
+         <item row="0" column="1">
+          <widget class="QPushButton" name="collectButton">
+           <property name="text">
+            <string>☆/⭐</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QPushButton" name="nextButton">
+           <property name="text">
+            <string>→</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="fowardButton">
+           <property name="text">
+            <string>←</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="sumOfQuestions">
+           <property name="text">
+            <string>题目总数</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="indexOfCurrentQuestion">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>题号显示</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -290,9 +200,10 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>clickLabel</class>
-   <extends>QLabel</extends>
-   <header>component/clicklabel.h</header>
+   <class>clickOptions</class>
+   <extends>QGroupBox</extends>
+   <header>component/clickoptions.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

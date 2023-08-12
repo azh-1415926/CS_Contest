@@ -1,7 +1,6 @@
 #pragma once
 #include "ui/ui_widgetOfStart.h"
 #include <QWidget>
-#include <QEvent>
 #include "excelReader.h"
 
 class widgetOfStart : public QWidget
@@ -11,9 +10,6 @@ class widgetOfStart : public QWidget
     public:
         explicit widgetOfStart(QWidget *parent = nullptr);
         ~widgetOfStart();
-
-    protected:
-        bool eventFilter(QObject *obj, QEvent *e) override;
 
     public slots:
         void getPath();
@@ -26,10 +22,10 @@ class widgetOfStart : public QWidget
     signals:
         void loadExcel(const QString& pathOfExcel);
         void ready();
+        void updateTextOfOption(int i,const QString& text);
 
     private:
         Ui_widgetOfStart *ui;
-        QRect *border;
         excelReader *reader;
         int currQuestionType;
         int currQuestionIndex;
@@ -40,8 +36,6 @@ class widgetOfStart : public QWidget
         void initalStackWindow();
         void initalQuestionPage();
         void initalSelectPage();
-        void paintBorder(QWidget *widget);
-        void clickRadioButton(clickLabel *label);
         void switchQuestionByIndex(int i);
         void loadSetting();
 };

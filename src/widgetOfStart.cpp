@@ -11,7 +11,6 @@
 widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui_widgetOfStart)
-    , border(nullptr)
     , reader(new excelReader)
     ,currQuestionType(0)
     ,currQuestionIndex(1)
@@ -26,58 +25,7 @@ widgetOfStart::widgetOfStart(QWidget *parent)
 widgetOfStart::~widgetOfStart()
 {
     delete ui;
-    delete border;
     delete reader;
-}
-
-bool widgetOfStart::eventFilter(QObject *obj, QEvent *e)
-{
-    // tracing those objs,draw border for one for objs
-    QObject* objs[]={
-        ui->optionOfA,
-        ui->textOfA,
-        ui->optionOfB,
-        ui->textOfB,
-        ui->optionOfC,
-        ui->textOfC,
-        ui->optionOfD,
-        ui->textOfD
-    };
-    // find item in objs,and watch hover event
-    for(int i=0;i<sizeof(objs)/sizeof(QObject*);i++){
-        if(e->type()!=QEvent::HoverEnter&&e->type()!=QEvent::HoverLeave)
-            break;
-        if(obj==objs[i]){
-            QRect rect1=dynamic_cast<QRadioButton*>(objs[(i>>1)<<1])->geometry();
-            QRect rect2=dynamic_cast<QLabel*>(objs[(i>>1)<<1|1])->geometry();
-            if(border==nullptr){
-                border=new QRect(
-                    rect1.x(),
-                    rect2.y(),
-                    rect1.width()+rect2.width(),
-                    rect2.height()
-                );
-            }else{
-                border->setX(rect1.x());
-                border->setY(rect2.y());
-                border->setWidth(rect1.width()+rect2.width());
-                border->setHeight(rect2.height());
-            }
-            ui->optionsOfQuestion->update();
-            return true;
-        }
-    }
-    if(obj==ui->optionsOfQuestion&&e->type()==QEvent::Paint){
-        paintBorder(dynamic_cast<QWidget*>(obj));
-        return true;
-    }else if(obj==this&&e->type()==QEvent::Resize){
-        if(border!=nullptr){
-            delete border;
-            border=nullptr;
-        }
-        return true;
-    }
-    return QWidget::eventFilter(obj,e);
 }
 
 void widgetOfStart::saveSetting()
@@ -233,28 +181,9 @@ void widgetOfStart::initalStackWindow()
 
 void widgetOfStart::initalQuestionPage()
 {
-    // install filter for options
-    QObject* options[]={
-        ui->optionOfA,
-        ui->textOfA,
-        ui->optionOfB,
-        ui->textOfB,
-        ui->optionOfC,
-        ui->textOfC,
-        ui->optionOfD,
-        ui->textOfD
-    };
-    ui->optionsOfQuestion->installEventFilter(this);
-    for(int i=0;i<sizeof(options)/sizeof(QObject*);i++){
-        dynamic_cast<QWidget*>(options[i])->setAttribute(Qt::WA_Hover,true);
-        options[i]->installEventFilter(this);
-    }
-    this->installEventFilter(this);
-    // click these labels can click buttons
-    for(int i=1;i<sizeof(options)/sizeof(QObject*);i+=2)
-        connect((clickLabel*)options[i],clickLabel::clicked,this,clickRadioButton);
     connect(ui->fowardButton,QPushButton::clicked,this,switchPreQuestion);
     connect(ui->nextButton,QPushButton::clicked,this,switchNextQuestion);
+    connect(this,updateTextOfOption,ui->optionsOfQuestion,clickOptions::setTextOfOption);
 }
 
 void widgetOfStart::initalSelectPage()
@@ -273,41 +202,6 @@ void widgetOfStart::initalSelectPage()
     connect(ui->questionType,QComboBox::currentIndexChanged,this,selectQuestionType);
 }
 
-void widgetOfStart::paintBorder(QWidget *widget)
-{
-    if(border!=nullptr){
-        QPainter painter(widget);
-        QPen pen;
-        pen.setBrush(QBrush(qRgb(30,144,255)));
-        painter.setPen(pen);
-        painter.drawRect(QRect(border->topLeft(),border->bottomRight()));
-    }
-}
-
-void widgetOfStart::clickRadioButton(clickLabel* label)
-{
-    QRadioButton* buttons[]={
-        ui->optionOfA,
-        ui->optionOfB,
-        ui->optionOfC,
-        ui->optionOfD
-    };
-    QLabel* labels[]={
-        ui->textOfA,
-        ui->textOfB,
-        ui->textOfC,
-        ui->textOfD
-    };
-    int i=0;
-    while(i<sizeof(buttons)/sizeof(QRadioButton*)){
-        if(labels[i]==label){
-            buttons[i]->setChecked(true);
-            break;
-        }
-        i++;
-    }
-}
-
 void widgetOfStart::switchQuestionByIndex(int i)
 {
     if(!reader->isRead())
@@ -317,12 +211,12 @@ void widgetOfStart::switchQuestionByIndex(int i)
     progress[currQuestionType]=i;
     ui->indexOfCurrentQuestion->setText(QString::number(i));
     // set question
-    ui->textOfQuestion->setText(data[index][2]);
+    ui->textOfQuestion->setText(QString::number(i)+". "+data[index][2]);
     // set options
-    ui->textOfA->setText(data[index][3]);
-    ui->textOfB->setText(data[index][4]);
-    ui->textOfC->setText(data[index][5]);
-    ui->textOfD->setText(data[index][6]);
+    emit updateTextOfOption(0,data[index][3]);
+    emit updateTextOfOption(1,data[index][4]);
+    emit updateTextOfOption(2,data[index][5]);
+    emit updateTextOfOption(3,data[index][6]);
     currAnswer=data[index][7].toInt();
     // QMessageBox::about(nullptr,"answer",data[index][7]);
 }
