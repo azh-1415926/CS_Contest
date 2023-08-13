@@ -11,6 +11,9 @@ class widgetOfStart : public QWidget
         explicit widgetOfStart(QWidget *parent = nullptr);
         ~widgetOfStart();
 
+    protected:
+        void resizeEvent(QResizeEvent*) override;
+
     public slots:
         void getPath();
         void saveSetting();

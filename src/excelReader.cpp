@@ -1,4 +1,5 @@
 #include "excelReader.h"
+#include <QProgressDialog>
 
 excelReader::excelReader(QObject* parent)
     : QObject(parent)
@@ -51,16 +52,27 @@ void excelReader::readExcel(const QString& pathOfExcel)
     if(pathOfExcel.isEmpty()){
         return;
     }
+    QProgressDialog process;
+    process.setValue(0);
+    process.setWindowTitle("Loading Excel file");
+    process.setLabelText("loading");
+    process.setModal(true);
+    process.setRange(0,100);
     reloadFlag=(path.isEmpty()||path==pathOfExcel)?(0):(1);
     path=pathOfExcel;
     QAxObject *workbooks = excel->querySubObject("WorkBooks");
+    process.setValue(5);
     workbooks->dynamicCall("Open (const QString&)", pathOfExcel);
     QAxObject *workbook=excel->querySubObject("ActiveWorkBook");
+    process.setValue(10);
     QAxObject *worksheets=workbook->querySubObject("Sheets");
+    process.setValue(20);
     QAxObject *worksheet=worksheets->querySubObject("Item(int)",1);
+    process.setValue(30);
     // read data
     QAxObject *usedRange=worksheet->querySubObject("UsedRange");
     QVariant all=usedRange->dynamicCall("value");
+    process.setValue(40);
     const QVariantList& rowsOflist=all.toList();
     const QVariantList& columnsOfList=rowsOflist.at(0).toList();
     rows=rowsOflist.length();
@@ -76,9 +88,11 @@ void excelReader::readExcel(const QString& pathOfExcel)
             rowData.push_back(var.at(j).toString());
         }
         data.push_back(rowData);
+        process.setValue(39+60/rows*i);
     }
     workbook->dynamicCall("Close()");
     // read end
     readFlag=1;
     emit readed();
+    process.setValue(100);
 }

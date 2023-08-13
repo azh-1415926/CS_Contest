@@ -31,6 +31,12 @@ widgetOfStart::~widgetOfStart()
     delete reader;
 }
 
+void widgetOfStart::resizeEvent(QResizeEvent *)
+{
+    if(flagOfInital==0)
+        loadSetting();
+}
+
 void widgetOfStart::saveSetting()
 {
     if(pathOfExcel.isEmpty())
@@ -111,6 +117,7 @@ void widgetOfStart::loadSetting()
 
 void widgetOfStart::loadData()
 {
+
     char charOfType[]={
         /* 计算机应用基础 数据结构 数据库原理 */
         'C','J','K',
@@ -254,12 +261,10 @@ void widgetOfStart::initalQuestionPage()
     connect(ui->nextQuestionButton,QPushButton::clicked,this,switchNextQuestion);
     connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
     connect(ui->collectQuestionButton,QPushButton::clicked,this,[=](){
-        static int flag;
-        flag=!flag;
-        if(flag)
-            ui->collectQuestionButton->setText("⭐");
-        else
+        if(ui->collectQuestionButton->text()=="⭐")
             ui->collectQuestionButton->setText("☆");
+        else
+            ui->collectQuestionButton->setText("⭐");
     });
 }
 
@@ -285,9 +290,7 @@ void widgetOfStart::initalCollectionPage()
     connect(ui->nextCollectionButton,QPushButton::clicked,this,switchNextCollection);
     connect(this,updateTextOfCollection,ui->optionsOfCollection,clickOptions::setTextOfOption);
     connect(ui->cancelCollectionButton,QPushButton::clicked,this,[=](){
-        static int flag;
-        flag=!flag;
-        if(flag)
+        if(ui->cancelCollectionButton->text()=="⭐")
             ui->cancelCollectionButton->setText("☆");
         else
             ui->cancelCollectionButton->setText("⭐");
@@ -311,6 +314,7 @@ void widgetOfStart::switchQuestionByIndex(int i)
     emit updateTextOfQuestion(3,data[index][6]);
     // currAnswerOfQuestion=data[index][7].toInt();
     // QMessageBox::about(nullptr,"answer",data[index][7]);
+    ui->collectQuestionButton->setText("☆");
 }
 
 void widgetOfStart::switchCollectionByIndex(int i)
@@ -331,4 +335,5 @@ void widgetOfStart::switchCollectionByIndex(int i)
     emit updateTextOfCollection(3,data[index][6]);
     // currAnswerOfQuestion=data[index][7].toInt();
     // QMessageBox::about(nullptr,"answer",data[index][7]);
+    ui->cancelCollectionButton->setText("⭐");
 }
