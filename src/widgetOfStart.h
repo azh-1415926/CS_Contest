@@ -31,7 +31,9 @@ class widgetOfStart : public QWidget
         void updateTextOfQuestion(int i,const QString& text);
         void updateTextOfCollection(int i,const QString& text);
         void collectQuestion();
+        void uncollectQuestion();
         void cancelCollection();
+        void uncancelCollection();
 
     private:
         Ui_widgetOfStart *ui;

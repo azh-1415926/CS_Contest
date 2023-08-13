@@ -99,14 +99,12 @@ void widgetOfStart::loadSetting()
         for(int i=0;i<arrayOfQuestionProcess.count();i++)
             progressOfQuestion.push_back(arrayOfQuestionProcess[i].toInt());
         QJsonArray arrayOfCollectProcess=json.value("progressOfCollection").toArray();
-        for(int i=0;i<arrayOfCollectProcess.count();i++){
-            const QJsonArray& array=arrayOfCollectProcess[i].toArray();
-            const QJsonArray& first=array[0].toArray();
-            const QJsonArray& second=array[1].toArray();
-            for(int j=0;j<first.count();j++){
-                progressOfCollection.push_back(QPair<int,int>(first[i].toInt(),second[i].toInt()));
-            }
+        const QJsonArray& first=arrayOfCollectProcess[0].toArray();
+        const QJsonArray& second=arrayOfCollectProcess[1].toArray();
+        for(int i=0;i<first.count();i++){
+            progressOfCollection.push_back(QPair<int,int>(first[i].toInt(),second[i].toInt()));
         }
+        ui->sumOfCollection->setText(QString::number(progressOfCollection.length()));
         emit loadExcel(pathOfExcel);
     }
     QTimer* timer=new QTimer(this);
@@ -161,7 +159,8 @@ void widgetOfStart::loadData()
     // set process 0
     if(reader->isReload()||progressOfQuestion.isEmpty()){
         progressOfQuestion.clear();
-        progressOfCollection.clear();
+        if(reader->isReload())
+            progressOfCollection.clear();
         for(int i=0;i<sumOfType;i++){
             progressOfQuestion.push_back(1);
         }
@@ -214,6 +213,11 @@ void widgetOfStart::switchPreCollection()
 {
     if(currIndexOfCollection<=0)
         return;
+    // cancelCollection
+    if(ui->indexOfCurrentCollection->text()=="?"){
+        progressOfCollection.remove(currIndexOfCollection);
+        ui->sumOfCollection->setText(QString::number(progressOfCollection.length()));
+    }
     switchCollectionByIndex(--currIndexOfCollection);
 }
 
@@ -221,6 +225,11 @@ void widgetOfStart::switchNextCollection()
 {
     if(currIndexOfCollection>=progressOfCollection.length())
         return;
+    // cancelCollection
+    if(ui->indexOfCurrentCollection->text()=="?"){
+        progressOfCollection.remove(currIndexOfCollection);
+        ui->sumOfCollection->setText(QString::number(progressOfCollection.length()));
+    }
     switchCollectionByIndex(++currIndexOfCollection);
 }
 
@@ -262,10 +271,29 @@ void widgetOfStart::initalQuestionPage()
     connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
     connect(ui->collectQuestionButton,QPushButton::clicked,this,[=](){
         if(ui->collectQuestionButton->text()=="⭐")
-            ui->collectQuestionButton->setText("☆");
+            emit uncollectQuestion();
         else
-            ui->collectQuestionButton->setText("⭐");
+            emit collectQuestion();
     });
+    connect(this,collectQuestion,this,[=](){
+        ui->collectQuestionButton->setText("⭐");
+        int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
+        if(index==-1){
+            progressOfCollection.push_back(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
+            ui->sumOfCollection->setText(QString::number(progressOfCollection.length()));
+        }
+    });
+    connect(this,uncollectQuestion,this,[=](){
+        ui->collectQuestionButton->setText("☆");
+        int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
+        if(index!=-1){
+            progressOfCollection.remove(index);
+            switchCollectionByIndex(currIndexOfCollection);
+            ui->sumOfCollection->setText(QString::number(progressOfCollection.length()));
+        }
+    });
+    ui->indexOfCurrentQuestion->setText("0");
+    ui->sumOfQuestions->setText("0");
 }
 
 void widgetOfStart::initalSelectionPage()
@@ -291,10 +319,20 @@ void widgetOfStart::initalCollectionPage()
     connect(this,updateTextOfCollection,ui->optionsOfCollection,clickOptions::setTextOfOption);
     connect(ui->cancelCollectionButton,QPushButton::clicked,this,[=](){
         if(ui->cancelCollectionButton->text()=="⭐")
-            ui->cancelCollectionButton->setText("☆");
+            emit cancelCollection();
         else
-            ui->cancelCollectionButton->setText("⭐");
+            emit uncancelCollection();
     });
+    connect(this,cancelCollection,this,[=](){
+        ui->indexOfCurrentCollection->setText("?");
+        ui->cancelCollectionButton->setText("☆");
+    });
+    connect(this,uncancelCollection,this,[=](){
+        ui->indexOfCurrentCollection->setText(QString::number(currIndexOfCollection));
+        ui->cancelCollectionButton->setText("⭐");
+    });
+    ui->indexOfCurrentCollection->setText("0");
+    ui->sumOfCollection->setText("0");
 }
 
 void widgetOfStart::switchQuestionByIndex(int i)
@@ -312,9 +350,13 @@ void widgetOfStart::switchQuestionByIndex(int i)
     emit updateTextOfQuestion(1,data[index][4]);
     emit updateTextOfQuestion(2,data[index][5]);
     emit updateTextOfQuestion(3,data[index][6]);
+    int status=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i));
+    if(status!=-1)
+        ui->collectQuestionButton->text()=="⭐";
+    else
+        ui->collectQuestionButton->setText("☆");
     // currAnswerOfQuestion=data[index][7].toInt();
     // QMessageBox::about(nullptr,"answer",data[index][7]);
-    ui->collectQuestionButton->setText("☆");
 }
 
 void widgetOfStart::switchCollectionByIndex(int i)
