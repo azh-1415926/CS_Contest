@@ -15,11 +15,11 @@ public:
 protected:
     bool eventFilter(QObject *obj, QEvent *e) override;
 
-signals:
-    ;
-
 public slots:
     void setTextOfOption(int i,const QString& text);
+
+signals:
+    ;
 
 private:
     int numOfOptions;

@@ -259,7 +259,6 @@ void widgetOfStart::initalQuestionPage()
     connect(ui->nextQuestionButton,QPushButton::clicked,this,switchNextQuestion);
     connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
     connect(ui->collectQuestionButton,collectButton::collected,this,[=](){
-        ui->collectQuestionButton->setText("⭐");
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         if(index==-1){
             progressOfCollection.push_back(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
@@ -269,7 +268,6 @@ void widgetOfStart::initalQuestionPage()
         }
     });
     connect(ui->collectQuestionButton,collectButton::uncollected,this,[=](){
-        ui->collectQuestionButton->setText("☆");
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         if(index!=-1){
             progressOfCollection.remove(index);
@@ -313,11 +311,9 @@ void widgetOfStart::initalCollectionPage()
             return;
         }
         ui->indexOfCurrentCollection->setText("?");
-        ui->cancelCollectionButton->setText("☆");
     });
     connect(ui->cancelCollectionButton,collectButton::collected,this,[=](){
         ui->indexOfCurrentCollection->setText(QString::number(currIndexOfCollection));
-        ui->cancelCollectionButton->setText("⭐");
     });
     switchCollectionByIndex(-1);
 }

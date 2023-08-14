@@ -13,11 +13,11 @@ public:
 protected:
     void mousePressEvent(QMouseEvent* e) override;
 
-signals:
-    void clicked(clickLabel* label);
-
 public slots:
     ;
+
+signals:
+    void clicked(clickLabel* label);
 
 private:
     ;

@@ -13,13 +13,13 @@ public:
 protected:
     void mousePressEvent(QMouseEvent* e) override;
 
-signals:
-    void collected();
-    void uncollected();
-
 public slots:
     void setCollect();
     void setUncollect();
+
+signals:
+    void collected();
+    void uncollected();
 
 private:
     QString textOfCollect;
