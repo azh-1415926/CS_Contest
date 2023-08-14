@@ -215,6 +215,9 @@
          <property name="text">
           <string>收藏页</string>
          </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
