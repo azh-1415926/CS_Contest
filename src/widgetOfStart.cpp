@@ -258,13 +258,7 @@ void widgetOfStart::initalQuestionPage()
     connect(ui->fowardQuestionButton,QPushButton::clicked,this,switchPreQuestion);
     connect(ui->nextQuestionButton,QPushButton::clicked,this,switchNextQuestion);
     connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
-    connect(ui->collectQuestionButton,QPushButton::clicked,this,[=](){
-        if(ui->collectQuestionButton->text()=="⭐")
-            emit uncollectQuestion();
-        else
-            emit collectQuestion();
-    });
-    connect(this,collectQuestion,this,[=](){
+    connect(ui->collectQuestionButton,collectButton::collected,this,[=](){
         ui->collectQuestionButton->setText("⭐");
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         if(index==-1){
@@ -274,7 +268,7 @@ void widgetOfStart::initalQuestionPage()
                 switchCollectionByIndex(currIndexOfCollection=0);
         }
     });
-    connect(this,uncollectQuestion,this,[=](){
+    connect(ui->collectQuestionButton,collectButton::uncollected,this,[=](){
         ui->collectQuestionButton->setText("☆");
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         if(index!=-1){
@@ -313,13 +307,7 @@ void widgetOfStart::initalCollectionPage()
     connect(ui->fowardCollectionButton,QPushButton::clicked,this,switchPreCollection);
     connect(ui->nextCollectionButton,QPushButton::clicked,this,switchNextCollection);
     connect(this,updateTextOfCollection,ui->optionsOfCollection,clickOptions::setTextOfOption);
-    connect(ui->cancelCollectionButton,QPushButton::clicked,this,[=](){
-        if(ui->cancelCollectionButton->text()=="⭐")
-            emit cancelCollection();
-        else
-            emit uncancelCollection();
-    });
-    connect(this,cancelCollection,this,[=](){
+    connect(ui->cancelCollectionButton,collectButton::uncollected,this,[=](){
         if(progressOfCollection.length()<=1){
             switchCollectionByIndex(-1);
             return;
@@ -327,7 +315,7 @@ void widgetOfStart::initalCollectionPage()
         ui->indexOfCurrentCollection->setText("?");
         ui->cancelCollectionButton->setText("☆");
     });
-    connect(this,uncancelCollection,this,[=](){
+    connect(ui->cancelCollectionButton,collectButton::collected,this,[=](){
         ui->indexOfCurrentCollection->setText(QString::number(currIndexOfCollection));
         ui->cancelCollectionButton->setText("⭐");
     });
@@ -369,7 +357,7 @@ void widgetOfStart::switchCollectionByIndex(int i)
             if(currTypeOfQuestion==row&&currIndexOfQuestion==column)
                 ui->collectQuestionButton->setText("☆");
         }
-        ui->textOfCollection->setText("收藏页");
+        ui->textOfCollection->setText("暂无收藏");
         emit updateTextOfCollection(0,"Option A");
         emit updateTextOfCollection(1,"Option B");
         emit updateTextOfCollection(2,"Option C");
