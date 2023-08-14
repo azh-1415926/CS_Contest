@@ -16,6 +16,8 @@ protected:
 public slots:
     void setCollect();
     void setUncollect();
+    void setCollectNoSignal();
+    void setUncollectNoSignal();
 
 signals:
     void collected();

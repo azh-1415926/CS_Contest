@@ -40,3 +40,13 @@ void collectButton::setUncollect()
     this->setText(textOfUncollect);
     emit uncollected();
 }
+
+void collectButton::setCollectNoSignal()
+{
+    this->setText(textOfCollect);
+}
+
+void collectButton::setUncollectNoSignal()
+{
+    this->setText(textOfUncollect);
+}
