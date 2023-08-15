@@ -33,6 +33,8 @@ class widgetOfStart : public QWidget
         void updateIndexOfCollection(const QString& text);
         void updateSumOfQuestion(int n);
         void updateSumOfCollection(int n);
+        void updateAnswerOfQuestion(int i);
+        void updateAnswerOfCollection(int i);
         void isCollect(bool iscollected);
 
     private:

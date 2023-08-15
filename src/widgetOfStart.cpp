@@ -205,10 +205,10 @@ void widgetOfStart::showQuestionByIndex(int i)
     emit updateTextOfQuestion(1,data[index][4]);
     emit updateTextOfQuestion(2,data[index][5]);
     emit updateTextOfQuestion(3,data[index][6]);
+    emit updateAnswerOfQuestion(data[index][7][0].unicode()-'A');
     int status=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i));
     emit isCollect(status!=-1);
-    // currAnswerOfQuestion=data[index][7].toInt();
-    // QMessageBox::about(nullptr,"answer",data[index][7]);
+    ui->optionsOfQuestion->resetOption();
 }
 
 void widgetOfStart::showCollectionByIndex(int i)
@@ -228,9 +228,9 @@ void widgetOfStart::showCollectionByIndex(int i)
     emit updateTextOfCollection(1,data[index][4]);
     emit updateTextOfCollection(2,data[index][5]);
     emit updateTextOfCollection(3,data[index][6]);
-    // currAnswerOfQuestion=data[index][7].toInt();
-    // QMessageBox::about(nullptr,"answer",data[index][7]);
+    emit updateAnswerOfCollection(data[index][7][0].unicode()-'A');
     ui->switchOfCollection->setCollect(true);
+    ui->optionsOfCollection->resetOption();
 }
 
 void widgetOfStart::getPath()
@@ -266,7 +266,23 @@ void widgetOfStart::initalStackWindow()
 
 void widgetOfStart::initalQuestionPage()
 {
+    connect(ui->optionsOfQuestion,clickOptions::selectOption,this,[=](int option){
+        static int index;
+        static int n;
+        int currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
+        n=index!=currIndexOfQuestion||option!=ui->optionsOfQuestion->getAnswer()?1:n-1;
+        index=currIndexOfQuestion;
+        if(n==0){
+            if(index+1<questionType[currTypeOfQuestion].second[0]){
+                emit updateIndexOfQuestion(index+1);
+                showQuestionByIndex(index+1);
+            }
+            return;
+        }
+        ui->optionsOfQuestion->displayAnswer(true);
+    });
     connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
+    connect(this,updateAnswerOfQuestion,ui->optionsOfQuestion,clickOptions::setAnswer);
     connect(this,updateSumOfQuestion,ui->switchOfQuestion,switchQuestion::setSum);
     connect(this,updateIndexOfQuestion,ui->switchOfQuestion,switchQuestion::setIndex);
     connect(this,isCollect,ui->switchOfQuestion,switchQuestion::setCollect);
@@ -276,12 +292,11 @@ void widgetOfStart::initalQuestionPage()
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         if(index==-1){
             progressOfCollection.push_back(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
-            emit updateSumOfCollection(progressOfCollection.length());
             if(progressOfCollection.length()==1){
-                updateIndexOfCollection("0");
+                emit updateIndexOfCollection("0");
                 showCollectionByIndex(0);
-                updateSumOfCollection(progressOfCollection.length());
             }
+            emit updateSumOfCollection(progressOfCollection.length());
         }
     });
     connect(ui->switchOfQuestion,switchQuestion::uncollectQuestion,this,[=](){
@@ -294,7 +309,7 @@ void widgetOfStart::initalQuestionPage()
                 resetCollection();
             }else if(currIndexOfCollection>=progressOfCollection.length()){
                 showCollectionByIndex(progressOfCollection.length()-1);
-                updateIndexOfCollection(progressOfCollection.length()-1);
+                emit updateIndexOfCollection(progressOfCollection.length()-1);
             }
             emit updateSumOfCollection(progressOfCollection.length());
         }
@@ -322,9 +337,25 @@ void widgetOfStart::initalSelectionPage()
 
 void widgetOfStart::initalCollectionPage()
 {
+    connect(ui->optionsOfCollection,clickOptions::selectOption,this,[=](int option){
+        static int index;
+        static int n;
+        int currIndexOfCollection=ui->switchOfCollection->index();
+        n=index!=currIndexOfCollection||option!=ui->optionsOfCollection->getAnswer()?1:n-1;
+        index=currIndexOfCollection;
+        if(n==0){
+            if(index+1<progressOfCollection.length()){
+                emit updateIndexOfCollection(index+1);
+                showCollectionByIndex(index+1);
+            }
+            return;
+        }
+        ui->optionsOfCollection->displayAnswer(true);
+    });
     void(widgetOfStart::*updateIndexByInt)(int) =updateIndexOfCollection;
     void(widgetOfStart::*updateIndexByString)(const QString&) =updateIndexOfCollection;
     connect(this,updateTextOfCollection,ui->optionsOfCollection,clickOptions::setTextOfOption);
+    connect(this,updateAnswerOfCollection,ui->optionsOfCollection,clickOptions::setAnswer);
     connect(this,updateSumOfCollection,ui->switchOfCollection,switchQuestion::setSum);
     connect(this,updateIndexByInt,ui->switchOfCollection,switchQuestion::setIndex);
     connect(this,updateIndexByString,ui->switchOfCollection,switchQuestion::setTextOfIndex);
