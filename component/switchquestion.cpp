@@ -88,7 +88,7 @@ void switchQuestion::inital()
     connect(collectBtn,collectButton::collected,this,[=](){
         emit collectQuestion();
     });
-    connect(collectBtn,collectButton::collected,this,[=](){
+    connect(collectBtn,collectButton::uncollected,this,[=](){
         emit uncollectQuestion();
     });
 }

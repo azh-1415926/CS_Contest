@@ -101,56 +101,9 @@
         </widget>
        </item>
        <item>
-        <layout class="QGridLayout" name="layoutOfOperateButton">
-         <item row="0" column="1">
-          <widget class="collectButton" name="collectQuestionButton">
-           <property name="text">
-            <string>☆</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="nextQuestionButton">
-           <property name="text">
-            <string>→</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QPushButton" name="fowardQuestionButton">
-           <property name="text">
-            <string>←</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="sumOfQuestions">
-           <property name="text">
-            <string>题目总数</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="indexOfCurrentQuestion">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>题号显示</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="tagOfQuestion">
-           <property name="text">
-            <string>答题页</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="switchQuestion" name="switchOfQuestion" native="true">
+         <layout class="QGridLayout" name="layoutOfOperateButton"/>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -320,6 +273,12 @@
    <class>collectButton</class>
    <extends>QPushButton</extends>
    <header>component/collectbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>switchQuestion</class>
+   <extends>QWidget</extends>
+   <header>component/switchquestion.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

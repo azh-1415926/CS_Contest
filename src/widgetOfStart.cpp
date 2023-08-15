@@ -13,7 +13,6 @@ widgetOfStart::widgetOfStart(QWidget *parent)
     , ui(new Ui_widgetOfStart)
     , reader(new excelReader)
     , currTypeOfQuestion(0)
-    , currIndexOfQuestion(1)
     , currIndexOfCollection(0)
     , flagOfInital(0)
 {
@@ -48,7 +47,6 @@ void widgetOfStart::saveSetting()
     // insert settings to json
     json.insert("pathOfExcel",pathOfExcel);
     json.insert("currTypeOfQuestion",currTypeOfQuestion);
-    json.insert("currIndexOfQuestion",currIndexOfQuestion);
     //save progress for question
     for(int i=0;i<progressOfQuestion.length();i++)
         arrayOfQuestionProcess.push_back(progressOfQuestion[i]);
@@ -93,7 +91,6 @@ void widgetOfStart::loadSetting()
         json=doc.object();
         pathOfExcel=json.value("pathOfExcel").toString();
         currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
-        currIndexOfQuestion=json.value("currIndexOfQuestion").toInt();
         QJsonArray arrayOfQuestionProcess=json.value("progressOfQuestion").toArray();
         for(int i=0;i<arrayOfQuestionProcess.count();i++)
             progressOfQuestion.push_back(arrayOfQuestionProcess[i].toInt());
@@ -161,7 +158,7 @@ void widgetOfStart::loadData()
         if(reader->isReload())
             progressOfCollection.clear();
         for(int i=0;i<sumOfType;i++){
-            progressOfQuestion.push_back(1);
+            progressOfQuestion.push_back(0);
         }
     }
     // show all types
@@ -186,26 +183,33 @@ void widgetOfStart::loadData()
     emit ready();
 }
 
-void widgetOfStart::selectQuestionType(int i)
+void widgetOfStart::setQuestionType(int i)
 {
     currTypeOfQuestion=i;
-    currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
-    ui->sumOfQuestions->setText(QString::number(questionType[currTypeOfQuestion].second[0]));
-    switchQuestionByIndex(currIndexOfQuestion);
+    int currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
+    emit updateSumOfQuestion(questionType[currTypeOfQuestion].second[0]);
+    emit updateIndexOfQuestion(currIndexOfQuestion);
+    showQuestionByIndex(currIndexOfQuestion);
 }
 
-void widgetOfStart::switchPreQuestion()
+void widgetOfStart::showQuestionByIndex(int i)
 {
-    if(currIndexOfQuestion<=1)
+    if(!reader->isRead())
         return;
-    switchQuestionByIndex(--currIndexOfQuestion);
-}
-
-void widgetOfStart::switchNextQuestion()
-{
-    if(currTypeOfQuestion>=questionType.length()||currIndexOfQuestion>=questionType[currTypeOfQuestion].second[0])
-        return;
-    switchQuestionByIndex(++currIndexOfQuestion);
+    const QVector<QVector<QString>>& data=reader->getData();
+    int index=questionType[currTypeOfQuestion].second[i+1];
+    progressOfQuestion[currTypeOfQuestion]=i;
+    // set question
+    ui->textOfQuestion->setText(QString::number(i+1)+". "+data[index][2]);
+    // set options
+    emit updateTextOfQuestion(0,data[index][3]);
+    emit updateTextOfQuestion(1,data[index][4]);
+    emit updateTextOfQuestion(2,data[index][5]);
+    emit updateTextOfQuestion(3,data[index][6]);
+    int status=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i));
+    emit isCollect(status!=-1);
+    // currAnswerOfQuestion=data[index][7].toInt();
+    // QMessageBox::about(nullptr,"answer",data[index][7]);
 }
 
 void widgetOfStart::switchPreCollection()
@@ -255,10 +259,13 @@ void widgetOfStart::initalStackWindow()
 
 void widgetOfStart::initalQuestionPage()
 {
-    connect(ui->fowardQuestionButton,QPushButton::clicked,this,switchPreQuestion);
-    connect(ui->nextQuestionButton,QPushButton::clicked,this,switchNextQuestion);
     connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
-    connect(ui->collectQuestionButton,collectButton::collected,this,[=](){
+    connect(this,updateSumOfQuestion,ui->switchOfQuestion,switchQuestion::setSum);
+    connect(this,updateIndexOfQuestion,ui->switchOfQuestion,switchQuestion::setIndex);
+    connect(this,isCollect,ui->switchOfQuestion,switchQuestion::setCollect);
+    connect(ui->switchOfQuestion,switchQuestion::changeQuestion,this,showQuestionByIndex);
+    connect(ui->switchOfQuestion,switchQuestion::collectQuestion,this,[=](){
+        int currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         if(index==-1){
             progressOfCollection.push_back(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
@@ -267,7 +274,8 @@ void widgetOfStart::initalQuestionPage()
                 switchCollectionByIndex(currIndexOfCollection=0);
         }
     });
-    connect(ui->collectQuestionButton,collectButton::uncollected,this,[=](){
+    connect(ui->switchOfQuestion,switchQuestion::uncollectQuestion,this,[=](){
+        int currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         if(index!=-1){
             progressOfCollection.remove(index);
@@ -278,8 +286,6 @@ void widgetOfStart::initalQuestionPage()
             ui->sumOfCollection->setText(QString::number(progressOfCollection.length()));
         }
     });
-    ui->indexOfCurrentQuestion->setText("0");
-    ui->sumOfQuestions->setText("0");
 }
 
 void widgetOfStart::initalSelectionPage()
@@ -297,7 +303,7 @@ void widgetOfStart::initalSelectionPage()
             switchCollectionByIndex(currIndexOfCollection);
     });
     // questionType changed
-    connect(ui->questionType,QComboBox::currentIndexChanged,this,selectQuestionType);
+    connect(ui->questionType,QComboBox::currentIndexChanged,this,setQuestionType);
 }
 
 void widgetOfStart::initalCollectionPage()
@@ -318,30 +324,6 @@ void widgetOfStart::initalCollectionPage()
     switchCollectionByIndex(-1);
 }
 
-void widgetOfStart::switchQuestionByIndex(int i)
-{
-    if(!reader->isRead())
-        return;
-    const QVector<QVector<QString>>& data=reader->getData();
-    int index=questionType[currTypeOfQuestion].second[i];
-    progressOfQuestion[currTypeOfQuestion]=i;
-    ui->indexOfCurrentQuestion->setText(QString::number(i));
-    // set question
-    ui->textOfQuestion->setText(QString::number(i)+". "+data[index][2]);
-    // set options
-    emit updateTextOfQuestion(0,data[index][3]);
-    emit updateTextOfQuestion(1,data[index][4]);
-    emit updateTextOfQuestion(2,data[index][5]);
-    emit updateTextOfQuestion(3,data[index][6]);
-    int status=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i));
-    if(status!=-1)
-        ui->collectQuestionButton->setText("⭐");
-    else
-        ui->collectQuestionButton->setText("☆");
-    // currAnswerOfQuestion=data[index][7].toInt();
-    // QMessageBox::about(nullptr,"answer",data[index][7]);
-}
-
 void widgetOfStart::switchCollectionByIndex(int i)
 {
     if(progressOfCollection.isEmpty()||i==-1){
@@ -350,8 +332,8 @@ void widgetOfStart::switchCollectionByIndex(int i)
             int row=progressOfCollection[0].first;
             int column=progressOfCollection[0].second;
             progressOfCollection.remove(0);
-            if(currTypeOfQuestion==row&&currIndexOfQuestion==column)
-                ui->collectQuestionButton->setText("☆");
+            if(currTypeOfQuestion==row&&progressOfQuestion[currTypeOfQuestion]==column)
+                ui->switchOfQuestion->setCollect(false);
         }
         ui->textOfCollection->setText("暂无收藏");
         emit updateTextOfCollection(0,"Option A");
@@ -368,13 +350,13 @@ void widgetOfStart::switchCollectionByIndex(int i)
     const QVector<QVector<QString>>& data=reader->getData();
     int row=progressOfCollection[currIndexOfCollection].first;
     int column=progressOfCollection[currIndexOfCollection].second;
-    int index=questionType[row].second[column];
+    int index=questionType[row].second[column+1];
     if(ui->indexOfCurrentCollection->text()=="?"){
         row=progressOfCollection[i].first;
         column=progressOfCollection[i].second;
         progressOfCollection.remove(i);
-        if(currTypeOfQuestion==row&&currIndexOfQuestion==column)
-            ui->collectQuestionButton->setText("☆");
+        if(currTypeOfQuestion==row&&progressOfQuestion[currTypeOfQuestion]==column)
+            ui->switchOfQuestion->setCollect(false);
         if(i<currIndexOfCollection)
             currIndexOfCollection--;
         ui->sumOfCollection->setText(QString::number(progressOfCollection.length()));
