@@ -3,6 +3,8 @@
 
 switchQuestion::switchQuestion(QWidget *parent)
     : QWidget(parent)
+    , indexOfQuestion(0)
+    , sumOfQuestion(0)
     , forwardBtn(new QPushButton)
     , nextBtn(new QPushButton)
     , collectBtn(new collectButton)
@@ -23,6 +25,28 @@ switchQuestion::~switchQuestion()
     delete textOfSum;
 }
 
+const QString &switchQuestion::title()
+{
+    const QString& str=this->textOfTag->text();
+    return str;
+}
+
+int switchQuestion::index()
+{
+    return this->indexOfQuestion;
+}
+
+const QString &switchQuestion::stringOfIndex()
+{
+    const QString& str=this->textOfIndex->text();
+    return str;
+}
+
+int switchQuestion::count()
+{
+    return this->sumOfQuestion;
+}
+
 void switchQuestion::setTitle(const QString& title)
 {
     this->textOfTag->setText(title);
@@ -30,14 +54,14 @@ void switchQuestion::setTitle(const QString& title)
 
 void switchQuestion::setIndex(int i)
 {
-    this->index=i;
-    this->textOfIndex->setText(QString::number(this->index+1));
+    this->indexOfQuestion=i;
+    this->textOfIndex->setText(QString::number(this->indexOfQuestion+1));
 }
 
 void switchQuestion::setSum(int n)
 {
-    this->sum=n;
-    this->textOfSum->setText(QString::number(this->sum));
+    this->sumOfQuestion=n;
+    this->textOfSum->setText(QString::number(this->sumOfQuestion));
 }
 
 void switchQuestion::setTextOfIndex(const QString &str)
@@ -72,18 +96,18 @@ void switchQuestion::inital()
     layout->addWidget(textOfIndex,1,1);
     layout->addWidget(textOfSum,1,2);
     connect(forwardBtn,QPushButton::clicked,this,[=](){
-        if(this->index<=0)
+        if(this->indexOfQuestion<=0)
             return;
-        --this->index;
-        this->textOfIndex->setText(QString::number(this->index+1));
-        emit changeQuestion(this->index);
+        emit lastIndex(this->indexOfQuestion--);
+        this->textOfIndex->setText(QString::number(this->indexOfQuestion+1));
+        emit changeQuestion(this->indexOfQuestion);
     });
     connect(nextBtn,QPushButton::clicked,this,[=](){
-        if(this->index>=this->sum-1)
+        if(this->indexOfQuestion>=this->sumOfQuestion-1)
             return;
-        ++this->index;
-        this->textOfIndex->setText(QString::number(this->index+1));
-        emit changeQuestion(this->index);
+        emit lastIndex(this->indexOfQuestion++);
+        this->textOfIndex->setText(QString::number(this->indexOfQuestion+1));
+        emit changeQuestion(this->indexOfQuestion);
     });
     connect(collectBtn,collectButton::collected,this,[=](){
         emit collectQuestion();

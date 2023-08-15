@@ -21,8 +21,7 @@ class widgetOfStart : public QWidget
         void loadData();
         void setQuestionType(int i);
         void showQuestionByIndex(int i);
-        void switchPreCollection();
-        void switchNextCollection();
+        void showCollectionByIndex(int i);
 
     signals:
         void loadExcel(const QString& pathOfExcel);
@@ -30,16 +29,16 @@ class widgetOfStart : public QWidget
         void updateTextOfQuestion(int i,const QString& text);
         void updateTextOfCollection(int i,const QString& text);
         void updateIndexOfQuestion(int i);
+        void updateIndexOfCollection(int i);
+        void updateIndexOfCollection(const QString& text);
         void updateSumOfQuestion(int n);
+        void updateSumOfCollection(int n);
         void isCollect(bool iscollected);
-        void cancelCollection();
-        void uncancelCollection();
 
     private:
         Ui_widgetOfStart *ui;
         excelReader *reader;
         int currTypeOfQuestion;
-        int currIndexOfCollection;
         int flagOfInital;
         QString pathOfExcel;
         QList<int> progressOfQuestion;
@@ -49,5 +48,5 @@ class widgetOfStart : public QWidget
         void initalQuestionPage();
         void initalSelectionPage();
         void initalCollectionPage();
-        void switchCollectionByIndex(int i);
+        void resetCollection();
 };

@@ -205,56 +205,9 @@
         </widget>
        </item>
        <item>
-        <layout class="QGridLayout" name="layoutOfOperateCollection">
-         <item row="0" column="1">
-          <widget class="collectButton" name="cancelCollectionButton">
-           <property name="text">
-            <string>⭐</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="nextCollectionButton">
-           <property name="text">
-            <string>→</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QPushButton" name="fowardCollectionButton">
-           <property name="text">
-            <string>←</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="sumOfCollection">
-           <property name="text">
-            <string>题目总数</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="indexOfCurrentCollection">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>题号显示</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="tagOfCollection">
-           <property name="text">
-            <string>收藏页</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="switchQuestion" name="switchOfCollection" native="true">
+         <layout class="QGridLayout" name="layoutOfOperateCollection"/>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -268,11 +221,6 @@
    <extends>QGroupBox</extends>
    <header>component/clickoptions.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>collectButton</class>
-   <extends>QPushButton</extends>
-   <header>component/collectbutton.h</header>
   </customwidget>
   <customwidget>
    <class>switchQuestion</class>

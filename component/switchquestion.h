@@ -11,6 +11,10 @@ class switchQuestion : public QWidget {
 public:
     explicit switchQuestion(QWidget* parent = nullptr);
     ~switchQuestion();
+    const QString& title();
+    int index();
+    const QString& stringOfIndex();
+    int count();
 
 protected:
     ;
@@ -27,10 +31,11 @@ signals:
     void collectQuestion();
     void uncollectQuestion();
     void changeQuestion(int i);
+    void lastIndex(int i);
 
 private:
-    int index;
-    int sum;
+    int indexOfQuestion;
+    int sumOfQuestion;
     QPushButton* forwardBtn;
     QPushButton* nextBtn;
     collectButton* collectBtn;
