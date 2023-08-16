@@ -16,9 +16,9 @@ class widgetOfStart : public QWidget
 
     public slots:
         void getPath();
-        void saveSetting();
-        void loadSetting();
-        void loadData();
+        void exportSetting();
+        void importSetting();
+        void handleData();
         void setQuestionType(int i);
         void showQuestionByIndex(int i);
         void showCollectionByIndex(int i);

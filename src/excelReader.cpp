@@ -59,6 +59,8 @@ void excelReader::readExcel(const QString& pathOfExcel)
     process.setModal(true);
     process.setRange(0,100);
     reloadFlag=(path.isEmpty()||path==pathOfExcel)?(0):(1);
+    if(path==pathOfExcel)
+        return;
     path=pathOfExcel;
     QAxObject *workbooks = excel->querySubObject("WorkBooks");
     process.setValue(5);
@@ -74,7 +76,7 @@ void excelReader::readExcel(const QString& pathOfExcel)
     QVariant all=usedRange->dynamicCall("value");
     process.setValue(40);
     const QVariantList& rowsOflist=all.toList();
-    const QVariantList& columnsOfList=rowsOflist.at(0).toList();
+    const QVariantList& columnsOfList=rowsOflist[0].toList();
     rows=rowsOflist.length();
     columns=columnsOfList.length();
     // rows=usedRange->querySubObject("Rows")->property("Row").toInt();
@@ -83,9 +85,9 @@ void excelReader::readExcel(const QString& pathOfExcel)
         data.clear();
     for(int i=0;i<rows;i++){
         QVector<QString> rowData;
-        const QVariantList& var=rowsOflist.at(i).toList();
+        const QVariantList& var=rowsOflist[i].toList();
         for(int j=0;j<columns;j++){
-            rowData.push_back(var.at(j).toString());
+            rowData.push_back(var[j].toString());
         }
         data.push_back(rowData);
         process.setValue(39+60/rows*i);

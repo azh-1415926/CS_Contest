@@ -55,7 +55,10 @@ void switchQuestion::setTitle(const QString& title)
 void switchQuestion::setIndex(int i)
 {
     this->indexOfQuestion=i;
-    this->textOfIndex->setText(QString::number(this->indexOfQuestion+1));
+    if(this->indexOfQuestion<this->sumOfQuestion)
+        this->textOfIndex->setText(QString::number(this->indexOfQuestion+1));
+    else
+        this->textOfIndex->setText(QString::number(this->indexOfQuestion));
 }
 
 void switchQuestion::setSum(int n)
