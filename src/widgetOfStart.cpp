@@ -476,6 +476,8 @@ void widgetOfStart::initalCollectionPage()
             if(index+1<progressOfCollection.length()){
                 emit updateIndexOfCollection(index+1);
                 showCollectionByIndex(index+1);
+            }else{
+                ui->optionsOfCollection->displayAnswer(false);
             }
             return;
         }
