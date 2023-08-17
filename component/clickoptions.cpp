@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPainter>
+#include <QPainterPath>
 #include <QMessageBox>
 
 clickOptions::clickOptions(QWidget *parent)
@@ -129,7 +130,7 @@ void clickOptions::initalOptions()
         labels[i]->setText("option "+str);
         labels[i]->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
         labels[i]->setWordWrap(true);
-        connect(buttons[i],QRadioButton::isChecked,this,[=](){
+        connect(buttons[i],QRadioButton::clicked,this,[=](){
             this->checkedOption=i;
             emit selectOption(i);
         });
@@ -160,7 +161,7 @@ void clickOptions::paintBox(QWidget *widget, QRect *box)
 {
     if(box!=nullptr){
         QPainter painter(widget);
-        QPen pen;
+        QPen pen(Qt::black,5);
         if(box==hoverBox){
             pen.setBrush(QBrush(qRgb(30,144,255)));
         }else if(box==correctBox){
@@ -169,7 +170,25 @@ void clickOptions::paintBox(QWidget *widget, QRect *box)
             pen.setBrush(QBrush(qRgb(255,0,0)));
         }
         painter.setPen(pen);
-        painter.drawRect(QRect(box->topLeft(),box->bottomRight()));
+        if(box==hoverBox){
+            painter.drawRoundedRect(QRect(box->topLeft(),box->bottomRight()),20,20);
+        }else{
+            QPainterPath path;
+            path.addRoundedRect(
+                QRect(
+                    box->x()+5,
+                    box->y()+5,
+                    box->width()-10,
+                    box->height()-10
+                ),
+                15,15
+            );
+            painter.fillPath(path,pen.brush());
+            pen.setColor(Qt::black);
+            pen.setWidth(5);
+            painter.setPen(pen);
+            painter.drawPath(path);
+        }
     }
 }
 
