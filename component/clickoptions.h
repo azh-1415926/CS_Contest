@@ -28,6 +28,7 @@ signals:
 private:
     int numOfOptions;
     int answerOfOptions;
+    int hoverOption;
     int checkedOption;
     QList<QRadioButton*> buttons;
     QList<clickLabel*> labels;
@@ -37,5 +38,6 @@ private:
     void initalOptions();
     void initalEvent();
     void paintBox(QWidget* widget,QRect* box);
+    void freeBoxes();
     QRect* setOptionOfBox(int i,QRect* rect=nullptr);
 };

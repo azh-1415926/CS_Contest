@@ -259,6 +259,8 @@ void widgetOfStart::showQuestionByIndex(int i)
     /* 若未读取文件则立即返回 */
     if(!reader->isRead())
         return;
+    /* 重置 optionsOfQuestion 的状态（清除正确选框、当前选项） */
+    ui->optionsOfQuestion->resetOption();
     /*
         所读取的数据位于 reader 模块中
         题号从 1开始，0 位置为没有题目，故题号下标需要加一
@@ -281,8 +283,6 @@ void widgetOfStart::showQuestionByIndex(int i)
     int status=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i));
     /* 若该题在收藏列表中，将该题标记为收藏，即发送 isColllect(true) 信号 */
     emit isCollect(status!=-1);
-    /* 重置 optionsOfQuestion 的状态（清除正确选框、当前选项） */
-    ui->optionsOfQuestion->resetOption();
 }
 
 /* 显示收藏页题目信息 */
@@ -291,6 +291,8 @@ void widgetOfStart::showCollectionByIndex(int i)
     /* 若未读取文件则立即返回 */
     if(!reader->isRead())
         return;
+    /* 重置 optionsOfCollection 的状态（清除正确选框、当前选项） */
+    ui->optionsOfCollection->resetOption();
     const QVector<QVector<QString>>& data=reader->getData();
     /* 从答题进度数组中读取 QPair<int,int>，first 对应题型下标，second 对应题号下标 */
     int row=progressOfCollection[i].first;
@@ -307,8 +309,6 @@ void widgetOfStart::showCollectionByIndex(int i)
     emit updateAnswerOfCollection(data[index][7][0].unicode()-'A');
     /* 收藏页的收藏按钮状态默认是已收藏 */
     ui->switchOfCollection->setCollect(true);
-    /* 重置 optionsOfCollection 的状态（清除正确选框、当前选项） */
-    ui->optionsOfCollection->resetOption();
 }
 
 /* 获取用户选择 excel 文件的路径 */
