@@ -134,8 +134,11 @@ void clickOptions::initalOptions()
         /* 设置按钮和选项标签初始文本，分别为 "A"、"Option A"，选项从 A 开始 */
         char ch='A'+i;
         QString str(ch);
+        buttons[i]->setFont(QFont("Microsoft YaHei UI",10));
         buttons[i]->setText(str);
+        labels[i]->setFont(QFont("Microsoft YaHei UI",10));
         labels[i]->setText("option "+str);
+        labels[i]->setMargin(14);
         /* 设置选项标签为左对齐、垂直居中对齐，文本自动缩放 */
         labels[i]->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
         labels[i]->setWordWrap(true);
@@ -152,7 +155,7 @@ void clickOptions::initalOptions()
         });
         /* 将按钮和选项标签水平布局，并添加到主体中 */
         QHBoxLayout* layout=new QHBoxLayout(this);
-        layout->addWidget(buttons[i],1);
+        layout->addWidget(buttons[i],0);
         layout->addWidget(labels[i],5);
         options->addLayout(layout,1);
     }

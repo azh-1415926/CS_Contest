@@ -68,6 +68,11 @@
        </property>
        <item>
         <widget class="QLabel" name="textOfQuestion">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>暂无题目</string>
          </property>
@@ -172,6 +177,11 @@
        </property>
        <item>
         <widget class="QLabel" name="textOfCollection">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>暂无收藏</string>
          </property>
