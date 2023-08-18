@@ -43,15 +43,7 @@
 
 <img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_SelectPage_Loading.png" alt="StartWindow_SelectPage_Loading.png" width="50%" height="50%">
 
-导入题库时的答题界面
-<table>
-<tr>
-<td><img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_QuestionPage.png" alt="StartWindow_QuestionPage.png" border=0></td>
-<td><img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_SelectPage.png" alt="StartWindow_SelectPage.png" border=0></td>
-<td><img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_CollectionPage.png" alt="StartWindow_CollectionPage.png" border=0></td>
-</tr>
-</table>
-新增功能
+新增功能 (2023-8-16)
 
 1. 新增导入和自动存储部分答题进度功能
 2. 增加收藏功能
@@ -66,3 +58,26 @@
         * 若当前题目总数为 0，重置收藏页
 3. 当选择错误选项时会标注出错误选项，答完题最后都会显示正确选项
 4. 答题结束后再次点击正确选项会跳转到下一题
+
+<table>
+<tr>
+<td><img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_QuestionPage_02.png" alt="StartWindow_QuestionPage_02.png" border=0></td>
+<td><img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_SelectPage.png" alt="StartWindow_SelectPage.png" border=0></td>
+<td><img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_CollectionPage_01.png" alt="StartWindow_CollectionPage_01.png" border=0></td>
+</tr>
+</table>
+
+新增调整 (2023-8-18)
+
+1. 调整题目字体大小为 14
+2. 调整选项文本字体为 10
+3. 调整按钮与选项文本的比例为 0:5，避免窗口放大，选项文本与选项间距拉太大
+4. 调整选项文本的间距为 14，避免选框像素过大，遮挡选项
+
+正常比例下答题界面
+
+<img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_QuestionPage.png" alt="StartWindow_QuestionPage.png" width="50%" height="50%">
+
+最大化答题界面
+
+<img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_QuestionPage_03.png" alt="StartWindow_QuestionPage_03.png" width="50%" height="50%">
