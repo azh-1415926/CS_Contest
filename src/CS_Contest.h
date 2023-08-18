@@ -1,5 +1,5 @@
 #pragma once
-#include "ui/ui_CS_Contest.h"
+#include "ui_CS_Contest.h"
 #include <QMainWindow>
 #include <QMouseEvent>
 

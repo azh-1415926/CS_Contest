@@ -14,6 +14,8 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets AxContainer)
 aux_source_directory(./src srcs)
 aux_source_directory(./component components)
 
+list(APPEND CMAKE_AUTOUIC_SEARCH_PATHS "ui")
+
 # Specify MSVC UTF-8 encoding   
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")

@@ -1,5 +1,5 @@
 #pragma once
-#include "ui/ui_widgetOfStart.h"
+#include "ui_widgetOfStart.h"
 #include <QWidget>
 #include "excelReader.h"
 

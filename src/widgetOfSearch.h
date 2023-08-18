@@ -1,5 +1,5 @@
 #pragma once
-#include "ui/ui_widgetOfSearch.h"
+#include "ui_widgetOfSearch.h"
 #include <QWidget>
 
 class widgetOfSearch : public QWidget {

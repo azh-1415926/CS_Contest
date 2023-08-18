@@ -1,5 +1,5 @@
 #pragma once
-#include "ui/ui_widgetOfAbout.h"
+#include "ui_widgetOfAbout.h"
 #include <QWidget>
 
 class widgetOfAbout : public QWidget {
