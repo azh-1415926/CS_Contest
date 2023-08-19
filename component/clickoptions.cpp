@@ -143,18 +143,18 @@ void clickOptions::initalOptions()
         labels[i]->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
         labels[i]->setWordWrap(true);
         /* 按钮被点击，则更新被选中的选项，且发送 selectOption 信号，传递当前被选中的选项下标 */
-        connect(buttons[i],QRadioButton::clicked,this,[=](){
+        connect(buttons[i],&QRadioButton::clicked,this,[=](){
             this->checkedOption=i;
             emit selectOption(i);
         });
         /* 标签被点击，则选中对应的按钮、更新被选中的选项，且发送 selectOption 信号 */
-        connect(labels[i],clickLabel::clicked,this,[=](){
+        connect(labels[i],&clickLabel::clicked,this,[=](){
             buttons[i]->setChecked(true);
             this->checkedOption=i;
             emit selectOption(i);
         });
         /* 将按钮和选项标签水平布局，并添加到主体中 */
-        QHBoxLayout* layout=new QHBoxLayout(this);
+        QHBoxLayout* layout=new QHBoxLayout;
         layout->addWidget(buttons[i],0);
         layout->addWidget(labels[i],5);
         options->addLayout(layout,1);

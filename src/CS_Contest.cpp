@@ -97,7 +97,7 @@ void CS_Contest::initalTimer()
 {
     /* 将 updateTime 绑定到 timer 上，接收到 timeout 信号立即更新时间，并重置鼠标点击的标志位 */
     QTimer* timer=new QTimer(this);
-    connect(timer,QTimer::timeout,this,[=](){
+    connect(timer,&QTimer::timeout,this,[=](){
         updateTime();
         this->flagOfClick=1;
     });

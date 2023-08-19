@@ -86,28 +86,10 @@
          <property name="title">
           <string/>
          </property>
-         <layout class="QVBoxLayout" name="layoutOfOptions">
-          <property name="spacing">
-           <number>5</number>
-          </property>
-          <property name="leftMargin">
-           <number>5</number>
-          </property>
-          <property name="topMargin">
-           <number>5</number>
-          </property>
-          <property name="rightMargin">
-           <number>5</number>
-          </property>
-          <property name="bottomMargin">
-           <number>5</number>
-          </property>
-         </layout>
         </widget>
        </item>
        <item>
         <widget class="switchQuestion" name="switchOfQuestion" native="true">
-         <layout class="QGridLayout" name="layoutOfOperateButton"/>
         </widget>
        </item>
       </layout>
@@ -195,28 +177,10 @@
          <property name="title">
           <string/>
          </property>
-         <layout class="QVBoxLayout" name="layoutOfOptions_2">
-          <property name="spacing">
-           <number>5</number>
-          </property>
-          <property name="leftMargin">
-           <number>5</number>
-          </property>
-          <property name="topMargin">
-           <number>5</number>
-          </property>
-          <property name="rightMargin">
-           <number>5</number>
-          </property>
-          <property name="bottomMargin">
-           <number>5</number>
-          </property>
-         </layout>
         </widget>
        </item>
        <item>
         <widget class="switchQuestion" name="switchOfCollection" native="true">
-         <layout class="QGridLayout" name="layoutOfOperateCollection"/>
         </widget>
        </item>
       </layout>

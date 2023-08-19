@@ -26,7 +26,7 @@ switchQuestion::~switchQuestion()
 }
 
 /* 返回当前组件的标题 */
-const QString &switchQuestion::title() const
+QString switchQuestion::title() const
 {
     const QString& str=this->textOfTag->text();
     return str;
@@ -39,10 +39,9 @@ int switchQuestion::index() const
 }
 
 /* 返回当前问题下标对应标签上的字符串文本 */
-const QString &switchQuestion::stringOfIndex() const
+QString switchQuestion::stringOfIndex() const
 {
-    const QString& str=this->textOfIndex->text();
-    return str;
+    return this->textOfIndex->text();
 }
 
 /* 返回当前问题的总数 */
@@ -112,7 +111,7 @@ void switchQuestion::inital()
     layout->addWidget(textOfIndex,1,1);
     layout->addWidget(textOfSum,1,2);
     /* 向前按钮点击事件 */
-    connect(forwardBtn,QPushButton::clicked,this,[=](){
+    connect(forwardBtn,&QPushButton::clicked,this,[=](){
         /* 若下标小于等于 0，即左边已经没有问题了，直接返回 */
         if(this->indexOfQuestion<=0)
             return;
@@ -123,7 +122,7 @@ void switchQuestion::inital()
         emit changeQuestion(this->indexOfQuestion);
     });
     /* 向后按钮点击事件 */
-    connect(nextBtn,QPushButton::clicked,this,[=](){
+    connect(nextBtn,&QPushButton::clicked,this,[=](){
         /* 若下标大于等于问题的总数，即右边已经没有问题了，直接返回 */
         if(this->indexOfQuestion>=this->sumOfQuestion-1)
             return;
@@ -134,10 +133,10 @@ void switchQuestion::inital()
         emit changeQuestion(this->indexOfQuestion);
     });
     /* 当收藏按钮发送 collected、uncollected 信号时，发送 collectQuestion、uncollectQuestion 信号，当做转发 */
-    connect(collectBtn,collectButton::collected,this,[=](){
+    connect(collectBtn,&collectButton::collected,this,[=](){
         emit collectQuestion();
     });
-    connect(collectBtn,collectButton::uncollected,this,[=](){
+    connect(collectBtn,&collectButton::uncollected,this,[=](){
         emit uncollectQuestion();
     });
 }

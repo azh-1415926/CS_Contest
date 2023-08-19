@@ -144,7 +144,7 @@ void widgetOfStart::importSetting()
     }
     /* 启动定时器，每隔一秒调用 saveSetting() 槽函数，将初始化标志位置为 1（表明已被初始化） */
     QTimer* timer=new QTimer(this);
-    connect(timer,QTimer::timeout,this,exportSetting);
+    connect(timer,&QTimer::timeout,this,&widgetOfStart::exportSetting);
     timer->start(1000);
     flagOfInital=1;
 }
@@ -340,7 +340,7 @@ void widgetOfStart::initalStackWindow()
         ui->pageOfCollection
     };
     for(int i=0;i<sizeof(buttons)/sizeof(QPushButton*);i++){
-        connect(buttons[i],QPushButton::clicked,this,[windows,buttons,pages,i](){
+        connect(buttons[i],&QPushButton::clicked,this,[windows,buttons,pages,i](){
             windows->setCurrentIndex(windows->indexOf(pages[i]));
         });
     }
@@ -350,7 +350,7 @@ void widgetOfStart::initalStackWindow()
 void widgetOfStart::initalQuestionPage()
 {
     /* 实现点击正确选项跳转到下一题  */
-    connect(ui->optionsOfQuestion,clickOptions::selectOption,this,[=](int option){
+    connect(ui->optionsOfQuestion,&clickOptions::selectOption,this,[=](int option){
         if(!reader->isRead())
             return;
         /*
@@ -383,20 +383,20 @@ void widgetOfStart::initalQuestionPage()
         ui->optionsOfQuestion->displayAnswer(true);
     });
     /* 更新答题页题目选项的文本内容，绑定到当前类的 updateTextOfQuestion 信号上 */
-    connect(this,updateTextOfQuestion,ui->optionsOfQuestion,clickOptions::setTextOfOption);
+    connect(this,&widgetOfStart::updateTextOfQuestion,ui->optionsOfQuestion,&clickOptions::setTextOfOption);
     /* 更新答题页答案选项，绑定到当前类的 updateAnswerOfQuestion 信号上 */
-    connect(this,updateAnswerOfQuestion,ui->optionsOfQuestion,clickOptions::setAnswer);
+    connect(this,&widgetOfStart::updateAnswerOfQuestion,ui->optionsOfQuestion,&clickOptions::setAnswer);
     /* 更新答题页题号总数，绑定到当前类的 updateSumOfQuestion 信号上 */
-    connect(this,updateSumOfQuestion,ui->switchOfQuestion,switchQuestion::setSum);
+    connect(this,&widgetOfStart::updateSumOfQuestion,ui->switchOfQuestion,&switchQuestion::setSum);
     /* 更新答题页当前题号下标，绑定到当前类的 updateIndexOfQuestion 信号上 */
-    connect(this,updateIndexOfQuestion,ui->switchOfQuestion,switchQuestion::setIndex);
+    connect(this,&widgetOfStart::updateIndexOfQuestion,ui->switchOfQuestion,&switchQuestion::setIndex);
     /* 更新答题页当前题号收藏按钮的状态，绑定到当前类的 isCollect 信号上 */
-    connect(this,isCollect,ui->switchOfQuestion,switchQuestion::setCollect);
+    connect(this,&widgetOfStart::isCollect,ui->switchOfQuestion,&switchQuestion::setCollect);
     ui->switchOfQuestion->setTitle("答题页");
     /* 当 switchOfQuestion 中题号变化，显示该题号的题目信息 */
-    connect(ui->switchOfQuestion,switchQuestion::changeQuestion,this,showQuestionByIndex);
+    connect(ui->switchOfQuestion,&switchQuestion::changeQuestion,this,&widgetOfStart::showQuestionByIndex);
     /* 当 switchOfQuestion 中题号被收藏，则... */
-    connect(ui->switchOfQuestion,switchQuestion::collectQuestion,this,[=](){
+    connect(ui->switchOfQuestion,&switchQuestion::collectQuestion,this,[=](){
         if(!reader->isRead())
             return;
         /* 获取当前题号下标，并在收藏列表中查找 */
@@ -414,7 +414,7 @@ void widgetOfStart::initalQuestionPage()
         }
     });
     /* 当 switchOfQuestion 中题号被取消收藏，则... */
-    connect(ui->switchOfQuestion,switchQuestion::uncollectQuestion,this,[=](){
+    connect(ui->switchOfQuestion,&switchQuestion::uncollectQuestion,this,[=](){
         if(!reader->isRead())
             return;
         /* 获取当前题号下标，并在收藏列表中查找 */
@@ -443,13 +443,13 @@ void widgetOfStart::initalQuestionPage()
 void widgetOfStart::initalSelectionPage()
 {
     /* 当 inputButton 按钮被点击，则调用 getPath() 获取文件路径，若获取成功将发送 loadExcel 信号 */
-    connect(ui->inputButton,QRadioButton::clicked,this,getPath);
+    connect(ui->inputButton,&QRadioButton::clicked,this,&widgetOfStart::getPath);
     /* 接收到 loadExcel 信号，触发 reader 的 readExcel 槽函数 */
-    connect(this,loadExcel,reader,excelReader::readExcel);
+    connect(this,&widgetOfStart::loadExcel,reader,&excelReader::readExcel);
     /* 接收 reader 读取完数据发送的 readed 信号，调用 handleData 槽函数处理这些数据 */
-    connect(reader,excelReader::readed,this,handleData);
+    connect(reader,&excelReader::readed,this,&widgetOfStart::handleData);
     /* 接收 handleData 处理完数据发送的 ready 信号，若有收藏项则显示 */
-    connect(this,ready,this,[=](){
+    connect(this,&widgetOfStart::ready,this,[=](){
         ui->questionType->setCurrentIndex(currTypeOfQuestion);
         if(ui->switchOfCollection->index()<progressOfCollection.length()){
             showCollectionByIndex(ui->switchOfCollection->index());
@@ -457,14 +457,14 @@ void widgetOfStart::initalSelectionPage()
         }
     });
     /* 下拉菜单显示的题型变化，自动调用 setQuestionType 调整当前题型 */
-    connect(ui->questionType,QComboBox::currentIndexChanged,this,setQuestionType);
+    connect(ui->questionType,&QComboBox::currentIndexChanged,this,&widgetOfStart::setQuestionType);
 }
 
 /* 初始化收藏页 */
 void widgetOfStart::initalCollectionPage()
 {
     /* 实现点击正确选项跳转到下一题  */
-    connect(ui->optionsOfCollection,clickOptions::selectOption,this,[=](int option){
+    connect(ui->optionsOfCollection,&clickOptions::selectOption,this,[=](int option){
         if(!reader->isRead())
             return;
         static int index;
@@ -484,19 +484,19 @@ void widgetOfStart::initalCollectionPage()
         ui->optionsOfCollection->displayAnswer(true);
     });
     /* 更新答题页题目选项的文本内容，绑定到当前类的 updateTextOfQuestion 信号上 */
-    connect(this,updateTextOfCollection,ui->optionsOfCollection,clickOptions::setTextOfOption);
+    connect(this,&widgetOfStart::updateTextOfCollection,ui->optionsOfCollection,&clickOptions::setTextOfOption);
     /* 更新收藏页答案选项，绑定到当前类的 updateAnswerOfCollection 信号上 */
-    connect(this,updateAnswerOfCollection,ui->optionsOfCollection,clickOptions::setAnswer);
+    connect(this,&widgetOfStart::updateAnswerOfCollection,ui->optionsOfCollection,&clickOptions::setAnswer);
     /* 更新收藏页题号总数，绑定到当前类的 updateSumOfCollection 信号上 */
-    connect(this,updateSumOfCollection,ui->switchOfCollection,switchQuestion::setSum);
+    connect(this,&widgetOfStart::updateSumOfCollection,ui->switchOfCollection,&switchQuestion::setSum);
     /* 更新答题页当前题号下标（int）、文本（QString），绑定到当前类的 updateIndexOfCollection 信号上 */
-    void(widgetOfStart::*updateIndexByInt)(int) =updateIndexOfCollection;
-    void(widgetOfStart::*updateIndexByString)(const QString&) =updateIndexOfCollection;
-    connect(this,updateIndexByInt,ui->switchOfCollection,switchQuestion::setIndex);
-    connect(this,updateIndexByString,ui->switchOfCollection,switchQuestion::setTextOfIndex);
+    void(widgetOfStart::*updateIndexByInt)(int) =&widgetOfStart::updateIndexOfCollection;
+    void(widgetOfStart::*updateIndexByString)(const QString&) =&widgetOfStart::updateIndexOfCollection;
+    connect(this,updateIndexByInt,ui->switchOfCollection,&switchQuestion::setIndex);
+    connect(this,updateIndexByString,ui->switchOfCollection,&switchQuestion::setTextOfIndex);
     ui->switchOfCollection->setTitle("收藏页");
     /* 当 switchOfCollection 题号改变时发送 lastIndex(option)，为未改变前的题号 */
-    connect(ui->switchOfCollection,switchQuestion::lastIndex,this,[=](int i){
+    connect(ui->switchOfCollection,&switchQuestion::lastIndex,this,[=](int i){
         /* 当前下标文本设置为 ？，代表应取消该题号应被取消收藏 */
         if(ui->switchOfCollection->stringOfIndex()=="?"){
             /* 当题号变动再执行取消收藏操作，而当前题号已发生变动，于是对未改变前的题号执行取消收藏操作 */
@@ -515,9 +515,9 @@ void widgetOfStart::initalCollectionPage()
         }
     });
     /* 当 switchOfCollection 题号改变时，显示当前收藏项的题目信息 */
-    connect(ui->switchOfCollection,switchQuestion::changeQuestion,this,showCollectionByIndex);
+    connect(ui->switchOfCollection,&switchQuestion::changeQuestion,this,&widgetOfStart::showCollectionByIndex);
     /* 当 switchOfCollection 题号被取消收藏时，则将题号下标文本设置为 ？ */
-    connect(ui->switchOfCollection,switchQuestion::uncollectQuestion,this,[=](){
+    connect(ui->switchOfCollection,&switchQuestion::uncollectQuestion,this,[=](){
         /* 收藏总数小于等于 1 */
         if(progressOfCollection.length()<=1){
             /* 若为 1，则说明是最后一个收藏项，直接取消收藏该题目 */
@@ -537,7 +537,7 @@ void widgetOfStart::initalCollectionPage()
         emit updateIndexOfCollection("?");
     });
     /* 当 switchOfCollection 题号被重新收藏时，则更新下标 */
-    connect(ui->switchOfCollection,switchQuestion::collectQuestion,this,[=](){
+    connect(ui->switchOfCollection,&switchQuestion::collectQuestion,this,[=](){
         emit updateIndexOfCollection(ui->switchOfCollection->index());
     });
     resetCollection();
