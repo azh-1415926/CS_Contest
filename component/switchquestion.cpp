@@ -26,27 +26,27 @@ switchQuestion::~switchQuestion()
 }
 
 /* 返回当前组件的标题 */
-const QString &switchQuestion::title()
+const QString &switchQuestion::title() const
 {
     const QString& str=this->textOfTag->text();
     return str;
 }
 
 /* 返回当前问题的下标 */
-int switchQuestion::index()
+int switchQuestion::index() const
 {
     return this->indexOfQuestion;
 }
 
 /* 返回当前问题下标对应标签上的字符串文本 */
-const QString &switchQuestion::stringOfIndex()
+const QString &switchQuestion::stringOfIndex() const
 {
     const QString& str=this->textOfIndex->text();
     return str;
 }
 
 /* 返回当前问题的总数 */
-int switchQuestion::count()
+int switchQuestion::count() const
 {
     return this->sumOfQuestion;
 }

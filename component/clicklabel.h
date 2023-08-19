@@ -17,7 +17,7 @@ public slots:
     ;
 
 signals:
-    void clicked(clickLabel* label);
+    void clicked(const clickLabel*);
 
 private:
     ;

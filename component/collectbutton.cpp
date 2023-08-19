@@ -14,7 +14,7 @@ collectButton::~collectButton()
 }
 
 /* 返回是否被收藏，被收藏返回 true */
-bool collectButton::isCollect()
+bool collectButton::isCollect() const
 {
     return this->text()==textOfCollect;
 }

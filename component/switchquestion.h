@@ -11,10 +11,10 @@ class switchQuestion : public QWidget {
 public:
     explicit switchQuestion(QWidget* parent = nullptr);
     ~switchQuestion();
-    const QString& title();
-    int index();
-    const QString& stringOfIndex();
-    int count();
+    const QString& title() const;
+    int index() const;
+    const QString& stringOfIndex() const;
+    int count() const;
 
 protected:
     ;

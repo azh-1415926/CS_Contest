@@ -8,7 +8,7 @@ class collectButton : public QPushButton {
 public:
     explicit collectButton(QWidget* parent = nullptr,const QString& collect="⭐",const QString& uncollect="☆");
     ~collectButton();
-    bool isCollect();
+    bool isCollect() const;
 
 protected:
     void mousePressEvent(QMouseEvent* e) override;

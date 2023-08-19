@@ -25,33 +25,33 @@ excelReader::~excelReader()
 }
 
 /* 判定是否已读取 excel 文件 */
-bool excelReader::isRead()
+bool excelReader::isRead() const
 {
     /* readFlag 为 1 表明已读取，即当前数据数组可用 */
     return readFlag==1;
 }
 
 /* 判定当前是否重新读取过 excel 文件 */
-bool excelReader::isReload()
+bool excelReader::isReload() const
 {
     /* reloadFlag 为 1 表明当前读取了其他 excel 文件 */
     return reloadFlag==1;
 }
 
 /* 返回数据数组的常引用 */
-const QVector<QVector<QString>> &excelReader::getData()
+const QVector<QVector<QString>> &excelReader::getData() const
 {
     return this->data;
 }
 
 /* 返回数据的行数 */
-int excelReader::getRows()
+int excelReader::getRows() const
 {
     return rows;
 }
 
 /* 返回数据的列数 */
-int excelReader::getColumns()
+int excelReader::getColumns() const
 {
     return columns;
 }

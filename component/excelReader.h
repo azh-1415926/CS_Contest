@@ -9,11 +9,11 @@ class excelReader : public QObject {
     public:
         explicit excelReader(QObject* parent=nullptr);
         ~excelReader();
-        bool isRead();
-        bool isReload();
-        const QVector<QVector<QString>>& getData();
-        int getRows();
-        int getColumns();
+        bool isRead() const;
+        bool isReload() const;
+        const QVector<QVector<QString>>& getData() const;
+        int getRows() const;
+        int getColumns() const;
 
     public slots:
         void readExcel(const QString& pathOfExcel);

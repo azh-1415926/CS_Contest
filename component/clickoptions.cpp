@@ -29,7 +29,7 @@ clickOptions::~clickOptions()
 }
 
 /* 返回答案选项的下标 */
-int clickOptions::getAnswer()
+int clickOptions::getAnswer() const
 {
     return this->answerOfOptions;
 }

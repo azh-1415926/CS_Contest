@@ -26,5 +26,6 @@ add_executable(${PROJECT_NAME}
     ${components}
 )
 
+target_include_directories(${PROJECT_NAME} PRIVATE component)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets) # Qt5 Shared Library
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::AxContainer)

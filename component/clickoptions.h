@@ -11,7 +11,7 @@ class clickOptions : public QGroupBox {
 public:
     explicit clickOptions(QWidget* parent = nullptr);
     ~clickOptions();
-    int getAnswer();
+    int getAnswer() const;
 
 protected:
     bool eventFilter(QObject *obj, QEvent *e) override;
@@ -23,7 +23,7 @@ public slots:
     void resetOption();
 
 signals:
-    void selectOption(int i);
+    void selectOption(int);
 
 private:
     int numOfOptions;
