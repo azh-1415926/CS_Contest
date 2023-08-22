@@ -38,9 +38,9 @@ int clickOptions::getAnswer() const
 bool clickOptions::eventFilter(QObject *obj, QEvent *e)
 {
     /* 先将捕获到的对象在所有按钮里查找，若找不到 index=-1，则在 所有选项的 label 里查找 */
-    int index=buttons.indexOf(obj);
+    int index=buttons.indexOf(dynamic_cast<QRadioButton*>(obj));
     if(index==-1)
-        index=labels.indexOf(obj);
+        index=labels.indexOf(dynamic_cast<clickLabel*>(obj));
     /* 查找到适合更新悬浮选框更新的组件（在按钮或者选项之中），便更新悬浮选框，并在下一次绘制的时候应用 */
     if(index!=-1&&(e->type()==QEvent::HoverEnter||e->type()==QEvent::HoverLeave)){
         hoverBox=setOptionOfBox(index,hoverBox);

@@ -35,7 +35,11 @@ void CS_Contest::mousePressEvent(QMouseEvent *e)
 {
     /* flagOfClick 用于标记当前点击是否合法，若它为 1，才调用 clickPoint，否则无操作 */
     if(flagOfClick){
-        clickPoint(QPoint(e->position().x(),e->position().y()));
+        #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+            clickPoint(QPoint(e->pos().x(),e->pos().y()));
+        #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+            clickPoint(QPoint(e->position().x(),e->position().y()));
+        #endif
         /* 发送完当前鼠标点击的位置后，将其置为 0，直到定时器每隔 1 秒重置该标志 */
         flagOfClick=0;
     }

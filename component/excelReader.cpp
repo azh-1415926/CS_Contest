@@ -89,7 +89,7 @@ void excelReader::readExcel(const QString& pathOfExcel)
     /* workbooks 获取 excel 进程中工作簿集合，进度置为 5% */
     QAxObject *workbooks = excel->querySubObject("WorkBooks");
     process.setValue(5);
-    /* workbooks 打开新的工作簿，路径为导入文件的路径 */
+    /* workbooks 打开新的工作簿，路径为导入文件的路径，Qt5 这样打开中文路径的文件会崩溃 */
     workbooks->dynamicCall("Open (const QString&)", pathOfExcel);
     /* workbook 指向当前活跃的工作簿，进度置为 10% */
     QAxObject *workbook=excel->querySubObject("ActiveWorkBook");

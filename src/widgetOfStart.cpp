@@ -83,7 +83,11 @@ void widgetOfStart::exportSetting()
     /* 保存到 settings.json 文件中（只写、截断保存）  */
     if(file.open(QIODevice::WriteOnly|QIODevice::Truncate)){
         QTextStream stream(&file);
-        stream.setEncoding(QStringConverter::Utf8);
+        #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+            stream.setCodec("utf-8");
+        #elif (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+            stream.setEncoding(QStringConverter::Utf8);
+        #endif
         doc.setObject(json);
         stream<<doc.toJson();
         file.close();
@@ -422,7 +426,11 @@ void widgetOfStart::initalQuestionPage()
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         /* 查找到才将该题号取消收藏 */
         if(index!=-1){
-            progressOfCollection.remove(index);
+            #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+                progressOfCollection.removeAt(index);
+            #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+                progressOfCollection.remove(index);
+            #endif
             /* 删除该收藏项，并获取当前收藏项下标 */
             int currIndexOfCollection=ui->switchOfCollection->index();
             /* 若此时收藏列表为空，重置收藏页 */
@@ -457,7 +465,13 @@ void widgetOfStart::initalSelectionPage()
         }
     });
     /* 下拉菜单显示的题型变化，自动调用 setQuestionType 调整当前题型 */
-    connect(ui->questionType,&QComboBox::currentIndexChanged,this,&widgetOfStart::setQuestionType);
+    #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+        void(QComboBox::*indexChanged)(int)=&QComboBox::currentIndexChanged;
+        connect(ui->questionType,indexChanged,this,&widgetOfStart::setQuestionType);
+    #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+        connect(ui->questionType,&QComboBox::currentIndexChanged,this,&widgetOfStart::setQuestionType);
+    #endif
+    // connect(ui->questionType,&QComboBox::currentIndexChanged,this,&widgetOfStart::setQuestionType);
 }
 
 /* 初始化收藏页 */
@@ -502,7 +516,11 @@ void widgetOfStart::initalCollectionPage()
             /* 当题号变动再执行取消收藏操作，而当前题号已发生变动，于是对未改变前的题号执行取消收藏操作 */
             int row=progressOfCollection[i].first;
             int column=progressOfCollection[i].second;
-            progressOfCollection.remove(i);
+            #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+                progressOfCollection.removeAt(i);
+            #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+                progressOfCollection.remove(i);
+            #endif
             /* 若此时被取消的收藏项刚好也是当前答题页的题目，那么把答题页的收藏按钮状态置为未收藏 */
             if(currTypeOfQuestion==row&&progressOfQuestion[currTypeOfQuestion]==column)
                 ui->switchOfQuestion->setCollect(false);
@@ -524,8 +542,11 @@ void widgetOfStart::initalCollectionPage()
             if(progressOfCollection.length()==1){
                 int row=progressOfCollection[0].first;
                 int column=progressOfCollection[0].second;
-                progressOfCollection.remove(0);
-
+                #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+                    progressOfCollection.removeAt(0);
+                #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+                    progressOfCollection.remove(0);
+                #endif
                 if(currTypeOfQuestion==row&&progressOfQuestion[currTypeOfQuestion]==column)
                     ui->switchOfQuestion->setCollect(false);
             }
