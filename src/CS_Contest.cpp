@@ -45,6 +45,16 @@ void CS_Contest::mousePressEvent(QMouseEvent *e)
     }
 }
 
+/* 重写窗口关闭事件，关闭主窗口前，关闭所有子窗口 */
+void CS_Contest::closeEvent(QCloseEvent *e)
+{
+
+    windowOfStart->close();
+    windowOfSearch->close();
+    windowOfAbout->close();
+    windowOfMore->close();
+}
+
 /* 更新主界面的时间显示 */
 void CS_Contest::updateTime(){
     /* 获取当前时间 */

@@ -17,6 +17,7 @@ public:
 
 protected:
     void mousePressEvent(QMouseEvent* e) override;
+    void closeEvent(QCloseEvent* e) override;
 
 public slots:
     void updateTime();
