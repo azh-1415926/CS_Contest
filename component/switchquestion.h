@@ -11,10 +11,14 @@ class switchQuestion : public QWidget {
 public:
     explicit switchQuestion(QWidget* parent = nullptr);
     ~switchQuestion();
-    QString title() const;
-    int index() const;
-    QString stringOfIndex() const;
-    int count() const;
+    /* 返回当前组件的标题 */
+    inline QString title() const { return this->textOfTag->text(); }
+    /* 返回当前问题的下标 */
+    inline int index() const { return this->indexOfQuestion; }
+    /* 返回当前问题下标对应标签上的字符串文本 */
+    inline QString stringOfIndex() const { return this->textOfIndex->text(); }
+    /* 返回当前问题的总数 */
+    inline int count() const { return this->sumOfQuestion; }
 
 protected:
     ;

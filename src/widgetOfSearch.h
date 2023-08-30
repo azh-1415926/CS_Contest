@@ -2,7 +2,8 @@
 #include "ui_widgetOfSearch.h"
 #include <QWidget>
 
-class widgetOfSearch : public QWidget {
+class widgetOfSearch : public QWidget
+{
     Q_OBJECT
 
     public:

@@ -8,7 +8,8 @@
 #include "widgetOfAbout.h"
 #include "widgetOfMore.h"
 
-class CS_Contest : public QMainWindow {
+class CS_Contest : public QMainWindow
+{
     Q_OBJECT
     
 public:

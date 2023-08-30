@@ -2,7 +2,8 @@
 #include "ui_widgetOfAbout.h"
 #include <QWidget>
 
-class widgetOfAbout : public QWidget {
+class widgetOfAbout : public QWidget
+{
     Q_OBJECT
 
     public:

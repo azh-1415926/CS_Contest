@@ -25,31 +25,6 @@ switchQuestion::~switchQuestion()
     delete textOfSum;
 }
 
-/* 返回当前组件的标题 */
-QString switchQuestion::title() const
-{
-    const QString& str=this->textOfTag->text();
-    return str;
-}
-
-/* 返回当前问题的下标 */
-int switchQuestion::index() const
-{
-    return this->indexOfQuestion;
-}
-
-/* 返回当前问题下标对应标签上的字符串文本 */
-QString switchQuestion::stringOfIndex() const
-{
-    return this->textOfIndex->text();
-}
-
-/* 返回当前问题的总数 */
-int switchQuestion::count() const
-{
-    return this->sumOfQuestion;
-}
-
 /* 设置当前组件的标题 */
 void switchQuestion::setTitle(const QString& title)
 {

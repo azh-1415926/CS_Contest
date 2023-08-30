@@ -2,7 +2,8 @@
 #include "ui_widgetOfMore.h"
 #include <QWidget>
 
-class widgetOfMore : public QWidget {
+class widgetOfMore : public QWidget
+{
     Q_OBJECT
 
     public:

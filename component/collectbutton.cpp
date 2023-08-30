@@ -13,12 +13,6 @@ collectButton::~collectButton()
 
 }
 
-/* 返回是否被收藏，被收藏返回 true */
-bool collectButton::isCollect() const
-{
-    return this->text()==textOfCollect;
-}
-
 /* 重写鼠标点击事件，每点击一次，都会触发收藏或取消收藏，并发送 collected、uncollected 信号 */
 void collectButton::mousePressEvent(QMouseEvent *e)
 {

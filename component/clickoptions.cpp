@@ -28,12 +28,6 @@ clickOptions::~clickOptions()
     freeBoxes();
 }
 
-/* 返回答案选项的下标 */
-int clickOptions::getAnswer() const
-{
-    return this->answerOfOptions;
-}
-
 /* 重写事件过滤器 */
 bool clickOptions::eventFilter(QObject *obj, QEvent *e)
 {

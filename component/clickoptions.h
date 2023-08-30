@@ -11,7 +11,8 @@ class clickOptions : public QGroupBox {
 public:
     explicit clickOptions(QWidget* parent = nullptr);
     ~clickOptions();
-    int getAnswer() const;
+    /* 返回答案选项的下标 */
+    inline int getAnswer() const { return this->answerOfOptions; };
 
 protected:
     bool eventFilter(QObject *obj, QEvent *e) override;
