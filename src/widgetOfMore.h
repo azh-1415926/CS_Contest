@@ -6,10 +6,13 @@ class widgetOfMore : public QWidget
 {
     Q_OBJECT
 
+    private:
+        Ui_widgetOfMore* ui;
+
     public:
         explicit widgetOfMore(QWidget* parent=nullptr);
         ~widgetOfMore();
 
     private:
-        Ui_widgetOfMore* ui;
+        ;
 };

@@ -6,10 +6,13 @@ class widgetOfAbout : public QWidget
 {
     Q_OBJECT
 
+    private:
+        Ui_widgetOfAbout* ui;
+
     public:
         explicit widgetOfAbout(QWidget* parent=nullptr);
         ~widgetOfAbout();
 
     private:
-        Ui_widgetOfAbout* ui;
+        void initalWindow();
 };
