@@ -7,6 +7,16 @@ class widgetOfStart : public QWidget
 {
     Q_OBJECT
 
+    private:
+        Ui_widgetOfStart *ui;
+        excelReader *reader;
+        int currTypeOfQuestion;
+        int flagOfInital;
+        QString pathOfExcel;
+        QList<int> progressOfQuestion;
+        QList<QPair<int,int>> progressOfCollection;
+        QList<QPair<QString,QList<int>>> questionType;
+
     public:
         explicit widgetOfStart(QWidget *parent = nullptr);
         ~widgetOfStart();
@@ -38,14 +48,6 @@ class widgetOfStart : public QWidget
         void isCollect(bool iscollected);
 
     private:
-        Ui_widgetOfStart *ui;
-        excelReader *reader;
-        int currTypeOfQuestion;
-        int flagOfInital;
-        QString pathOfExcel;
-        QList<int> progressOfQuestion;
-        QList<QPair<int,int>> progressOfCollection;
-        QList<QPair<QString,QList<int>>> questionType;
         void initalStackWindow();
         void initalQuestionPage();
         void initalSelectionPage();

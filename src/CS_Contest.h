@@ -11,25 +11,27 @@
 class CS_Contest : public QMainWindow
 {
     Q_OBJECT
-    
-public:
-    explicit CS_Contest(QWidget* parent = nullptr);
-    ~CS_Contest();
 
-protected:
-    void mousePressEvent(QMouseEvent* e) override;
-    void closeEvent(QCloseEvent* e) override;
+    private:
+        Ui_CS_Contest* ui;
+        int flagOfClick;
+        widgetOfStart* windowOfStart;
+        widgetOfSearch* windowOfSearch;
+        widgetOfAbout* windowOfAbout;
+        widgetOfMore* windowOfMore;
 
-public slots:
-    void updateTime();
-    void clickPoint(const QPoint& p);
+    public:
+        explicit CS_Contest(QWidget* parent = nullptr);
+        ~CS_Contest();
 
-private:
-    Ui_CS_Contest* ui;
-    int flagOfClick;
-    widgetOfStart* windowOfStart;
-    widgetOfSearch* windowOfSearch;
-    widgetOfAbout* windowOfAbout;
-    widgetOfMore* windowOfMore;
-    void initalTimer();
+    protected:
+        void mousePressEvent(QMouseEvent* e) override;
+        void closeEvent(QCloseEvent* e) override;
+
+    public slots:
+        void updateTime();
+        void clickPoint(const QPoint& p);
+
+    private:
+        void initalTimer();
 };
