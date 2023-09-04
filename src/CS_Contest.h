@@ -19,6 +19,7 @@ class CS_Contest : public QMainWindow
         widgetOfSearch* windowOfSearch;
         widgetOfAbout* windowOfAbout;
         widgetOfMore* windowOfMore;
+        QList<QPair<QWidget*,QWidget*>> windows;
 
     public:
         explicit CS_Contest(QWidget* parent = nullptr);
@@ -33,5 +34,6 @@ class CS_Contest : public QMainWindow
         void clickPoint(const QPoint& p);
 
     private:
+        void initalWindow();
         void initalTimer();
 };

@@ -14,8 +14,8 @@ CS_Contest::CS_Contest(QWidget* parent)
     , windowOfMore(new widgetOfMore)
 {
     ui->setupUi(this);
-    /* ui 文件里默认标题为 xxx，设置标题文本为 "知识竞赛答题" */
-    ui->textOfTitle->setText("知识竞赛答题");
+    /* 初始化窗口 */
+    initalWindow();
     /* 初始化计时器 */
     initalTimer();
 }
@@ -34,7 +34,8 @@ CS_Contest::~CS_Contest()
 void CS_Contest::mousePressEvent(QMouseEvent *e)
 {
     /* flagOfClick 用于标记当前点击是否合法，若它为 1，才调用 clickPoint，否则无操作 */
-    if(flagOfClick){
+    if(flagOfClick)
+    {
         #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
             clickPoint(QPoint(e->pos().x(),e->pos().y()));
         #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
@@ -56,7 +57,8 @@ void CS_Contest::closeEvent(QCloseEvent *e)
 }
 
 /* 更新主界面的时间显示 */
-void CS_Contest::updateTime(){
+void CS_Contest::updateTime()
+{
     /* 获取当前时间 */
     QDateTime time=QDateTime::currentDateTime();
     /* 转化为 "yyyy-MM-dd" 格式的字符串，效果为 2023-01-01 */
@@ -74,36 +76,36 @@ void CS_Contest::clickPoint(const QPoint &p)
     /* baseOf前缀的变量用于记录父窗口（这4个区域有一个父窗口）的绝对坐标 */
     int baseOfX,baseOfY,baseOfWidth,baseOfHeight;
     int x,y,width,height;
-    /* 列出主窗口显示的功能区域 */
-    QWidget* areas[]={
-        ui->areaOfStart,
-        ui->areaOfSearch,
-        ui->areaOfAbout,
-        ui->areaOfMore
-    };
-    /* 列出点击区域触发的窗口 */
-    QWidget* windows[]={
-        windowOfStart,
-        windowOfSearch,
-        windowOfAbout,
-        windowOfMore
-    };
     /* 获取父窗口（areaOfBottom）相对于主界面的坐标 */
     ui->areaOfBottom->geometry().getRect(&baseOfX,&baseOfY,&baseOfWidth,&baseOfHeight);
     /* 获取对应区域相对于父窗口的坐标 */
-    for(int i=0;i<sizeof(areas)/sizeof(QWidget*);i++){
-        areas[i]->geometry().getRect(&x,&y,&width,&height);
+    for(int i=0;i<windows.length();i++)
+    {
+        windows[i].first->geometry().getRect(&x,&y,&width,&height);
         /* 相加获得绝对坐标 */
         x+=baseOfX;
         y+=baseOfY;
         /* 判断鼠标点击坐标是否在对应区域的范围内 */
-        if(p.x()>=x&&p.x()<=x+width&&p.y()>=y&&p.y()<=y+height){
+        if(p.x()>=x&&p.x()<=x+width&&p.y()>=y&&p.y()<=y+height)
+        {
             /* 若该区域对应窗口隐藏，便将其显示 */
-            if(windows[i]->isHidden())
-                windows[i]->show();
+            if(windows[i].second->isHidden())
+                windows[i].second->show();
             return;
         }
     }
+}
+
+/* 初始化窗口 */
+void CS_Contest::initalWindow()
+{
+    /* ui 文件里默认标题为 xxx，设置标题文本为 "知识竞赛答题" */
+    ui->textOfTitle->setText("知识竞赛答题");
+    /* 插入显示的文本区域、对应窗口到 windows 中 */
+    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfStart,windowOfStart));
+    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfSearch,windowOfSearch));
+    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfAbout,windowOfAbout));
+    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfMore,windowOfMore));
 }
 
 /* 初始化计时器，更新主界面时间显示 */
@@ -111,7 +113,8 @@ void CS_Contest::initalTimer()
 {
     /* 将 updateTime 绑定到 timer 上，接收到 timeout 信号立即更新时间，并重置鼠标点击的标志位 */
     QTimer* timer=new QTimer(this);
-    connect(timer,&QTimer::timeout,this,[=](){
+    connect(timer,&QTimer::timeout,this,[=]()
+    {
         updateTime();
         this->flagOfClick=1;
     });
