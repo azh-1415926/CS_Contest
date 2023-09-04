@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 请自行填写 qt 工具链所在路径
-set(CMAKE_PREFIX_PATH "D:/Qt/6.5.0/mingw_64") # Qt Kit Dir
+# set(CMAKE_PREFIX_PATH "D:/Qt/6.5.0/mingw_64") # Qt Kit Dir
 
 # 默认使用 Qt6 版本，其次 Qt5(用Qt5的时候不要打开中文路径的题库)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets AxContainer)
@@ -17,6 +17,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets AxContainer)
 
 aux_source_directory(./src srcs)
 aux_source_directory(./component components)
+file(GLOB_RECURSE qrcs ${CMAKE_CURRENT_SOURCE_DIR}/*.qrc)
 
 # ui 文件路径
 list(APPEND CMAKE_AUTOUIC_SEARCH_PATHS "ui")
@@ -30,6 +31,7 @@ add_executable(${PROJECT_NAME}
     WIN32 # 若需要控制台调试可以注释掉此行 # If you need a terminal for debug, please comment this statement 
     ${srcs}
     ${components}
+    ${qrcs}
 )
 
 # 链接的头文件、库
