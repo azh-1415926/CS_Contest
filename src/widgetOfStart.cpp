@@ -130,8 +130,10 @@ void widgetOfStart::importSetting()
         }
         /* json 接收 QJson 文件对象里的 QJson 根节点 */
         json=doc.object();
-        /* 导入题库文件路径、当前答题页题型下标 */
+        /* 导入题库文件路径，选择页显示题库路径 */
         pathOfExcel=json.value("pathOfExcel").toString();
+        ui->textOfPath->setText(pathOfExcel);
+        /* 导入当前答题页题型下标 */
         currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
         /* 导入答题页答题进度 */
         QJsonArray arrayOfQuestionProcess=json.value("progressOfQuestion").toArray();
