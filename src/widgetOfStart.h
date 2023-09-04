@@ -1,6 +1,8 @@
 #pragma once
 #include "ui_widgetOfStart.h"
+
 #include <QWidget>
+
 #include "excelReader.h"
 
 class widgetOfStart : public QWidget

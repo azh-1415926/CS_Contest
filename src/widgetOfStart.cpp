@@ -1,4 +1,5 @@
 #include "widgetOfStart.h"
+
 #include <QRect>
 #include <QPainter>
 #include <QFileDialog>
@@ -73,7 +74,8 @@ void widgetOfStart::exportSetting()
     QJsonArray first;
     QJsonArray second;
     /* progressOfCollection 数组长度为收藏总数，每一项是一个 QPair<int,int>，对应题目的题型下标、题号下标 */
-    for(int i=0;i<progressOfCollection.length();i++){
+    for(int i=0;i<progressOfCollection.length();i++)
+    {
         first.push_back(progressOfCollection[i].first);
         second.push_back(progressOfCollection[i].second);
     }
@@ -81,7 +83,8 @@ void widgetOfStart::exportSetting()
     arrayOfCollectProcess.push_back(second);
     json.insert("progressOfCollection",arrayOfCollectProcess);
     /* 保存到 settings.json 文件中（只写、截断保存）  */
-    if(file.open(QIODevice::WriteOnly|QIODevice::Truncate)){
+    if(file.open(QIODevice::WriteOnly|QIODevice::Truncate))
+    {
         QTextStream stream(&file);
         #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
             stream.setCodec("utf-8");
@@ -91,9 +94,9 @@ void widgetOfStart::exportSetting()
         doc.setObject(json);
         stream<<doc.toJson();
         file.close();
-    }else{
-        QMessageBox::warning(nullptr,"error","save \"settings.json\" is failed!");
     }
+    else
+        QMessageBox::warning(nullptr,"error","save \"settings.json\" is failed!");
 }
 
 /* 导入答题信息（只执行一次） */
@@ -107,7 +110,8 @@ void widgetOfStart::importSetting()
     QJsonDocument doc;
     QFile file("./settings.json");
     /* 只读、转换行尾结束符为本地格式 */
-    if(file.open(QIODevice::ReadOnly|QFile::Text)){
+    if(file.open(QIODevice::ReadOnly|QFile::Text))
+    {
         /*
             error 用于接收解析错误
             stream 用于读取文件
@@ -119,7 +123,8 @@ void widgetOfStart::importSetting()
         file.close();
         /* 将 json 字符串解析为 QJson 文件对象，并存储错误信息 */
         doc=QJsonDocument::fromJson(str.toUtf8(),&error);
-        if(error.error!=QJsonParseError::NoError&&!doc.isNull()){
+        if(error.error!=QJsonParseError::NoError&&!doc.isNull())
+        {
             QMessageBox::warning(nullptr,"json parse error","json 格式错误!");
             return;
         }
@@ -136,9 +141,8 @@ void widgetOfStart::importSetting()
         QJsonArray arrayOfCollectProcess=json.value("progressOfCollection").toArray();
         const QJsonArray& first=arrayOfCollectProcess[0].toArray();
         const QJsonArray& second=arrayOfCollectProcess[1].toArray();
-        for(int i=0;i<first.count();i++){
+        for(int i=0;i<first.count();i++)
             progressOfCollection.push_back(QPair<int,int>(first[i].toInt(),second[i].toInt()));
-        }
         /*
             更新 switchOfCollection 的题目总数
             读取配置文件中导入的题库文件路径
@@ -157,7 +161,8 @@ void widgetOfStart::importSetting()
 void widgetOfStart::handleData()
 {
     /* 列出题型所代表字符，用其下标代表该类题型 */
-    char charOfType[]={
+    char charOfType[]=
+    {
         /* 计算机应用基础 数据结构 数据库原理 */
         'C','J','K',
         /* 网络 软件工程 操作系统 */
@@ -170,7 +175,8 @@ void widgetOfStart::handleData()
         '1','2','3','4','5','6'
     };
     /* 列出题型字符对应的题型名称 */
-    QString stringOfType[]={
+    QString stringOfType[]=
+    {
         "计算机应用基础","数据结构","数据库原理","网络","软件工程","操作系统",
         "多媒体技术","硬件系统","移动互联网应用","数据表示和计算","离散数学","知识产权",
         "C","C++","Java","JavaScript","C#","Python"
@@ -183,16 +189,20 @@ void widgetOfStart::handleData()
         其中 questionType[i].second[0] 是题型下标为 i 的题号总数
         其中 questionType[i].second[1-n] 是题型下标为 i 的题号
     */
-    if(!questionType.isEmpty()){
+    if(!questionType.isEmpty())
+    {
         /* 若题型数组不为空，说明可能导入过其他题库，需要重新统计对应题型的题目总数（即将重置题型名称、题号总数置为 0） */
         for(int i=0;i<sumOfType;i++){
             questionType[i].first=stringOfType[i];
             questionType[i].second.clear();
             questionType[i].second.push_back(0);
         }
-    }else{
+    }
+    else
+    {
         /* 插入数量为 sumOfType 的题型名称和题号数组，题号数组首位为题号总数，初始化为 0 */
-        for(int i=0;i<sumOfType;i++){
+        for(int i=0;i<sumOfType;i++)
+        {
             QList<int> num;
             num.push_back(0);
             questionType.push_back(QPair<QString,QList<int>>(stringOfType[i],num));
@@ -204,27 +214,31 @@ void widgetOfStart::handleData()
     /* 设置选择页的展示为不可编辑 */
     ui->tableOfQuestionType->setEditTriggers(QAbstractItemView::NoEditTriggers);
     /* 统计读取到的所有题目数据，并统计对应题型的题号数量 */
-    for(int i=0;i<reader->getData().length();i++){
-        for(int j=0;j<sumOfType;j++){
+    for(int i=0;i<reader->getData().length();i++)
+    {
+        for(int j=0;j<sumOfType;j++)
+        {
             /* 若题型字符符合，则将题目真实的行下标存储到数组 */
-            if(reader->getData()[i][1]==charOfType[j]){
+            if(reader->getData()[i][1]==charOfType[j])
+            {
                 questionType[j].second.push_back(i);
                 break;
             }
         }
     }
     /* 当重新读取题库的时候清空所有答题进度 */
-    if(reader->isReload()||progressOfQuestion.isEmpty()){
+    if(reader->isReload()||progressOfQuestion.isEmpty())
+    {
         progressOfQuestion.clear();
         if(reader->isReload())
             progressOfCollection.clear();
         /* 答题页答题进度默认为第一题 */
-        for(int i=0;i<sumOfType;i++){
+        for(int i=0;i<sumOfType;i++)
             progressOfQuestion.push_back(0);
-        }
     }
     /* 展示所有题型名称、所代表字符、题号总数 */
-    for(int i=0;i<sumOfType;i++){
+    for(int i=0;i<sumOfType;i++)
+    {
         /* 更新每种题型的题号总数（剔除第一位，首位存储长度） */
         questionType[i].second[0]=questionType[i].second.length()-1;
         ui->tableOfQuestionType->setItem(i,0,new QTableWidgetItem(questionType[i].first));
@@ -321,7 +335,8 @@ void widgetOfStart::getPath()
     /* 弹出选择文件的窗口，过滤出 excel 文件 */
     const QString& filepath=QFileDialog::getOpenFileName(this, QStringLiteral("select excel file"), "",QStringLiteral("Exel file(*.xls *.xlsx)"));
     /* 获取路径成功，便赋给 pathOfExcel，并更新选择页的路径显示，并发送 loadExcel(pathOfExcel) 信号读取文件 */
-    if(!filepath.isEmpty()){
+    if(!filepath.isEmpty())
+    {
         pathOfExcel=filepath;
         ui->textOfPath->setText(pathOfExcel);
         emit loadExcel(pathOfExcel);
@@ -333,18 +348,22 @@ void widgetOfStart::initalStackWindow()
 {
     QStackedWidget* windows=this->ui->stackOfWindows;
     /* 三个按钮分别对应三个窗口，将按钮的点击事件和对应窗口的显示连接在一起 */
-    QPushButton* buttons[]={
+    QPushButton* buttons[]=
+    {
         ui->buttonOfQuestion,
         ui->buttonOfSelect,
         ui->buttonOfCollect
     };
-    QWidget* pages[]={
+    QWidget* pages[]=
+    {
         ui->pageOfQuestion,
         ui->pageOfSelection,
         ui->pageOfCollection
     };
-    for(int i=0;i<sizeof(buttons)/sizeof(QPushButton*);i++){
-        connect(buttons[i],&QPushButton::clicked,this,[windows,buttons,pages,i](){
+    for(int i=0;i<sizeof(buttons)/sizeof(QPushButton*);i++)
+    {
+        connect(buttons[i],&QPushButton::clicked,this,[windows,buttons,pages,i]()
+        {
             windows->setCurrentIndex(windows->indexOf(pages[i]));
         });
     }
@@ -354,7 +373,8 @@ void widgetOfStart::initalStackWindow()
 void widgetOfStart::initalQuestionPage()
 {
     /* 实现点击正确选项跳转到下一题  */
-    connect(ui->optionsOfQuestion,&clickOptions::selectOption,this,[=](int option){
+    connect(ui->optionsOfQuestion,&clickOptions::selectOption,this,[=](int option)
+    {
         if(!reader->isRead())
             return;
         /*
@@ -376,8 +396,10 @@ void widgetOfStart::initalQuestionPage()
         n=preOption!=currIndexOfQuestion||option!=ui->optionsOfQuestion->getAnswer()?1:n-1;
         preOption=currIndexOfQuestion;
         /* 跳转到下一题 */
-        if(n<=0){
-            if(currIndexOfQuestion+1<questionType[currTypeOfQuestion].second[0]){
+        if(n<=0)
+        {
+            if(currIndexOfQuestion+1<questionType[currTypeOfQuestion].second[0])
+            {
                 emit updateIndexOfQuestion(currIndexOfQuestion+1);
                 showQuestionByIndex(currIndexOfQuestion+1);
             }
@@ -400,32 +422,37 @@ void widgetOfStart::initalQuestionPage()
     /* 当 switchOfQuestion 中题号变化，显示该题号的题目信息 */
     connect(ui->switchOfQuestion,&switchQuestion::changeQuestion,this,&widgetOfStart::showQuestionByIndex);
     /* 当 switchOfQuestion 中题号被收藏，则... */
-    connect(ui->switchOfQuestion,&switchQuestion::collectQuestion,this,[=](){
+    connect(ui->switchOfQuestion,&switchQuestion::collectQuestion,this,[=]()
+    {
         if(!reader->isRead())
             return;
         /* 获取当前题号下标，并在收藏列表中查找 */
         int currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         /* 查找不到才将该题号收藏 */
-        if(index==-1){
+        if(index==-1)
+        {
             progressOfCollection.push_back(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
             /* 更新收藏总数，若此时收藏总数为 1，自动显示该仅有的收藏 */
             emit updateSumOfCollection(progressOfCollection.length());
-            if(progressOfCollection.length()==1){
+            if(progressOfCollection.length()==1)
+            {
                 emit updateIndexOfCollection(0);
                 showCollectionByIndex(0);
             }
         }
     });
     /* 当 switchOfQuestion 中题号被取消收藏，则... */
-    connect(ui->switchOfQuestion,&switchQuestion::uncollectQuestion,this,[=](){
+    connect(ui->switchOfQuestion,&switchQuestion::uncollectQuestion,this,[=]()
+    {
         if(!reader->isRead())
             return;
         /* 获取当前题号下标，并在收藏列表中查找 */
         int currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
         int index=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,currIndexOfQuestion));
         /* 查找到才将该题号取消收藏 */
-        if(index!=-1){
+        if(index!=-1)
+        {
             #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
                 progressOfCollection.removeAt(index);
             #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
@@ -434,10 +461,13 @@ void widgetOfStart::initalQuestionPage()
             /* 删除该收藏项，并获取当前收藏项下标 */
             int currIndexOfCollection=ui->switchOfCollection->index();
             /* 若此时收藏列表为空，重置收藏页 */
-            if(progressOfCollection.isEmpty()){
+            if(progressOfCollection.isEmpty())
+            {
                 resetCollection();
+            }
             /* 若此时收藏项下标大于等于收藏总数，即当前收藏项刚好为删除的收藏项，将当前收藏项下标-1 */
-            }else if(currIndexOfCollection>=progressOfCollection.length()){
+            else if(currIndexOfCollection>=progressOfCollection.length())
+            {
                 showCollectionByIndex(progressOfCollection.length()-1);
                 emit updateIndexOfCollection(progressOfCollection.length()-1);
             }
@@ -457,9 +487,11 @@ void widgetOfStart::initalSelectionPage()
     /* 接收 reader 读取完数据发送的 readed 信号，调用 handleData 槽函数处理这些数据 */
     connect(reader,&excelReader::readed,this,&widgetOfStart::handleData);
     /* 接收 handleData 处理完数据发送的 ready 信号，若有收藏项则显示 */
-    connect(this,&widgetOfStart::ready,this,[=](){
+    connect(this,&widgetOfStart::ready,this,[=]()
+    {
         ui->questionType->setCurrentIndex(currTypeOfQuestion);
-        if(ui->switchOfCollection->index()<progressOfCollection.length()){
+        if(ui->switchOfCollection->index()<progressOfCollection.length())
+        {
             showCollectionByIndex(ui->switchOfCollection->index());
             emit updateIndexOfCollection(ui->switchOfCollection->index());
         }
@@ -471,14 +503,15 @@ void widgetOfStart::initalSelectionPage()
     #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
         connect(ui->questionType,&QComboBox::currentIndexChanged,this,&widgetOfStart::setQuestionType);
     #endif
-    // connect(ui->questionType,&QComboBox::currentIndexChanged,this,&widgetOfStart::setQuestionType);
 }
 
 /* 初始化收藏页 */
 void widgetOfStart::initalCollectionPage()
 {
     /* 实现点击正确选项跳转到下一题  */
-    connect(ui->optionsOfCollection,&clickOptions::selectOption,this,[=](int option){
+    connect(ui->optionsOfCollection,&clickOptions::selectOption,this,[=](int option)
+    {
+        /* 在初始化答题窗口时已使用过该代码，不做解释 */
         if(!reader->isRead())
             return;
         static int index;
@@ -486,13 +519,15 @@ void widgetOfStart::initalCollectionPage()
         int currIndexOfCollection=ui->switchOfCollection->index();
         n=index!=currIndexOfCollection||option!=ui->optionsOfCollection->getAnswer()?1:n-1;
         index=currIndexOfCollection;
-        if(n==0){
-            if(index+1<progressOfCollection.length()){
+        if(n==0)
+        {
+            if(index+1<progressOfCollection.length())
+            {
                 emit updateIndexOfCollection(index+1);
                 showCollectionByIndex(index+1);
-            }else{
-                ui->optionsOfCollection->displayAnswer(false);
             }
+            else
+                ui->optionsOfCollection->displayAnswer(false);
             return;
         }
         ui->optionsOfCollection->displayAnswer(true);
@@ -510,9 +545,11 @@ void widgetOfStart::initalCollectionPage()
     connect(this,updateIndexByString,ui->switchOfCollection,&switchQuestion::setTextOfIndex);
     ui->switchOfCollection->setTitle("收藏页");
     /* 当 switchOfCollection 题号改变时发送 lastIndex(option)，为未改变前的题号 */
-    connect(ui->switchOfCollection,&switchQuestion::lastIndex,this,[=](int i){
+    connect(ui->switchOfCollection,&switchQuestion::lastIndex,this,[=](int i)
+    {
         /* 当前下标文本设置为 ？，代表应取消该题号应被取消收藏 */
-        if(ui->switchOfCollection->stringOfIndex()=="?"){
+        if(ui->switchOfCollection->stringOfIndex()=="?")
+        {
             /* 当题号变动再执行取消收藏操作，而当前题号已发生变动，于是对未改变前的题号执行取消收藏操作 */
             int row=progressOfCollection[i].first;
             int column=progressOfCollection[i].second;
@@ -535,11 +572,14 @@ void widgetOfStart::initalCollectionPage()
     /* 当 switchOfCollection 题号改变时，显示当前收藏项的题目信息 */
     connect(ui->switchOfCollection,&switchQuestion::changeQuestion,this,&widgetOfStart::showCollectionByIndex);
     /* 当 switchOfCollection 题号被取消收藏时，则将题号下标文本设置为 ？ */
-    connect(ui->switchOfCollection,&switchQuestion::uncollectQuestion,this,[=](){
+    connect(ui->switchOfCollection,&switchQuestion::uncollectQuestion,this,[=]()
+    {
         /* 收藏总数小于等于 1 */
-        if(progressOfCollection.length()<=1){
+        if(progressOfCollection.length()<=1)
+        {
             /* 若为 1，则说明是最后一个收藏项，直接取消收藏该题目 */
-            if(progressOfCollection.length()==1){
+            if(progressOfCollection.length()==1)
+            {
                 int row=progressOfCollection[0].first;
                 int column=progressOfCollection[0].second;
                 #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
@@ -558,7 +598,8 @@ void widgetOfStart::initalCollectionPage()
         emit updateIndexOfCollection("?");
     });
     /* 当 switchOfCollection 题号被重新收藏时，则更新下标 */
-    connect(ui->switchOfCollection,&switchQuestion::collectQuestion,this,[=](){
+    connect(ui->switchOfCollection,&switchQuestion::collectQuestion,this,[=]()
+    {
         emit updateIndexOfCollection(ui->switchOfCollection->index());
     });
     resetCollection();
