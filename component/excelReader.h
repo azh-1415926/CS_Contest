@@ -1,10 +1,19 @@
 #pragma once
-
 #include <QObject>
 #include <QAxObject>
 
-class excelReader : public QObject {
+class excelReader : public QObject
+{
     Q_OBJECT
+
+    private:
+        int rows;
+        int columns;
+        int readFlag;
+        int reloadFlag;
+        QString path;
+        QAxObject* excel;
+        QVector<QVector<QString>> data;
 
     public:
         explicit excelReader(QObject* parent=nullptr);
@@ -27,11 +36,5 @@ class excelReader : public QObject {
         void readed();
 
     private:
-        int rows;
-        int columns;
-        int readFlag;
-        int reloadFlag;
-        QString path;
-        QAxObject* excel;
-        QVector<QVector<QString>> data;
+        ;
 };

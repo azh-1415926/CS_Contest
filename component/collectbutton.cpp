@@ -2,24 +2,24 @@
 
 collectButton::collectButton(QWidget *parent, const QString &collect, const QString &uncollect)
     : QPushButton(parent)
-    , textOfCollect(collect)
-    , textOfUncollect(uncollect)
+    , textOfCollect(collect), textOfUncollect(uncollect)
 {
-
 }
 
 collectButton::~collectButton()
 {
-
 }
 
 /* 重写鼠标点击事件，每点击一次，都会触发收藏或取消收藏，并发送 collected、uncollected 信号 */
 void collectButton::mousePressEvent(QMouseEvent *e)
 {
-    if(this->text()==textOfCollect){
+    if(this->text()==textOfCollect)
+    {
         this->setText(textOfUncollect);
         emit uncollected();
-    }else{
+    }
+    else
+    {
         this->setText(textOfCollect);
         emit collected();
     }

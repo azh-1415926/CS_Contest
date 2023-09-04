@@ -1,18 +1,14 @@
 #include "switchquestion.h"
+
 #include <QGridLayout>
 
 switchQuestion::switchQuestion(QWidget *parent)
     : QWidget(parent)
-    , indexOfQuestion(0)
-    , sumOfQuestion(0)
-    , forwardBtn(new QPushButton)
-    , nextBtn(new QPushButton)
-    , collectBtn(new collectButton)
-    , textOfTag(new QLabel)
-    , textOfIndex(new QLabel)
-    , textOfSum(new QLabel)
+    , indexOfQuestion(0), sumOfQuestion(0)
+    , forwardBtn(new QPushButton), nextBtn(new QPushButton), collectBtn(new collectButton)
+    , textOfTag(new QLabel), textOfIndex(new QLabel), textOfSum(new QLabel)
 {
-    inital();
+    initalQuestion();
 }
 
 switchQuestion::~switchQuestion()
@@ -70,7 +66,7 @@ void switchQuestion::setCollect(bool status)
 }
 
 /* 初始化布局、按钮、文本 */
-void switchQuestion::inital()
+void switchQuestion::initalQuestion()
 {
     /* 主体采用网格布局 */
     QGridLayout* layout=new QGridLayout(this);
@@ -86,7 +82,8 @@ void switchQuestion::inital()
     layout->addWidget(textOfIndex,1,1);
     layout->addWidget(textOfSum,1,2);
     /* 向前按钮点击事件 */
-    connect(forwardBtn,&QPushButton::clicked,this,[=](){
+    connect(forwardBtn,&QPushButton::clicked,this,[=]()
+    {
         /* 若下标小于等于 0，即左边已经没有问题了，直接返回 */
         if(this->indexOfQuestion<=0)
             return;
@@ -97,7 +94,8 @@ void switchQuestion::inital()
         emit changeQuestion(this->indexOfQuestion);
     });
     /* 向后按钮点击事件 */
-    connect(nextBtn,&QPushButton::clicked,this,[=](){
+    connect(nextBtn,&QPushButton::clicked,this,[=]()
+    {
         /* 若下标大于等于问题的总数，即右边已经没有问题了，直接返回 */
         if(this->indexOfQuestion>=this->sumOfQuestion-1)
             return;
@@ -108,10 +106,12 @@ void switchQuestion::inital()
         emit changeQuestion(this->indexOfQuestion);
     });
     /* 当收藏按钮发送 collected、uncollected 信号时，发送 collectQuestion、uncollectQuestion 信号，当做转发 */
-    connect(collectBtn,&collectButton::collected,this,[=](){
+    connect(collectBtn,&collectButton::collected,this,[=]()
+    {
         emit collectQuestion();
     });
-    connect(collectBtn,&collectButton::uncollected,this,[=](){
+    connect(collectBtn,&collectButton::uncollected,this,[=]()
+    {
         emit uncollectQuestion();
     });
 }

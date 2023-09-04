@@ -1,24 +1,27 @@
 #pragma once
-
 #include <QLabel>
 #include <QMouseEvent>
 
-class clickLabel : public QLabel {
+class clickLabel : public QLabel
+{
     Q_OBJECT
-    
-public:
-    explicit clickLabel(QWidget* parent = nullptr);
-    ~clickLabel();
 
-protected:
-    void mousePressEvent(QMouseEvent* e) override;
+    private:
+        ;
 
-public slots:
-    ;
+    public:
+        explicit clickLabel(QWidget* parent = nullptr);
+        ~clickLabel();
 
-signals:
-    void clicked(const clickLabel*);
+    protected:
+        void mousePressEvent(QMouseEvent* e) override;
 
-private:
-    ;
+    public slots:
+        ;
+
+    signals:
+        void clicked(const clickLabel*);
+
+    private:
+        ;
 };

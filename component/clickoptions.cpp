@@ -1,4 +1,5 @@
 #include "clickoptions.h"
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPainter>
@@ -8,12 +9,8 @@
 clickOptions::clickOptions(QWidget *parent)
     : QGroupBox(parent)
     , numOfOptions(4)
-    , answerOfOptions(-1)
-    , hoverOption(-1)
-    , checkedOption(-1)
-    , hoverBox(nullptr)
-    , correctBox(nullptr)
-    , incorrectBox(nullptr)
+    , answerOfOptions(-1), hoverOption(-1), checkedOption(-1)
+    , hoverBox(nullptr), correctBox(nullptr), incorrectBox(nullptr)
 {
     initalOptions();
     initalEvent();
@@ -21,7 +18,8 @@ clickOptions::clickOptions(QWidget *parent)
 
 clickOptions::~clickOptions()
 {
-    for(int i=0;i<numOfOptions;i++){
+    for(int i=0;i<numOfOptions;i++)
+    {
         delete buttons[i];
         delete labels[i];
     }
@@ -36,20 +34,24 @@ bool clickOptions::eventFilter(QObject *obj, QEvent *e)
     if(index==-1)
         index=labels.indexOf(dynamic_cast<clickLabel*>(obj));
     /* 查找到适合更新悬浮选框更新的组件（在按钮或者选项之中），便更新悬浮选框，并在下一次绘制的时候应用 */
-    if(index!=-1&&(e->type()==QEvent::HoverEnter||e->type()==QEvent::HoverLeave)){
+    if(index!=-1&&(e->type()==QEvent::HoverEnter||e->type()==QEvent::HoverLeave))
+    {
         hoverBox=setOptionOfBox(index,hoverBox);
         hoverOption=index;
         this->update();
         return true;
     }
     /* 若为当前对象的绘制事件，则一并绘制悬浮、正确、错误选框 */
-    if(obj==this&&e->type()==QEvent::Paint){
+    if(obj==this&&e->type()==QEvent::Paint)
+    {
         paintBox(this,hoverBox);
         paintBox(this,correctBox);
         paintBox(this,incorrectBox);
         return true;
+    }
     /* 若为当前对象窗口大小调整事件，则清空所有选框，并更新所有选框，若没有被选中的选项，那么只更新悬浮选框 */
-    }else if(obj==this&&e->type()==QEvent::Resize){
+    else if(obj==this&&e->type()==QEvent::Resize)
+    {
         freeBoxes();
         hoverBox=setOptionOfBox(hoverOption,hoverBox);
         if(checkedOption!=-1)
@@ -71,25 +73,31 @@ void clickOptions::setAnswer(int i)
 void clickOptions::displayAnswer(bool state)
 {
     /* 显示正确、错误选项 */
-    if(state){
+    if(state)
+    {
         /* 若当前选项不为正确选项，则设置错误选框的坐标 */
         if(checkedOption!=answerOfOptions)
             incorrectBox=setOptionOfBox(checkedOption,incorrectBox);
         /* 若当前选项为正确选项，且错误选框存在，则删除错误选框（实现两次执行此函数便可以做到更新操作） */
-        else if(incorrectBox!=nullptr){
+        else if(incorrectBox!=nullptr)
+        {
             delete incorrectBox;
             incorrectBox=nullptr;
         }
         /* 无论如何，始终设置正确选框的坐标 */
         correctBox=setOptionOfBox(answerOfOptions,correctBox);
+    }
     /* 隐藏正确、错误选项 */
-    }else{
+    else
+    {
         /* 若正确、错误选框存在，便删除 */
-        if(correctBox!=nullptr){
+        if(correctBox!=nullptr)
+        {
             delete correctBox;
             correctBox=nullptr;
         }
-        if(incorrectBox!=nullptr){
+        if(incorrectBox!=nullptr)
+        {
             delete incorrectBox;
             incorrectBox=nullptr;
         }
@@ -101,7 +109,8 @@ void clickOptions::displayAnswer(bool state)
 void clickOptions::resetOption()
 {
     displayAnswer(false);
-    if(this->checkedOption!=-1){
+    if(this->checkedOption!=-1)
+    {
         buttons[this->checkedOption]->setCheckable(false);
         buttons[this->checkedOption]->setCheckable(true);
         checkedOption=-1;
@@ -122,7 +131,8 @@ void clickOptions::initalOptions()
     /* 主体采用垂直布局 */
     QVBoxLayout* options=new QVBoxLayout(this);
     /* 创建 numOfOptions 个按钮和选项标签 */
-    for(int i=0;i<numOfOptions;i++){
+    for(int i=0;i<numOfOptions;i++)
+    {
         buttons.push_back(new QRadioButton);
         labels.push_back(new clickLabel);
         /* 设置按钮和选项标签初始文本，分别为 "A"、"Option A"，选项从 A 开始 */
@@ -137,12 +147,14 @@ void clickOptions::initalOptions()
         labels[i]->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
         labels[i]->setWordWrap(true);
         /* 按钮被点击，则更新被选中的选项，且发送 selectOption 信号，传递当前被选中的选项下标 */
-        connect(buttons[i],&QRadioButton::clicked,this,[=](){
+        connect(buttons[i],&QRadioButton::clicked,this,[=]()
+        {
             this->checkedOption=i;
             emit selectOption(i);
         });
         /* 标签被点击，则选中对应的按钮、更新被选中的选项，且发送 selectOption 信号 */
-        connect(labels[i],&clickLabel::clicked,this,[=](){
+        connect(labels[i],&clickLabel::clicked,this,[=]()
+        {
             buttons[i]->setChecked(true);
             this->checkedOption=i;
             emit selectOption(i);
@@ -158,7 +170,8 @@ void clickOptions::initalOptions()
 /* 初始化对应的事件（安装事件过滤器） */
 void clickOptions::initalEvent()
 {
-    for(int i=0;i<numOfOptions;i++){
+    for(int i=0;i<numOfOptions;i++)
+    {
         buttons[i]->setAttribute(Qt::WA_Hover,true);
         labels[i]->setAttribute(Qt::WA_Hover,true);
         buttons[i]->installEventFilter(this);
@@ -170,21 +183,22 @@ void clickOptions::initalEvent()
 /* 在指定窗口绘制指定选框 */
 void clickOptions::paintBox(QWidget *widget, QRect *box)
 {
-    if(box!=nullptr){
+    if(box!=nullptr)
+    {
         QPainter painter(widget);
         QPen pen(Qt::black,5);
         /* 对应选框的笔刷颜色 */
-        if(box==hoverBox){
+        if(box==hoverBox)
             pen.setBrush(QBrush(qRgb(30,144,255)));
-        }else if(box==correctBox){
+        else if(box==correctBox)
             pen.setBrush(QBrush(qRgb(144,238,144)));
-        }else if(box==incorrectBox){
+        else if(box==incorrectBox)
             pen.setBrush(QBrush(qRgb(255,0,0)));
-        }
         painter.setPen(pen);
-        if(box==hoverBox){
+        if(box==hoverBox)
             painter.drawRoundedRect(QRect(box->topLeft(),box->bottomRight()),20,20);
-        }else{
+        else
+        {
             /* 正确、错误选框往里缩 5 格像素，方便悬浮选框展示 */
             QPainterPath path;
             path.addRoundedRect(
@@ -210,15 +224,18 @@ void clickOptions::paintBox(QWidget *widget, QRect *box)
 /* 释放所有选框 */
 void clickOptions::freeBoxes()
 {
-    if(hoverBox!=nullptr){
+    if(hoverBox!=nullptr)
+    {
         delete hoverBox;
         hoverBox=nullptr;
     }
-    if(correctBox!=nullptr){
+    if(correctBox!=nullptr)
+    {
         delete correctBox;
         correctBox=nullptr;
     }
-    if(incorrectBox!=nullptr){
+    if(incorrectBox!=nullptr)
+    {
         delete incorrectBox;
         incorrectBox=nullptr;
     }

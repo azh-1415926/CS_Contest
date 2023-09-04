@@ -1,12 +1,11 @@
 #include "excelReader.h"
+
 #include <QProgressDialog>
 
 excelReader::excelReader(QObject* parent)
     : QObject(parent)
-    , rows(0)
-    , columns(0)
-    , readFlag(0)
-    , reloadFlag(0)
+    , rows(0), columns(0)
+    , readFlag(0), reloadFlag(0)
     , excel(new QAxObject("Excel.Application"))
 {
     /* 不显示 excel 进程的窗口 */
@@ -28,9 +27,8 @@ excelReader::~excelReader()
 void excelReader::readExcel(const QString& pathOfExcel)
 {
     /* 路径为空立即返回 */
-    if(pathOfExcel.isEmpty()){
+    if(pathOfExcel.isEmpty())
         return;
-    }
     /* 显示进度条对话框，标题为 Loading Excel file，文本为 loading */
     QProgressDialog process;
     process.setValue(0);
@@ -88,15 +86,15 @@ void excelReader::readExcel(const QString& pathOfExcel)
     if(!data.isEmpty())
         data.clear();
     /* 读取所有数据并存进 data 数组 */
-    for(int i=0;i<rows;i++){
+    for(int i=0;i<rows;i++)
+    {
         /* 存储第 i 行的行数据 */
         QVector<QString> columnData;
         /* var 指向第 i 行的列数据 */
         const QVariantList& var=rowsOflist[i].toList();
-        for(int j=0;j<columns;j++){
+        for(int j=0;j<columns;j++)
             /* 将字符串格式的列数据存入数组 */
             columnData.push_back(var[j].toString());
-        }
         /* 将第 i 行的列数据数组存入 data 数组，更新进度条 */
         data.push_back(columnData);
         process.setValue(39+60/rows*i);
