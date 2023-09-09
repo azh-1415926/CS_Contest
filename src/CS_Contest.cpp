@@ -7,7 +7,6 @@
 CS_Contest::CS_Contest(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui_CS_Contest)
-    , flagOfClick(1)
     , windowOfStart(new widgetOfStart)
     , windowOfSearch(new widgetOfSearch)
     , windowOfAbout(new widgetOfAbout)
@@ -28,22 +27,6 @@ CS_Contest::~CS_Contest()
     delete windowOfSearch;
     delete windowOfAbout;
     delete windowOfMore;
-}
-
-/* 重写鼠标点击事件，点击便调用 clickPoint 函数（1 秒只能调用一次），传入当前鼠标点击坐标 */
-void CS_Contest::mousePressEvent(QMouseEvent *e)
-{
-    /* flagOfClick 用于标记当前点击是否合法，若它为 1，才调用 clickPoint，否则无操作 */
-    if(flagOfClick)
-    {
-        #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            clickPoint(QPoint(e->pos().x(),e->pos().y()));
-        #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
-            clickPoint(QPoint(e->position().x(),e->position().y()));
-        #endif
-        /* 发送完当前鼠标点击的位置后，将其置为 0，直到定时器每隔 1 秒重置该标志 */
-        flagOfClick=0;
-    }
 }
 
 /* 重写窗口关闭事件，关闭主窗口前，关闭所有子窗口 */
@@ -70,42 +53,26 @@ void CS_Contest::updateTime()
     ui->timeOfHMS->display(timeOfHMS);
 }
 
-/* 处理所点击坐标的特殊事件 */
-void CS_Contest::clickPoint(const QPoint &p)
-{
-    /* baseOf前缀的变量用于记录父窗口（这4个区域有一个父窗口）的绝对坐标 */
-    int baseOfX,baseOfY,baseOfWidth,baseOfHeight;
-    int x,y,width,height;
-    /* 获取父窗口（areaOfBottom）相对于主界面的坐标 */
-    ui->areaOfBottom->geometry().getRect(&baseOfX,&baseOfY,&baseOfWidth,&baseOfHeight);
-    /* 获取对应区域相对于父窗口的坐标 */
-    for(int i=0;i<windows.length();i++)
-    {
-        windows[i].first->geometry().getRect(&x,&y,&width,&height);
-        /* 相加获得绝对坐标 */
-        x+=baseOfX;
-        y+=baseOfY;
-        /* 判断鼠标点击坐标是否在对应区域的范围内 */
-        if(p.x()>=x&&p.x()<=x+width&&p.y()>=y&&p.y()<=y+height)
-        {
-            /* 若该区域对应窗口隐藏，便将其显示 */
-            if(windows[i].second->isHidden())
-                windows[i].second->show();
-            return;
-        }
-    }
-}
-
 /* 初始化窗口 */
 void CS_Contest::initalWindow()
 {
     /* ui 文件里默认标题为 xxx，设置标题文本为 "知识竞赛答题" */
     ui->textOfTitle->setText("知识竞赛答题");
-    /* 插入显示的文本区域、对应窗口到 windows 中 */
-    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfStart,windowOfStart));
-    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfSearch,windowOfSearch));
-    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfAbout,windowOfAbout));
-    windows.push_back(QPair<QWidget*,QWidget*>(ui->areaOfMore,windowOfMore));
+    /* 插入显示文本、对应窗口到 windows 中 */
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfStart,windowOfStart));
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfSearch,windowOfSearch));
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfAbout,windowOfAbout));
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfMore,windowOfMore));
+    for(int i=0;i<windows.length();i++)
+    {
+        connect(windows[i].first,&clickLabel::clicked,this,[=](const clickLabel* label)
+        {
+            /* 若该区域对应窗口隐藏，便将其显示 */
+            if(windows[i].second->isHidden())
+                windows[i].second->show();
+            return;
+        });
+    }
 }
 
 /* 初始化计时器，更新主界面时间显示 */
@@ -116,7 +83,6 @@ void CS_Contest::initalTimer()
     connect(timer,&QTimer::timeout,this,[=]()
     {
         updateTime();
-        this->flagOfClick=1;
     });
     /* 启动定时器 */
     timer->start(1000);

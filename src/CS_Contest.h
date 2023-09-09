@@ -1,7 +1,6 @@
 #pragma once
 #include "ui_CS_Contest.h"
 #include <QMainWindow>
-#include <QMouseEvent>
 
 #include "widgetOfStart.h"
 #include "widgetOfSearch.h"
@@ -14,24 +13,21 @@ class CS_Contest : public QMainWindow
 
     private:
         Ui_CS_Contest* ui;
-        int flagOfClick;
         widgetOfStart* windowOfStart;
         widgetOfSearch* windowOfSearch;
         widgetOfAbout* windowOfAbout;
         widgetOfMore* windowOfMore;
-        QList<QPair<QWidget*,QWidget*>> windows;
+        QList<QPair<clickLabel*,QWidget*>> windows;
 
     public:
         explicit CS_Contest(QWidget* parent = nullptr);
         ~CS_Contest();
 
     protected:
-        void mousePressEvent(QMouseEvent* e) override;
         void closeEvent(QCloseEvent* e) override;
 
     public slots:
         void updateTime();
-        void clickPoint(const QPoint& p);
 
     private:
         void initalWindow();

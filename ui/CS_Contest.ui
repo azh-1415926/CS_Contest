@@ -194,7 +194,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="textOfStart">
+           <widget class="clickLabel" name="textOfStart">
             <property name="font">
              <font>
               <family>华文琥珀</family>
@@ -222,7 +222,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QLabel" name="textOfAbout">
+           <widget class="clickLabel" name="textOfAbout">
             <property name="font">
              <font>
               <family>华文琥珀</family>
@@ -250,7 +250,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QLabel" name="textOfMore">
+           <widget class="clickLabel" name="textOfMore">
             <property name="font">
              <font>
               <family>华文琥珀</family>
@@ -278,7 +278,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QLabel" name="textOfSearch">
+           <widget class="clickLabel" name="textOfSearch">
             <property name="font">
              <font>
               <family>华文琥珀</family>
@@ -315,6 +315,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>clickLabel</class>
+   <extends>QLabel</extends>
+   <header>component/clicklabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
