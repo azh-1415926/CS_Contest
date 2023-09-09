@@ -1,7 +1,9 @@
 #include "CS_Contest.h"
 
 #include <QApplication>
+#ifndef __ANDROID__
 #pragma comment(lib, "user32.lib")
+#endif
 
 int main(int argc, char *argv[])
 {

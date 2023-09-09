@@ -1,6 +1,9 @@
 #pragma once
 #include <QObject>
+
+#ifdef _WIN32
 #include <QAxObject>
+#endif
 
 class excelReader : public QObject
 {
@@ -12,7 +15,9 @@ class excelReader : public QObject
         int readFlag;
         int reloadFlag;
         QString path;
+        #ifdef _WIN32
         QAxObject* excel;
+        #endif
         QVector<QVector<QString>> data;
 
     public:
@@ -31,6 +36,8 @@ class excelReader : public QObject
 
     public slots:
         void readExcel(const QString& pathOfExcel);
+        void readCSV(const QString& pathOfCSV);
+        void importCSV(const QString& pathOfCSV);
 
     signals:
         void readed();

@@ -1,31 +1,39 @@
 #include "excelReader.h"
 
 #include <QProgressDialog>
+#include <QFile>
 
 excelReader::excelReader(QObject* parent)
     : QObject(parent)
     , rows(0), columns(0)
     , readFlag(0), reloadFlag(0)
+    #ifdef _WIN32
     , excel(new QAxObject("Excel.Application"))
+    #endif
 {
     /* 不显示 excel 进程的窗口 */
+    #ifdef _WIN32
     excel->dynamicCall("SetVisible (bool Visible)","false");
     /*
         忽略所有警告退出（我们只读取，并不修改和保存，故不需要设置）
         excel->setProperty("DisplayAlerts", false);
     */
+    #endif
 }
 
 excelReader::~excelReader()
 {
+    #ifdef _WIN32
     /* 退出 excel 进程，并释放内存 */
     excel->dynamicCall("Quit(void)");
     delete excel;
+    #endif
 }
 
 /* 读取指定路径的 excel 文件 */
 void excelReader::readExcel(const QString& pathOfExcel)
 {
+    #ifdef _WIN32
     /* 路径为空立即返回 */
     if(pathOfExcel.isEmpty())
         return;
@@ -105,4 +113,61 @@ void excelReader::readExcel(const QString& pathOfExcel)
     readFlag=1;
     process.setValue(100);
     emit readed();
+    #endif
+}
+
+void excelReader::readCSV(const QString &pathOfCSV)
+{
+    /* 路径为空立即返回 */
+    if(pathOfCSV.isEmpty())
+        return;
+    QFile file(pathOfCSV);
+    /* 只读、转换行尾结束符为本地格式 */
+    if(file.open(QIODevice::ReadOnly|QFile::Text))
+    {
+        if(!data.isEmpty())
+            data.clear();
+        QTextStream stream(&file);
+        QString line;
+        while(!stream.atEnd())
+        {
+            line=stream.readLine();
+            QStringList list;
+            list=line.split("Ⓐ");
+            data.push_back(list);
+        }
+        rows=data.length();
+        columns=data[0].length();
+        file.close();
+        importCSV("out.csv");
+        qDebug()<<"rows:"<<rows<<",columns:"<<columns;
+        readFlag=1;
+        emit readed();
+    }
+}
+
+void excelReader::importCSV(const QString &pathOfCSV)
+{
+    /* 路径为空、文件未读取立即返回 */
+    if(pathOfCSV.isEmpty()||!isRead())
+        return;
+    QFile file(pathOfCSV);
+    if (file.open(QIODevice::WriteOnly | QFile::Text))
+    {
+        //cvs格式需要gbk编码才能正常
+        QTextStream text(&file);
+        if (pathOfCSV.endsWith(".csv"))
+        {
+            #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+                text.setCodec("gbk");
+            #endif
+        }
+        for(int i=0;i<rows;i++)
+        {
+            for(int j=0;j<columns;j++)
+                text<<data[i][j]<<(j!=columns-1?"Ⓐ":"");
+            text <<"\n";
+        }
+        file.close();
+    }
 }

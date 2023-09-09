@@ -10,6 +10,8 @@ collectButton::~collectButton()
 {
 }
 
+#ifndef __ANDROID__
+
 /* 重写鼠标点击事件，每点击一次，都会触发收藏或取消收藏，并发送 collected、uncollected 信号 */
 void collectButton::mousePressEvent(QMouseEvent *e)
 {
@@ -24,6 +26,8 @@ void collectButton::mousePressEvent(QMouseEvent *e)
         emit collected();
     }
 }
+
+#endif
 
 /* 设置按钮状态为被收藏，发送 collected 信号 */
 void collectButton::setCollect()

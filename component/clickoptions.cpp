@@ -33,6 +33,7 @@ bool clickOptions::eventFilter(QObject *obj, QEvent *e)
     int index=buttons.indexOf(dynamic_cast<QRadioButton*>(obj));
     if(index==-1)
         index=labels.indexOf(dynamic_cast<clickLabel*>(obj));
+    #ifndef __ANDROID__
     /* 查找到适合更新悬浮选框更新的组件（在按钮或者选项之中），便更新悬浮选框，并在下一次绘制的时候应用 */
     if(index!=-1&&(e->type()==QEvent::HoverEnter||e->type()==QEvent::HoverLeave))
     {
@@ -41,6 +42,7 @@ bool clickOptions::eventFilter(QObject *obj, QEvent *e)
         this->update();
         return true;
     }
+    #endif
     /* 若为当前对象的绘制事件，则一并绘制悬浮、正确、错误选框 */
     if(obj==this&&e->type()==QEvent::Paint)
     {
@@ -172,8 +174,10 @@ void clickOptions::initalEvent()
 {
     for(int i=0;i<numOfOptions;i++)
     {
+        #ifndef __ANDROID__
         buttons[i]->setAttribute(Qt::WA_Hover,true);
         labels[i]->setAttribute(Qt::WA_Hover,true);
+        #endif
         buttons[i]->installEventFilter(this);
         labels[i]->installEventFilter(this);
     }
