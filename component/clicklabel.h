@@ -1,12 +1,6 @@
 #pragma once
 #include <QLabel>
 
-#ifndef __ANDROID__
-#include <QMouseEvent>
-#else
-#include <QTouchEvent>
-#endif
-
 class clickLabel : public QLabel
 {
     Q_OBJECT
@@ -19,13 +13,7 @@ class clickLabel : public QLabel
         ~clickLabel();
 
     protected:
-        #ifndef __ANDROID__
-        void mousePressEvent(QMouseEvent* e) override;
-        #else
-        bool touchBeginEventProcess(QTouchEvent *event) override;
-        bool touchUpdateEventProcess(QTouchEvent *event) override;
-        bool touchEndEventProcess(QTouchEvent *event) override;
-        #endif
+        bool eventFilter(QObject* obj,QEvent* e) override;
 
     public slots:
         ;
@@ -34,5 +22,11 @@ class clickLabel : public QLabel
         void clicked(const clickLabel*);
 
     private:
-        ;
+        #ifdef __ANDROID__
+        bool touchBeginEventProcess(QEvent *e);
+        bool touchUpdateEventProcess(QEvent *e);
+        bool touchEndEventProcess(QEvent *e);
+        #else
+        bool mousePressEventProcess(QEvent* e);
+        #endif
 };

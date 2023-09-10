@@ -24,7 +24,7 @@ class CS_Contest : public QMainWindow
         ~CS_Contest();
 
     protected:
-        void closeEvent(QCloseEvent* e) override;
+        bool eventFilter(QObject* obj,QEvent* e) override;
 
     public slots:
         void updateTime();
@@ -32,4 +32,5 @@ class CS_Contest : public QMainWindow
     private:
         void initalWindow();
         void initalTimer();
+        void showWindow(const clickLabel* label);
 };

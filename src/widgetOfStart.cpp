@@ -88,7 +88,7 @@ void widgetOfStart::exportSetting()
         QTextStream stream(&file);
         #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
             stream.setCodec("utf-8");
-        #elif (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+        #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
             stream.setEncoding(QStringConverter::Utf8);
         #endif
         doc.setObject(json);
@@ -490,6 +490,12 @@ void widgetOfStart::initalQuestionPage()
 /* 初始化选择页 */
 void widgetOfStart::initalSelectionPage()
 {
+    /* 除 win 平台以外隐藏掉导入组件 */
+    #ifndef _WIN32
+    ui->titleOfPath->hide();
+    ui->textOfPath->hide();
+    ui->inputButton->hide();
+    #endif
     /* 当 inputButton 按钮被点击，则调用 getPath() 获取文件路径，若获取成功将发送 loadExcel 信号 */
     connect(ui->inputButton,&QRadioButton::clicked,this,&widgetOfStart::getPath);
     /* 接收到 loadExcel 信号，触发 reader 的 readExcel 槽函数 */
