@@ -37,6 +37,7 @@ class widgetOfStart : public QWidget
 
     signals:
         void loadExcel(const QString& pathOfExcel);
+        void loadCSV(const QString& pathOfCSV);
         void ready();
         void updateTextOfQuestion(int i,const QString& text);
         void updateTextOfCollection(int i,const QString& text);

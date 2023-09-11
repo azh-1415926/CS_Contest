@@ -2,6 +2,9 @@
 
 #include <QProgressDialog>
 #include <QFile>
+#include <QTextStream>
+#include <QRegExp>
+#include <QRegularExpressionValidator>
 
 excelReader::excelReader(QObject* parent)
     : QObject(parent)
@@ -113,9 +116,11 @@ void excelReader::readExcel(const QString& pathOfExcel)
     readFlag=1;
     process.setValue(100);
     emit readed();
+    // importCSV("out.csv");
     #endif
 }
 
+/* 读取指定路径的 CSV 文件 */
 void excelReader::readCSV(const QString &pathOfCSV)
 {
     /* 路径为空立即返回 */
@@ -125,22 +130,69 @@ void excelReader::readCSV(const QString &pathOfCSV)
     /* 只读、转换行尾结束符为本地格式 */
     if(file.open(QIODevice::ReadOnly|QFile::Text))
     {
+        /* 若之前读过数据，那么 data 不为空，则需要清空 */
         if(!data.isEmpty())
             data.clear();
         QTextStream stream(&file);
         QString line;
+        /* 读取所有行，并插入到 data 中 */
         while(!stream.atEnd())
         {
             line=stream.readLine();
-            QStringList list;
-            list=line.split("Ⓐ");
-            data.push_back(list);
+            QRegularExpression reg("^\\d{1,4}AZH{1}[C,D,H,J,K,L,W,Y,Z,Q,R,S,1-6]AZH+[\\s\\S]+");
+            QRegularExpressionValidator v(reg,0);
+            int pos=0;
+            QValidator::State result=v.validate(line,pos);
+            QVector<QString> vec=line.split("AZH").toVector();
+            if(result!=QValidator::State::Acceptable)
+            {
+                if(data.isEmpty())
+                {
+                    data.push_back(vec);
+                }
+                else if(!data.isEmpty())
+                {
+                    QVector<QString>& temp=data[data.length()-1];
+                    if(!temp.isEmpty())
+                    {
+                        temp[temp.length()-1].append(vec.constFirst());
+                        vec.removeFirst();
+                    }
+                    if(!vec.isEmpty())
+                        temp.append(vec);
+                }
+            }
+            else
+                data.push_back(vec);
         }
         rows=data.length();
         columns=data[0].length();
+        /* 将数据处理错误的数据导出到 test.csv */
+        #ifdef QT_DEBUG
+        QFile testFile("test.csv");
+        if (testFile.open(QIODevice::WriteOnly | QFile::Text))
+        {
+            QTextStream text(&testFile);
+            if (pathOfCSV.endsWith(".csv"))
+            {
+                #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+                    text.setCodec("utf-8");
+                #endif
+            }
+            for(int i=0;i<data.length();i++)
+            {
+                if(data[i].length()!=9)
+                {
+                    for(int j=0;j<data[i].length();j++)
+                        text<<data[i][j]<<(j!=data[i].length()-1?"AZH":"");
+                    text <<"\n";
+                    qDebug()<<"index of "<<i<<" 's question length error,is "<<data[i].length();
+                } 
+            }
+            testFile.close();
+        }
+        #endif
         file.close();
-        importCSV("out.csv");
-        qDebug()<<"rows:"<<rows<<",columns:"<<columns;
         readFlag=1;
         emit readed();
     }
@@ -154,18 +206,17 @@ void excelReader::importCSV(const QString &pathOfCSV)
     QFile file(pathOfCSV);
     if (file.open(QIODevice::WriteOnly | QFile::Text))
     {
-        //cvs格式需要gbk编码才能正常
         QTextStream text(&file);
         if (pathOfCSV.endsWith(".csv"))
         {
             #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                text.setCodec("gbk");
+                text.setCodec("utf-8");
             #endif
         }
         for(int i=0;i<rows;i++)
         {
             for(int j=0;j<columns;j++)
-                text<<data[i][j]<<(j!=columns-1?"Ⓐ":"");
+                text<<data[i][j]<<(j!=columns-1?"AZH":"");
             text <<"\n";
         }
         file.close();

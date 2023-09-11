@@ -14,11 +14,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 默认使用 Qt6 版本，其次 Qt5(用Qt5的时候不要打开中文路径的题库)
 if(WIN32)
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets AxContainer)
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets AxContainer)
+    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets AxContainer Core5Compat)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets AxContainer Core5Compat)
 else()
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core5Compat)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core5Compat)
 endif()
 
 set(ROOT_DIR .)
@@ -59,12 +59,12 @@ else()
 endif()
 
 # 链接的头文件、库
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core5Compat)
 target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/component)
 target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/src)
 
 if(WIN32)
-    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::AxContainer)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::AxContainer Qt${QT_VERSION_MAJOR}::Core5Compat)
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES

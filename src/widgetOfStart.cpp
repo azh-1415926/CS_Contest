@@ -160,6 +160,11 @@ void widgetOfStart::importSetting()
         else if(postfix==".xls")
             emit loadExcel(pathOfExcel);
     }
+    else
+    {
+        ui->textOfPath->setText("default/doc/2022.csv");
+        emit loadCSV(":/doc/2022.csv");
+    }
     /* 启动定时器，每隔一秒调用 saveSetting() 槽函数，将初始化标志位置为 1（表明已被初始化） */
     QTimer* timer=new QTimer(this);
     connect(timer,&QTimer::timeout,this,&widgetOfStart::exportSetting);
@@ -500,6 +505,8 @@ void widgetOfStart::initalSelectionPage()
     connect(ui->inputButton,&QRadioButton::clicked,this,&widgetOfStart::getPath);
     /* 接收到 loadExcel 信号，触发 reader 的 readExcel 槽函数 */
     connect(this,&widgetOfStart::loadExcel,reader,&excelReader::readExcel);
+    /* 接收到 loadCSV 信号，触发 reader 的 readCSV 槽函数 */
+    connect(this,&widgetOfStart::loadCSV,reader,&excelReader::readCSV);
     /* 接收 reader 读取完数据发送的 readed 信号，调用 handleData 槽函数处理这些数据 */
     connect(reader,&excelReader::readed,this,&widgetOfStart::handleData);
     /* 接收 handleData 处理完数据发送的 ready 信号，若有收藏项则显示 */

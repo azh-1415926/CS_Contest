@@ -2,4 +2,7 @@
     <qresource prefix="/image">
         <file alias="info.png">image/info.png</file>
     </qresource>
+    <qresource prefix="/doc">
+        <file alias="2022.csv">doc/2022.csv</file>
+    </qresource>
 </RCC>
