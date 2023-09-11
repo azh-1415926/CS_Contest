@@ -150,16 +150,14 @@ void widgetOfStart::importSetting()
             读取配置文件中导入的题库文件路径
         */
         emit updateSumOfCollection(progressOfCollection.length());
-        /* 判定题库路径是否合法，比如路径不存在、不为 .xls 结尾的文件 */
-        QFile path(pathOfExcel);
-        QString postfix;
-        if(pathOfExcel.length()>4)
-            postfix=pathOfExcel.right(4);
-        if(!path.exists())
-            ui->textOfPath->setText("error path!Please select again!");
-        else if(postfix==".xls")
-            emit loadExcel(pathOfExcel);
     }
+    /* 判定题库路径是否合法，比如路径不存在且不为 .xls 结尾的文件，便打开默认的 CSV 文件 */
+    QFile path(pathOfExcel);
+    QString postfix;
+    if(pathOfExcel.length()>4)
+        postfix=pathOfExcel.right(4);
+    if(path.exists()&&postfix==".xls")
+        emit loadExcel(pathOfExcel);
     else
     {
         ui->textOfPath->setText("default/doc/2022.csv");

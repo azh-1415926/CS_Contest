@@ -116,7 +116,6 @@ void excelReader::readExcel(const QString& pathOfExcel)
     readFlag=1;
     process.setValue(100);
     emit readed();
-    // importCSV("out.csv");
     #endif
 }
 

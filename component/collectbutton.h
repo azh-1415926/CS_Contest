@@ -16,9 +16,7 @@ class collectButton : public QPushButton
         inline bool isCollect() const { return this->text()==textOfCollect; };
 
     protected:
-        #ifndef __ANDROID__
-        void mousePressEvent(QMouseEvent* e) override;
-        #endif
+        bool eventFilter(QObject* obj,QEvent* e) override;
 
     public slots:
         void setCollect();
@@ -31,5 +29,9 @@ class collectButton : public QPushButton
         void uncollected();
 
     private:
-        ;
+        #ifdef __ANDROID__
+        bool touchBeginEventProcess(QEvent *e);
+        #else
+        bool mousePressEventProcess(QEvent* e);
+        #endif
 };

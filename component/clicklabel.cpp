@@ -40,7 +40,6 @@ bool clickLabel::eventFilter(QObject *obj, QEvent *e)
             break;
         }
     }
-
     return false;
 }
 
