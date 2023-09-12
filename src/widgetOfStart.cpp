@@ -40,9 +40,6 @@ void widgetOfStart::resizeEvent(QResizeEvent *)
 /* 保存当前答题信息 */
 void widgetOfStart::exportSetting()
 {
-    /* 若导入文件路径为空，不保存配置，直接返回 */
-    if(pathOfExcel.isEmpty())
-        return;
     /* 
         json 作为 QJson 对象的根节点
         arrayOfQuestionProcess 数组存储答题页答题进度信息
@@ -53,8 +50,13 @@ void widgetOfStart::exportSetting()
     QJsonArray arrayOfQuestionProcess;
     QJsonArray arrayOfCollectProcess;
     QJsonDocument doc;
+    #ifndef __ANDROID__
     /* 默认配置文件路径为当前目录下的 settings.json 文件 */
     QFile file("./settings.json");
+    #else
+    /* 安卓文件路径为包的私有路径 */
+    QFile file("/data/data/org.qtproject.example.CS_Contest/settings.json");
+    #endif
     /* 将当前文件路径、当前答题页题型下标导入 */
     json.insert("pathOfExcel",pathOfExcel);
     json.insert("currTypeOfQuestion",currTypeOfQuestion);
@@ -108,7 +110,13 @@ void widgetOfStart::importSetting()
     /* json 节点接收转化的 QJson 对象，doc 用于存储导入的 json 文件对象 */
     QJsonObject json;
     QJsonDocument doc;
+    #ifndef __ANDROID__
+    /* 默认配置文件路径为当前目录下的 settings.json 文件 */
     QFile file("./settings.json");
+    #else
+    /* 安卓文件路径为包的私有路径 */
+    QFile file("/data/data/org.qtproject.example.CS_Contest/settings.json");
+    #endif
     /* 只读、转换行尾结束符为本地格式 */
     if(file.open(QIODevice::ReadOnly|QFile::Text))
     {
@@ -409,13 +417,16 @@ void widgetOfStart::initalQuestionPage()
         n=preOption!=currIndexOfQuestion||option!=ui->optionsOfQuestion->getAnswer()?1:n-1;
         preOption=currIndexOfQuestion;
         /* 跳转到下一题 */
-        if(n<=0)
+        if(n==0)
         {
             if(currIndexOfQuestion+1<questionType[currTypeOfQuestion].second[0])
             {
                 emit updateIndexOfQuestion(currIndexOfQuestion+1);
                 showQuestionByIndex(currIndexOfQuestion+1);
             }
+            else
+                ui->optionsOfQuestion->displayAnswer(false);
+            
             return;
         }
         /* 展示正确答案、当前选择的错误答案（若没有选择错误答案便只显示正确答案） */
@@ -535,17 +546,17 @@ void widgetOfStart::initalCollectionPage()
         /* 在初始化答题窗口时已使用过该代码，不做解释 */
         if(!reader->isRead())
             return;
-        static int index;
+        static int preOption;
         static int n;
         int currIndexOfCollection=ui->switchOfCollection->index();
-        n=index!=currIndexOfCollection||option!=ui->optionsOfCollection->getAnswer()?1:n-1;
-        index=currIndexOfCollection;
+        n=preOption!=currIndexOfCollection||option!=ui->optionsOfCollection->getAnswer()?1:n-1;
+        preOption=currIndexOfCollection;
         if(n==0)
         {
-            if(index+1<progressOfCollection.length())
+            if(preOption+1<progressOfCollection.length())
             {
-                emit updateIndexOfCollection(index+1);
-                showCollectionByIndex(index+1);
+                emit updateIndexOfCollection(preOption+1);
+                showCollectionByIndex(preOption+1);
             }
             else
                 ui->optionsOfCollection->displayAnswer(false);
