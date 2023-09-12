@@ -13,15 +13,34 @@
 **编译**
 
 1. 需要 Qt 开发环境
-2. 直接打开 Qt Creator 载入该项目即可编译
 
-若已安装 Qt 环境，可用命令行执行以下命令来编译
-```
-mkdir build
-cd build
-cmake ..
-make
-```
+    * Window 平台建议直接安装 Qt
+
+    * Linux 平台(以 Ubuntu 为例)可通过以下命令安装相关依赖
+        ```shell
+        # Qt5
+        sudo apt install qtbase5-dev
+
+        # Qt6
+        sudo apt install qt6-base-dev
+        sudo apt install libqt6core5compat6
+        ```
+2. 载入该项目并编译
+    * Window 平台直接用 QtCreator 打开项目即可编译运行
+
+    * Linux 平台
+        * 安装 VScode、cmake、g++
+        * 并安装 VScode 的 cmake、C/C++ 插件
+        * 打开项目所在文件夹，按下 F1 搜索 cmake 配置，即可激活 cmake，配置好后即可编译运行
+            
+
+3. 还可在项目目录中( 有CMakeLists.txt的目录 )打开命令行，执行以下命令来编译
+    ```
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ```
 
 **主界面**
 
@@ -97,3 +116,11 @@ make
 最大化答题界面
 
 <img src="https://github.com/azh-1415926/CS_Contest/blob/main/image/StartWindow_QuestionPage_03.png" alt="StartWindow_QuestionPage_03.png" width="50%" height="50%">
+
+新增调整 (2023-9-13)
+
+1. 现已适配 Windows、Android、Linux
+2. 兼容 Qt6 Qt5
+3. 为实现跨平台，已将题库转化为 CSV 文件，但有部分题目答案可能会加载出错
+4. 目前只能在 Windows 平台才能载入 Excel 文件，且默认载入 CSV 文件，只有当配置文件中含有文件的路径才载入
+5. Android、Linux 平台暂不支持载入题库，且隐藏了导入按钮
