@@ -5,6 +5,7 @@
 #include <QTextStream>
 #include <QRegExp>
 #include <QRegularExpressionValidator>
+#include <QDebug>
 
 excelReader::excelReader(QObject* parent)
     : QObject(parent)
@@ -134,6 +135,9 @@ void excelReader::readCSV(const QString &pathOfCSV)
             data.clear();
         QTextStream stream(&file);
         QString line;
+        #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+            stream.setCodec("utf-8");
+        #endif
         /* 读取所有行，并插入到 data 中 */
         while(!stream.atEnd())
         {
@@ -172,12 +176,9 @@ void excelReader::readCSV(const QString &pathOfCSV)
         if (testFile.open(QIODevice::WriteOnly | QFile::Text))
         {
             QTextStream text(&testFile);
-            if (pathOfCSV.endsWith(".csv"))
-            {
-                #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                    text.setCodec("utf-8");
-                #endif
-            }
+            #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+                text.setCodec("utf-8");
+            #endif
             for(int i=0;i<data.length();i++)
             {
                 if(data[i].length()!=9)
@@ -200,18 +201,15 @@ void excelReader::readCSV(const QString &pathOfCSV)
 void excelReader::importCSV(const QString &pathOfCSV)
 {
     /* 路径为空、文件未读取立即返回 */
-    if(pathOfCSV.isEmpty()||!isRead())
+    if(pathOfCSV.isEmpty()||!isRead()||!pathOfCSV.endsWith(".csv"))
         return;
     QFile file(pathOfCSV);
     if (file.open(QIODevice::WriteOnly | QFile::Text))
     {
         QTextStream text(&file);
-        if (pathOfCSV.endsWith(".csv"))
-        {
-            #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                text.setCodec("utf-8");
-            #endif
-        }
+        #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+            text.setCodec("utf-8");
+        #endif
         for(int i=0;i<rows;i++)
         {
             for(int j=0;j<columns;j++)

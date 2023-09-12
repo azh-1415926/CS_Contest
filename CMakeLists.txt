@@ -13,12 +13,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # set(CMAKE_PREFIX_PATH "D:/Qt/6.5.0/mingw_64") # Qt Kit Dir
 
 # 默认使用 Qt6 版本，其次 Qt5(用Qt5的时候不要打开中文路径的题库)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core5Compat) 
+endif()
 if(WIN32)
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets AxContainer Core5Compat)
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets AxContainer Core5Compat)
-else()
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core5Compat)
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core5Compat)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS AxContainer)
 endif()
 
 set(ROOT_DIR .)
@@ -46,6 +47,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
 else()
     if(ANDROID)
         add_library(${PROJECT_NAME} SHARED
@@ -59,12 +61,12 @@ else()
 endif()
 
 # 链接的头文件、库
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core5Compat)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/component)
 target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/src)
 
 if(WIN32)
-    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::AxContainer Qt${QT_VERSION_MAJOR}::Core5Compat)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::AxContainer)
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
