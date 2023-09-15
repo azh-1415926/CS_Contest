@@ -43,5 +43,7 @@ class excelReader : public QObject
         void readed();
 
     private:
-        ;
+        #ifdef QT_DEBUG
+        void importTestCSV();
+        #endif
 };

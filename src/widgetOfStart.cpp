@@ -17,6 +17,7 @@ widgetOfStart::widgetOfStart(QWidget *parent)
     , flagOfInital(0)
 {
     ui->setupUi(this);
+    /* 初始化多层窗口 */
     initalStackWindow();
     initalQuestionPage();
     initalSelectionPage();
@@ -316,8 +317,9 @@ void widgetOfStart::showQuestionByIndex(int i)
     emit updateTextOfQuestion(1,data[index][4]);
     emit updateTextOfQuestion(2,data[index][5]);
     emit updateTextOfQuestion(3,data[index][6]);
-    /* 题目的答案，位于第 7 列的单元格，为 A、B、C、D，将其转化为 0、1、2、3，更新 optionsOfQuestion 模块的答案*/
-    emit updateAnswerOfQuestion(data[index][7][0].unicode()-'A');
+    /* 题目的答案，位于第 7 列的单元格，转为大写，并将其转化为 0、1、2、3 的下标，更新 optionsOfQuestion 模块的答案*/
+    QString answer=data[index][7].trimmed().toUpper();
+    emit updateAnswerOfQuestion(answer[0].unicode()-'A');
     /* 将该题目在收藏页的答题进度中查找，查找失败 status 的值为 -1 */
     int status=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i));
     /* 若该题在收藏列表中，将该题标记为收藏，即发送 isColllect(true) 信号 */
@@ -345,7 +347,8 @@ void widgetOfStart::showCollectionByIndex(int i)
     emit updateTextOfCollection(2,data[index][5]);
     emit updateTextOfCollection(3,data[index][6]);
     /* 题目的答案 */
-    emit updateAnswerOfCollection(data[index][7][0].unicode()-'A');
+    QString answer=data[index][7].trimmed().toUpper();
+    emit updateAnswerOfCollection(answer[0].unicode()-'A');
     /* 收藏页的收藏按钮状态默认是已收藏 */
     ui->switchOfCollection->setCollect(true);
 }
@@ -634,18 +637,24 @@ void widgetOfStart::initalCollectionPage()
     {
         emit updateIndexOfCollection(ui->switchOfCollection->index());
     });
+    /* 初始化收藏页的同时重置收藏页 */
     resetCollection();
 }
 
 /* 重置收藏页 */
 void widgetOfStart::resetCollection()
 {
+    /* 重置文本 */
     ui->textOfCollection->setText("暂无收藏");
     emit updateTextOfCollection(0,"Option A");
     emit updateTextOfCollection(1,"Option B");
     emit updateTextOfCollection(2,"Option C");
     emit updateTextOfCollection(3,"Option D");
+    /* 重置答案、答案选框 */
+    emit updateAnswerOfCollection(-1);
+    ui->optionsOfCollection->displayAnswer(false);
     ui->switchOfCollection->setCollect(true);
+    /* 重置收藏题目总数、下标 */
     emit updateSumOfCollection(0);
     emit updateIndexOfCollection(0);
 }

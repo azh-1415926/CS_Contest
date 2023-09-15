@@ -116,6 +116,10 @@ void excelReader::readExcel(const QString& pathOfExcel)
     /* 将读取标记置为 1，表明已读取数据，将进度置为 100%。发送 readed 信号，告诉其他窗口数据读取完毕 */
     readFlag=1;
     process.setValue(100);
+    #ifdef QT_DEBUG
+    importCSV("2022.csv");
+    importTestCSV();
+    #endif
     emit readed();
     #endif
 }
@@ -142,7 +146,7 @@ void excelReader::readCSV(const QString &pathOfCSV)
         while(!stream.atEnd())
         {
             line=stream.readLine();
-            QRegularExpression reg("^\\d{1,4}AZH{1}[C,D,H,J,K,L,W,Y,Z,Q,R,S,1-6]AZH+[\\s\\S]+");
+            QRegularExpression reg("^\\d{1,4}AZH{1}[C,D,H,J,K,L,W,Y,Z,Q,R,S,1-6]{1}AZH+[\\s\\S]*");
             QRegularExpressionValidator v(reg,0);
             int pos=0;
             QValidator::State result=v.validate(line,pos);
@@ -170,27 +174,8 @@ void excelReader::readCSV(const QString &pathOfCSV)
         }
         rows=data.length();
         columns=data[0].length();
-        /* 将数据处理错误的数据导出到 test.csv */
         #ifdef QT_DEBUG
-        QFile testFile("test.csv");
-        if (testFile.open(QIODevice::WriteOnly | QFile::Text))
-        {
-            QTextStream text(&testFile);
-            #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                text.setCodec("utf-8");
-            #endif
-            for(int i=0;i<data.length();i++)
-            {
-                if(data[i].length()!=9)
-                {
-                    for(int j=0;j<data[i].length();j++)
-                        text<<data[i][j]<<(j!=data[i].length()-1?"AZH":"");
-                    text <<"\n";
-                    qDebug()<<"index of "<<i<<" 's question length error,is "<<data[i].length();
-                } 
-            }
-            testFile.close();
-        }
+        importTestCSV();
         #endif
         file.close();
         readFlag=1;
@@ -219,3 +204,33 @@ void excelReader::importCSV(const QString &pathOfCSV)
         file.close();
     }
 }
+
+#ifdef QT_DEBUG
+/* 将数据处理错误的数据导出到 test.csv */
+void excelReader::importTestCSV()
+{
+    QFile testFile("test.csv");
+    if (testFile.open(QIODevice::WriteOnly | QFile::Text))
+    {
+        QTextStream text(&testFile);
+        #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+            text.setCodec("utf-8");
+        #endif
+        for(int i=0;i<data.length();i++)
+        {
+            int option=data[i].length()!=9?data[i][7].trimmed()[0].toUpper().unicode()-'A':1;
+            if(option<0||option>=4||data[i].length()!=9)
+            {
+                for(int j=0;j<data[i].length();j++)
+                    text<<data[i][j]<<(j!=data[i].length()-1?"AZH":"");
+                text <<"\n";
+                if(option<0||option>=4)
+                    qDebug()<<"index of "<<i<<" 's question answer error,is "<<option;
+                else    
+                    qDebug()<<"index of "<<i<<" 's question length error,is "<<data[i].length();
+            }
+        }
+        testFile.close();
+    }
+}
+#endif
