@@ -8537,21 +8537,21 @@ Sum(8)
 运行结果是：(    )。
 AZH8AZH 8 3 5AZH8，3，5AZH0 3 5AZHBAZH1
 4332AZH6AZHdef Sum(a, b=3, c=5): print(a,b,c) Sum(8,2)运行结果是：(    )。AZH 8 2 AZH 8，2 AZH 8,2,5 AZH 8 2 5 AZH D AZH1
-4333AZHAZHDjango通过路由系统设置url。（ ）AZH对AZH错AZHAZHAZHAAZH1
-4334AZHAZHDjango中一个模型类对应着数据库中的一张数据表。（ ）AZH对AZH错AZHAZHAZHAAZH1
+4333AZH6AZHDjango通过路由系统设置url。（ ）AZH对AZH错AZHAZHAZHAAZH1
+4334AZH6AZHDjango中一个模型类对应着数据库中的一张数据表。（ ）AZH对AZH错AZHAZHAZHAAZH1
 4335AZH6AZHIDLE环境的退出命令是(    )AZHesc()AZHclose()AZH回车键AZHexit()AZHDAZH0
 4336AZH6AZHlist=['a','b','c','d','e']
 下列操作会正常输出结果的是：（   ）AZHlist[-4:-1:-1]AZHlist[:3:2]AZHlist[1:3:0] AZHlist['a':'d':2]AZHBAZH0
 4337AZH6AZHls = [3.5, “Python”, [10, “LIST”], 3.6]，ls[2][–1][1]的运行结果是(    )AZHIAZHPAZHYAZHLAZHAAZH1
 4338AZH6AZHls=["abc","dd",[3,4]] 则要获取第三个元素中的第一个值3,使用下列哪种表达式（    ）。AZH ls[3] AZH ls[3,1] AZH ls[3][1] AZH ls[2][0] AZH D AZH1
-4339AZHAZHMongoDB采用二维表格结构存储数据。（ ）AZH对AZH错AZHAZHAZHBAZH1
+4339AZH6AZHMongoDB采用二维表格结构存储数据。（ ）AZH对AZH错AZHAZHAZHBAZH1
 4340AZH6AZHPyCharm是一个完全免费的IDE工具。（ ）AZH对AZH错AZHAZHAZHBAZH0
 4341AZH6AZHPython 中对变量描述错误的选项是(    )AZHPython 不需要显式声明变量类型，在第一次变量赋值时由值决定变量的类型AZH变量通过变量名访问AZH变量必须在创建和赋值后使用AZH变量 PI 与变量 Pi 被看作相同的变量AZHDAZH1
 4342AZH6AZHPython2中的异常与Python3中的异常使用方式相同。（ ）AZH对AZH错AZHAZHAZHBAZH0
 4343AZH6AZHPython表达式中，可以控制运算有限顺序的是（    ）。AZH圆括号()AZH方括号[]AZH大括号{}AZH尖括号<>AZHAAZH0
 4344AZH6AZHpython程序文件的扩展名是(    )。AZH.pythonAZH.pyAZH.ptAZH.pytAZHBAZH0
 4345AZH6AZHpython程序文件的扩展名是（    ）。AZH .python AZH .py AZH .pt AZH .pyt AZH B AZH0
-4346AZHAZHPython程序无法操作任何数据库中存储的数据。（ ）AZH对AZH错AZHAZHAZHBAZH1
+4346AZH6AZHPython程序无法操作任何数据库中存储的数据。（ ）AZH对AZH错AZHAZHAZHBAZH1
 4347AZH6AZHPython具有丰富的第三方库。（ ）AZH对AZH错AZHAZHAZHAAZH0
 4348AZH6AZHPython内置函数(    )可以返回列表、元组、字典、集合、字符串以及range对象中元素个数。AZHtype( ）  AZHindex( ）AZHlen( )AZHcount( )AZHCAZH0
 4349AZH6AZHPython语句
@@ -8571,14 +8571,14 @@ print(type((1,2,3,4)))
 4358AZH6AZHPython中break和continue语句可以单独使用。（ ）AZH对AZH错AZHAZHAZHBAZH0
 4359AZH6AZHPython中的整型可以使用二进制、八进制、十进制、十六进制表示。（ ）AZH对AZH错AZHAZHAZHAAZH1
 4360AZH6AZHPython中如果需要打印某月的月历，可以使用（ ）模块中的日历函数。AZH time AZH random AZH calendar AZH math AZH C AZH0
-4361AZHAZHrandom模块中random()函数只能生成随机整数。（ ）AZH对AZH错AZHAZHAZHBAZH0
-4362AZHAZHRedis数据库中的数据都是键值对，键为不能重复字符串类型。（ ）AZH对AZH错AZHAZHAZHAAZH1
+4361AZH6AZHrandom模块中random()函数只能生成随机整数。（ ）AZH对AZH错AZHAZHAZHBAZH0
+4362AZH6AZHRedis数据库中的数据都是键值对，键为不能重复字符串类型。（ ）AZH对AZH错AZHAZHAZHAAZH1
 4363AZH6AZH表达式16/4-2**5*8/4%5//2的值为（    ）。AZH14AZH4AZH2.0AZH2AZHCAZH1
 4364AZH6AZH表达式3*4**2//8%7的计算结果是（   ）。AZH3AZH6AZH4AZH5AZHBAZH1
 4365AZH6AZH当需要在字符串中使用特殊字符时，Python使用（   ）作为转义字符的起始符号。AZH\AZH/AZH#AZH%AZHAAZH0
 4366AZH6AZH当运行中的进程因等待用户输入而无法继续运行时，会进入（ ）。AZH 新建态 AZH 就绪态 AZH 阻塞态 AZH 挂起态 AZH C AZH0
-4367AZHAZH对象的引用计数器的值为0时会调用析构方法。（ ）AZH对AZH错AZHAZHAZHAAZH1
-4368AZHAZH构造方法会在创建对象的时候自动调用。（ ） AZH对AZH错AZHAZHAZHAAZH0
+4367AZH6AZH对象的引用计数器的值为0时会调用析构方法。（ ）AZH对AZH错AZHAZHAZHAAZH1
+4368AZH6AZH构造方法会在创建对象的时候自动调用。（ ） AZH对AZH错AZHAZHAZHAAZH0
 4369AZH6AZH关于 import 引用，以下选项中描述错误的是(    )AZH使用 import turtle 引入turtle 库AZH可以使用 from turtle import setup 引入 turtle 库AZH使用 import turtle as t 引入 turtle 库，取别名为 tAZHimport 保留字用于导入模块或者模块中的对象AZHBAZH0
 4370AZH6AZH关于 Python 程序格式框架的描述，以下选项中错误的是(    )AZHPython 语言的缩进可以采用 Tab 键实现AZHPython 单层缩进代码属于之前最邻近的一行非缩进代码，多层缩进代码根据缩进关系决定所属范围AZH判断、循环、函数等语法形式能够通过缩进包含一批 Python 代码，进而表达对应的语义AZHPython 语言不采用严格的“缩进”来表明程序的格式框架AZHDAZH1
 4371AZH6AZH关于 Python 的复数类型，以下选项中描述错误的是(    )AZH复数的虚数部分通过后缀“J”或者“j”来表示AZH对于复数 z，可以用 z.real 获得它的实数部分AZH对于复数 z，可以用 z.imag 获得它的实数部分AZH复数类型表示数学中的复数AZHCAZH0
@@ -8600,8 +8600,8 @@ AZH随时命名、随时赋值、随时变换类型AZHBAZH0
 4384AZH6AZH关于Python字符串类型的说法，下列描述错误的是（ ）。AZH字符串是用来表示文本的数据类型AZHPython中可以使用单引号、双引号、三引号定义字符串AZHPython中单引号与双引号不可一起使用AZH使用三引号定义的字符串可以包含换行符AZHCAZH0
 4385AZH6AZH关于局部变量和全局变量，以下选项中描述错误的是(    )AZH局部变量和全局变量是不同的变量，但可以使用global保留字在函数内部使用全局变量AZH局部变量是函数内部的占位符，与全局变量可能重名但不同AZH函数运算结束后，局部变量不会被释放AZH局部变量为组合数据类型且未创建，等同于全局变量AZHCAZH1
 4386AZH6AZH关于列表的说法，描述错误的是(   )。AZH list是一个有序集合，没有固定大小 AZH list可以存放Python中任意类型的数据 AZH 使用list时其下标可以是负数 AZH list是不可变数据类型 AZH D AZH0
-4387AZHAZH函数的位置参数有严格的位置关系。（ ） AZH对AZH错AZHAZHAZHAAZH0
-4388AZHAZH函数可以提高代码的复用性。（ ）AZH对AZH错AZHAZHAZHAAZH0
+4387AZH6AZH函数的位置参数有严格的位置关系。（ ） AZH对AZH错AZHAZHAZHAAZH0
+4388AZH6AZH函数可以提高代码的复用性。（ ）AZH对AZH错AZHAZHAZHAAZH0
 4389AZH6AZH假设a=9，b=2，那么下列运算中，错误的是（    ）。AZHa+b的值是11AZHa//b的值是4 AZHa%b的值是1 AZHa**b的值是18 AZHDAZH0
 4390AZH6AZH假设从键盘输入的值是20，以下程序的输出结果是（    ）。
 age=input(" please input your age:" )
@@ -8609,13 +8609,13 @@ if age>=18:
     print("已成年! ")
 else:
     print("未成年! ") AZH已成年！ AZHB、 未成年！ AZHC、 程序运行错误 AZHD、 age=20 AZHCAZH1
-4391AZHAZH类方法可以使用类名进行访问。（ ）AZH对AZH错AZHAZHAZHAAZH0
+4391AZH6AZH类方法可以使用类名进行访问。（ ）AZH对AZH错AZHAZHAZHAAZH0
 4392AZH6AZH利用索引获取字典的值:给出以下代码的运行结果（    ）。
 d ={"大海":"蓝色", "天空":"灰色", "大地":"黑色"}
 print(d["大地"], d.get("大地", "黄色"))AZH黑色 黄色AZH黑色 黑色AZH黑色 蓝色AZH黑色 灰色AZHBAZH1
 4393AZH6AZH列表、元组、字符串是Python的(   )序列。AZH有序 AZH无序AZH链表AZH数组AZHAAZH0
 4394AZH6AZH哪种类型的线程是独立于程序且不会因程序终止而执行结束的。（ ）AZH主线程AZH子线程AZH前台线程AZH后台线程AZHDAZH0
-4395AZHAZH全局变量在所有的函数中都可以使用。（ ） AZH 对 AZH 错 AZH AZH AZH A AZH0
+4395AZH6AZH全局变量在所有的函数中都可以使用。（ ） AZH 对 AZH 错 AZH AZH AZH A AZH0
 4396AZH6AZH如果 Python 程序执行时，产生了 “unexpected indent” 的错误，其原因是(    )AZH代码中使用了错误的关键字AZH代码中缺少“：”符号AZH代码里的语句嵌套层次太多AZH代码中出现了缩进不匹配的问题AZHDAZH0
 4397AZH6AZH若字符串s=‘a\nb\tc’,则len(s)的值是（    ）。AZH7AZH6AZH5AZH4AZHCAZH0
 4398AZH6AZH若字符串str1 = “happy new year”，则str1[3:8]的值为(   )。AZHpy neAZHppy neAZHppy nAZHpy newAZHAAZH0
