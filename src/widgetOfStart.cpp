@@ -141,7 +141,6 @@ void widgetOfStart::importSetting()
         json=doc.object();
         /* 导入题库文件路径，选择页显示题库路径 */
         pathOfExcel=json.value("pathOfExcel").toString();
-        ui->textOfPath->setText(pathOfExcel);
         /* 导入当前答题页题型下标 */
         currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
         /* 导入答题页答题进度 */
@@ -165,18 +164,16 @@ void widgetOfStart::importSetting()
     QString postfix;
     if(pathOfExcel.length()>4)
         postfix=pathOfExcel.right(4);
+    ui->textOfPaths->addItem(":/doc/2022.csv");
+    ui->textOfPaths->addItem(":/doc/2023.csv");
     if(path.exists()&&postfix==".xls")
-        emit loadExcel(pathOfExcel);
-    else
-    {
-        ui->textOfPath->setText("default/doc/2022.csv");
-        emit loadCSV(":/doc/2022.csv");
-    }
+        ui->textOfPaths->addItem(pathOfExcel);
     /* 启动定时器，每隔一秒调用 saveSetting() 槽函数，将初始化标志位置为 1（表明已被初始化） */
     QTimer* timer=new QTimer(this);
     connect(timer,&QTimer::timeout,this,&widgetOfStart::exportSetting);
     timer->start(1000);
     flagOfInital=1;
+    ui->textOfPaths->setCurrentIndex(ui->textOfPaths->findText(":/doc/2023.csv"));
 }
 
 /* 处理导入的题库数据 */
@@ -362,8 +359,9 @@ void widgetOfStart::getPath()
     if(!filepath.isEmpty())
     {
         pathOfExcel=filepath;
-        ui->textOfPath->setText(pathOfExcel);
-        emit loadExcel(pathOfExcel);
+        if(ui->textOfPaths->findText(pathOfExcel)==-1)
+            ui->textOfPaths->addItem(pathOfExcel);
+        ui->textOfPaths->setCurrentIndex(ui->textOfPaths->findText(pathOfExcel));
     }
 }
 
@@ -411,6 +409,9 @@ void widgetOfStart::initalQuestionPage()
         static int n;
         /* 获取当前题号 currIndexOfQuestion */
         int currIndexOfQuestion=progressOfQuestion[currTypeOfQuestion];
+        /* 若题号为 0 且点击次数为 0，则将上个选项置为 -1 */
+        if(n==0&&currIndexOfQuestion==0)
+            preOption=-1;
         /*
             若当前选项和上一次选择的选项不一样，需要重置 n 为 1
             或当前选项不等于答案，需要重置 n 为 1，直到选择了正确答案才置为 0
@@ -429,7 +430,7 @@ void widgetOfStart::initalQuestionPage()
             }
             else
                 ui->optionsOfQuestion->displayAnswer(false);
-            
+            preOption=-1;
             return;
         }
         /* 展示正确答案、当前选择的错误答案（若没有选择错误答案便只显示正确答案） */
@@ -509,12 +510,20 @@ void widgetOfStart::initalSelectionPage()
 {
     /* 除 win 平台以外隐藏掉导入组件 */
     #ifndef _WIN32
-    ui->titleOfPath->hide();
-    ui->textOfPath->hide();
     ui->inputButton->hide();
     #endif
-    /* 当 inputButton 按钮被点击，则调用 getPath() 获取文件路径，若获取成功将发送 loadExcel 信号 */
+    /* 当 inputButton 按钮被点击，则调用 getPath() 获取文件路径，若获取成功将添加路径 */
     connect(ui->inputButton,&QRadioButton::clicked,this,&widgetOfStart::getPath);
+    /* 下拉菜单显示的题库路径变化，自动切换题库 */
+    connect(ui->textOfPaths,&QComboBox::currentTextChanged,this,[=](const QString& path)
+    {
+        if(flagOfInital==0)
+            return;
+        if(path.endsWith(".xls"))
+            emit loadExcel(path);
+        else if(path.endsWith(".csv"))
+            emit loadCSV(path);
+    });
     /* 接收到 loadExcel 信号，触发 reader 的 readExcel 槽函数 */
     connect(this,&widgetOfStart::loadExcel,reader,&excelReader::readExcel);
     /* 接收到 loadCSV 信号，触发 reader 的 readCSV 槽函数 */
@@ -552,6 +561,8 @@ void widgetOfStart::initalCollectionPage()
         static int preOption;
         static int n;
         int currIndexOfCollection=ui->switchOfCollection->index();
+        if(n==0&&currIndexOfCollection==0)
+            preOption=-1;
         n=preOption!=currIndexOfCollection||option!=ui->optionsOfCollection->getAnswer()?1:n-1;
         preOption=currIndexOfCollection;
         if(n==0)
@@ -563,6 +574,7 @@ void widgetOfStart::initalCollectionPage()
             }
             else
                 ui->optionsOfCollection->displayAnswer(false);
+            preOption=-1;
             return;
         }
         ui->optionsOfCollection->displayAnswer(true);

@@ -18,10 +18,8 @@ excelReader::excelReader(QObject* parent)
     /* 不显示 excel 进程的窗口 */
     #ifdef _WIN32
     excel->dynamicCall("SetVisible (bool Visible)","false");
-    /*
-        忽略所有警告退出（我们只读取，并不修改和保存，故不需要设置）
-        excel->setProperty("DisplayAlerts", false);
-    */
+    /* 忽略所有警告退出（比如不保存退出）*/
+    excel->setProperty("DisplayAlerts", false);
     #endif
 }
 
@@ -121,6 +119,8 @@ void excelReader::readExcel(const QString& pathOfExcel)
     importTestCSV();
     #endif
     emit readed();
+    if(reloadFlag==1)
+        emit reload();
     #endif
 }
 
@@ -130,6 +130,12 @@ void excelReader::readCSV(const QString &pathOfCSV)
     /* 路径为空立即返回 */
     if(pathOfCSV.isEmpty())
         return;
+    reloadFlag=(path.isEmpty()||path==pathOfCSV)?(0):(1);
+    /* 若当前导入的路径与上一次路径一致，则没必要再读取一次，直接返回 */
+    if(path==pathOfCSV)
+        return;
+    /* 更新 path 为当前导入的 excel 文件路径 */
+    path=pathOfCSV;
     QFile file(pathOfCSV);
     /* 只读、转换行尾结束符为本地格式 */
     if(file.open(QIODevice::ReadOnly|QFile::Text))
@@ -180,6 +186,8 @@ void excelReader::readCSV(const QString &pathOfCSV)
         file.close();
         readFlag=1;
         emit readed();
+        if(reloadFlag==1)
+            emit reload();
     }
 }
 

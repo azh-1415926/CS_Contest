@@ -5,4 +5,7 @@
     <qresource prefix="/doc">
         <file alias="2022.csv">doc/2022.csv</file>
     </qresource>
+    <qresource prefix="/doc">
+        <file alias="2023.csv">doc/2023.csv</file>
+    </qresource>
 </RCC>

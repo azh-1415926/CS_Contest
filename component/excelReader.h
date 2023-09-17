@@ -41,6 +41,7 @@ class excelReader : public QObject
 
     signals:
         void readed();
+        void reload();
 
     private:
         #ifdef QT_DEBUG
