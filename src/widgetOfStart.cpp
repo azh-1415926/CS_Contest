@@ -35,11 +35,17 @@ void widgetOfStart::resizeEvent(QResizeEvent *)
 {
     /* 窗口大小调整，调用 loadSetting()，调用过程中会将 flagOfInital 置为 1（即只会在窗口第一次显示的时候调用） */
     if(flagOfInital==0)
-        importSetting();
+    {
+        ui->textOfPaths->addItem(":/doc/2022.csv");
+        ui->textOfPaths->addItem(":/doc/2023.csv");
+        importSetting("settings.json");
+        ui->textOfPaths->setCurrentIndex(ui->textOfPaths->count()-1);
+        loadSetting(ui->textOfPaths->currentText());
+    }
 }
 
 /* 保存当前答题信息 */
-void widgetOfStart::exportSetting()
+void widgetOfStart::exportSetting(const QString& fileName)
 {
     /* 
         json 作为 QJson 对象的根节点
@@ -53,14 +59,16 @@ void widgetOfStart::exportSetting()
     QJsonDocument doc;
     #ifndef __ANDROID__
     /* 默认配置文件路径为当前目录下的 settings.json 文件 */
-    QFile file("./settings.json");
+    QFile file(fileName);
     #else
     /* 安卓文件路径为包的私有路径 */
-    QFile file("/data/data/org.qtproject.example.CS_Contest/settings.json");
+    QFile file("/data/data/org.qtproject.example.CS_Contest/"+fileName);
     #endif
     /* 将当前文件路径、当前答题页题型下标导入 */
     json.insert("pathOfExcel",pathOfExcel);
     json.insert("currTypeOfQuestion",currTypeOfQuestion);
+    int currIndexOfCollection=ui->switchOfCollection->count()>0?ui->switchOfCollection->index():-1;
+    json.insert("currIndexOfCollection",currIndexOfCollection);
     /*
         将当前答题页答题进度导入
         （导出数组长度与当前数组长度一致，为题型数量，存储的是对应题型的题号下标数组）
@@ -99,24 +107,24 @@ void widgetOfStart::exportSetting()
         file.close();
     }
     else
-        QMessageBox::warning(nullptr,"error","save \"settings.json\" is failed!");
+        QMessageBox::warning(nullptr,"error","save \""+fileName+"\" is failed!");
 }
 
 /* 导入答题信息（只执行一次） */
-void widgetOfStart::importSetting()
+void widgetOfStart::importSetting(const QString& fileName)
 {
     /* 若已初始化，则返回（即该函数只调用一次） */
-    if(flagOfInital==1)
+    if(flagOfInital==1&&fileName=="settings.json")
         return;
     /* json 节点接收转化的 QJson 对象，doc 用于存储导入的 json 文件对象 */
     QJsonObject json;
     QJsonDocument doc;
     #ifndef __ANDROID__
     /* 默认配置文件路径为当前目录下的 settings.json 文件 */
-    QFile file("./settings.json");
+    QFile file(fileName);
     #else
     /* 安卓文件路径为包的私有路径 */
-    QFile file("/data/data/org.qtproject.example.CS_Contest/settings.json");
+    QFile file("/data/data/org.qtproject.example.CS_Contest/"+fileName);
     #endif
     /* 只读、转换行尾结束符为本地格式 */
     if(file.open(QIODevice::ReadOnly|QFile::Text))
@@ -143,44 +151,64 @@ void widgetOfStart::importSetting()
         pathOfExcel=json.value("pathOfExcel").toString();
         /* 导入当前答题页题型下标 */
         currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
+        /* 导入当前收藏页题型下标 */
+        int currIndexOfCollection=json.value("currIndexOfCollection").toInt();
         /* 导入答题页答题进度 */
         QJsonArray arrayOfQuestionProcess=json.value("progressOfQuestion").toArray();
+        /* 若答题进度不为空则清空再导入 */
+        if(!progressOfQuestion.isEmpty())
+            progressOfQuestion.clear();
         for(int i=0;i<arrayOfQuestionProcess.count();i++)
             progressOfQuestion.push_back(arrayOfQuestionProcess[i].toInt());
         /* 导入收藏页题目数据 */
         QJsonArray arrayOfCollectProcess=json.value("progressOfCollection").toArray();
         const QJsonArray& first=arrayOfCollectProcess[0].toArray();
         const QJsonArray& second=arrayOfCollectProcess[1].toArray();
+        /* 若收藏进度不为空则清空再导入 */
+        if(!progressOfCollection.isEmpty())
+            progressOfCollection.clear();
         for(int i=0;i<first.count();i++)
             progressOfCollection.push_back(QPair<int,int>(first[i].toInt(),second[i].toInt()));
-        /*
-            更新 switchOfCollection 的题目总数
-            读取配置文件中导入的题库文件路径
-        */
-        emit updateSumOfCollection(progressOfCollection.length());
+        /* 刷新收藏页题目 */
+        if(currIndexOfCollection!=-1)
+        {
+            emit updateSumOfCollection(progressOfCollection.length());
+            emit updateIndexOfCollection(currIndexOfCollection);
+            showCollectionByIndex(currIndexOfCollection);
+        }
+        else
+            resetCollection();
     }
+    if(fileName=="settings.json")
+    {
     /* 判定题库路径是否合法，比如路径不存在且不为 .xls 结尾的文件，便打开默认的 CSV 文件 */
-    QFile path(pathOfExcel);
-    QString postfix;
-    if(pathOfExcel.length()>4)
-        postfix=pathOfExcel.right(4);
-    ui->textOfPaths->addItem(":/doc/2022.csv");
-    ui->textOfPaths->addItem(":/doc/2023.csv");
-    if(path.exists()&&postfix==".xls")
-        ui->textOfPaths->addItem(pathOfExcel);
-    /* 启动定时器，每隔一秒调用 saveSetting() 槽函数，将初始化标志位置为 1（表明已被初始化） */
-    QTimer* timer=new QTimer(this);
-    connect(timer,&QTimer::timeout,this,&widgetOfStart::exportSetting);
+        QFile path(pathOfExcel);
+        QString postfix;
+        if(pathOfExcel.length()>4)
+            postfix=pathOfExcel.right(4);
+        if(path.exists())
+            if(postfix==".xls")
+                ui->textOfPaths->addItem(pathOfExcel);
+        /* 若为 settings 配置文件将初始化标志位置为 1（表明已被初始化） */
+        flagOfInital=1;
+    }
+    /* 启动定时器，每隔一秒调用 exportSetting 槽函数 */
+    static QTimer* timer;
+    if(timer!=nullptr)
+        delete timer;
+    timer=new QTimer(this);
+    connect(timer,&QTimer::timeout,this,[=]()
+    {
+        exportSetting(fileName);
+    });
     timer->start(1000);
-    flagOfInital=1;
-    ui->textOfPaths->setCurrentIndex(ui->textOfPaths->findText(":/doc/2023.csv"));
 }
 
 /* 处理导入的题库数据 */
 void widgetOfStart::handleData()
 {
     /* 列出题型所代表字符，用其下标代表该类题型 */
-    char charOfType[]=
+    static char charOfType[]=
     {
         /* 计算机应用基础 数据结构 数据库原理 */
         'C','J','K',
@@ -194,7 +222,7 @@ void widgetOfStart::handleData()
         '1','2','3','4','5','6'
     };
     /* 列出题型字符对应的题型名称 */
-    QString stringOfType[]=
+    static QString stringOfType[]=
     {
         "计算机应用基础","数据结构","数据库原理","网络","软件工程","操作系统",
         "多媒体技术","硬件系统","移动互联网应用","数据表示和计算","离散数学","知识产权",
@@ -522,7 +550,13 @@ void widgetOfStart::initalSelectionPage()
         if(path.endsWith(".xls"))
             emit loadExcel(path);
         else if(path.endsWith(".csv"))
+        {
             emit loadCSV(path);
+            loadSetting(path);
+            /* 刷新答题页题目 */
+            ui->questionType->setCurrentIndex(currTypeOfQuestion);
+            setQuestionType(currTypeOfQuestion);
+        }
     });
     /* 接收到 loadExcel 信号，触发 reader 的 readExcel 槽函数 */
     connect(this,&widgetOfStart::loadExcel,reader,&excelReader::readExcel);
@@ -651,6 +685,13 @@ void widgetOfStart::initalCollectionPage()
     });
     /* 初始化收藏页的同时重置收藏页 */
     resetCollection();
+}
+
+void widgetOfStart::loadSetting(const QString &path)
+{
+    QString fileName=path.last(path.length()-1-path.lastIndexOf("/"));
+    QString name=fileName.left(fileName.indexOf("."));
+    importSetting(name+".json");
 }
 
 /* 重置收藏页 */

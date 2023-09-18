@@ -28,8 +28,8 @@ class widgetOfStart : public QWidget
 
     public slots:
         void getPath();
-        void exportSetting();
-        void importSetting();
+        void exportSetting(const QString& fileName="settings.json");
+        void importSetting(const QString& fileName="settings.json");
         void handleData();
         void setQuestionType(int i);
         void showQuestionByIndex(int i);
@@ -55,5 +55,6 @@ class widgetOfStart : public QWidget
         void initalQuestionPage();
         void initalSelectionPage();
         void initalCollectionPage();
+        void loadSetting(const QString& path);
         void resetCollection();
 };
