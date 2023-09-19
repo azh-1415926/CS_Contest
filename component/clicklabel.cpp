@@ -48,6 +48,7 @@ bool clickLabel::eventFilter(QObject *obj, QEvent *e)
 bool clickLabel::touchBeginEventProcess(QEvent *e)
 {
     QTouchEvent *touchEvent = static_cast<QTouchEvent*>(e);
+    emit hover(this);
     emit clicked(this);
     touchEvent->accept();
     return true;
@@ -55,6 +56,8 @@ bool clickLabel::touchBeginEventProcess(QEvent *e)
 
 bool clickLabel::touchUpdateEventProcess(QEvent *e)
 {
+    QTouchEvent *touchEvent = static_cast<QTouchEvent*>(e);
+    touchEvent->accept();
     return true;
 }
 

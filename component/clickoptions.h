@@ -33,6 +33,7 @@ class clickOptions : public QGroupBox
     public slots:
         void setTextOfOption(int i,const QString& text);
         void setAnswer(int i);
+        void displayHover(const clickLabel* label);
         void displayAnswer(bool state);
         void resetOption();
 

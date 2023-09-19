@@ -71,6 +71,13 @@ void clickOptions::setAnswer(int i)
     this->answerOfOptions=i;
 }
 
+void clickOptions::displayHover(const clickLabel* label)
+{
+    hoverOption=labels.indexOf(label);
+    hoverBox=setOptionOfBox(hoverOption,hoverBox);
+    this->update();
+}
+
 /* 设置是否展示出答案与错误选项 */
 void clickOptions::displayAnswer(bool state)
 {
@@ -102,6 +109,11 @@ void clickOptions::displayAnswer(bool state)
         {
             delete incorrectBox;
             incorrectBox=nullptr;
+        }
+        if(hoverBox!=nullptr)
+        {
+            delete hoverBox;
+            hoverBox=nullptr;
         }
     }
     this->update();
@@ -161,6 +173,9 @@ void clickOptions::initalOptions()
             this->checkedOption=i;
             emit selectOption(i);
         });
+        #ifdef __ANDROID__
+        connect(labels[i],&clickLabel::hover,this,&clickOptions::displayHover);
+        #endif
         /* 将按钮和选项标签水平布局，并添加到主体中 */
         QHBoxLayout* layout=new QHBoxLayout;
         layout->addWidget(buttons[i],0);

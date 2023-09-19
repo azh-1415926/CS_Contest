@@ -46,15 +46,24 @@ bool CS_Contest::eventFilter(QObject *obj, QEvent *e)
             windowOfAbout->close();
             windowOfMore->close();
         }
+        #ifdef __ANDROID__
+        else
+        {
+            this->close();
+        }
+        #endif
         return true;
     }
     #ifdef __ANDROID__
     else if(e->type()==QEvent::KeyRelease&&static_cast<QKeyEvent*>(e)->key()==Qt::Key_Close)
     {
-        if(parentWidget())
-            parentWidget()->raise();
-        static_cast<QWidget*>(obj)->setWindowFlags(Qt::Widget);
-        e->ignore();
+        this->close();
+        // if(parentWidget())
+        //     parentWidget()->raise();
+        // QWidget* widget=static_cast<QWidget*>(obj);
+        // widget->setWindowFlags(Qt::Widget);
+        // widget->close();
+        // e->ignore();
         return true;
     }
     #endif

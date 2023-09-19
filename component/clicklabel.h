@@ -20,6 +20,7 @@ class clickLabel : public QLabel
 
     signals:
         void clicked(const clickLabel*);
+        void hover(const clickLabel*);
 
     private:
         #ifdef __ANDROID__
