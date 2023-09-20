@@ -73,7 +73,7 @@ void clickOptions::setAnswer(int i)
 
 void clickOptions::displayHover(const clickLabel* label)
 {
-    hoverOption=labels.indexOf(label);
+    hoverOption=labels.indexOf(const_cast<clickLabel*const>(label));
     hoverBox=setOptionOfBox(hoverOption,hoverBox);
     this->update();
 }

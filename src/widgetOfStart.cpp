@@ -631,7 +631,7 @@ void widgetOfStart::initalCollectionPage()
 
 void widgetOfStart::loadSetting(const QString &path)
 {
-    QString fileName=path.last(path.length()-1-path.lastIndexOf("/"));
+    QString fileName=path.right(path.length()-1-path.lastIndexOf("/"));
     QString name=fileName.left(fileName.indexOf("."));
     importSetting(name+".json");
 }
