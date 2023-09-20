@@ -1,13 +1,9 @@
 #include "widgetOfStart.h"
 
-#include <QRect>
-#include <QPainter>
 #include <QFileDialog>
-#include <QMessageBox>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonDocument>
 #include <QTimer>
+
+#include "settingFile.h"
 
 widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)
@@ -47,35 +43,18 @@ void widgetOfStart::resizeEvent(QResizeEvent *)
 /* 保存当前答题信息 */
 void widgetOfStart::exportSetting(const QString& fileName)
 {
-    /* 
-        json 作为 QJson 对象的根节点
-        arrayOfQuestionProcess 数组存储答题页答题进度信息
-        arrayOfCollectProcess 数组存储收藏页答题进度信息
-        doc 存储 json 文件对象
-    */
-    QJsonObject json;
-    QJsonArray arrayOfQuestionProcess;
-    QJsonArray arrayOfCollectProcess;
-    QJsonDocument doc;
-    #ifndef __ANDROID__
-    /* 默认配置文件路径为当前目录下的 settings.json 文件 */
-    QFile file(fileName);
-    #else
-    /* 安卓文件路径为包的私有路径 */
-    QFile file("/data/data/org.qtproject.example.CS_Contest/"+fileName);
-    #endif
+
+    settingFile setting;
     /* 将当前文件路径、当前答题页题型下标导入 */
-    json.insert("pathOfExcel",pathOfExcel);
-    json.insert("currTypeOfQuestion",currTypeOfQuestion);
+    setting.add("pathOfExcel",pathOfExcel);
+    setting.add("currTypeOfQuestion",currTypeOfQuestion);
     int currIndexOfCollection=ui->switchOfCollection->count()>0?ui->switchOfCollection->index():-1;
-    json.insert("currIndexOfCollection",currIndexOfCollection);
+    setting.add("currIndexOfCollection",currIndexOfCollection);
     /*
         将当前答题页答题进度导入
         （导出数组长度与当前数组长度一致，为题型数量，存储的是对应题型的题号下标数组）
     */
-    for(int i=0;i<progressOfQuestion.length();i++)
-        arrayOfQuestionProcess.push_back(progressOfQuestion[i]);
-    json.insert("progressOfQuestion",arrayOfQuestionProcess);
+    setting.add("progressOfQuestion",progressOfQuestion);
     /*
         将当前收藏页答题进度导入
         （导出数组长度与当前数组长度不一致，导出长度为 2，存储着对应题目的题型下标数组、题号下标数组）
@@ -85,83 +64,46 @@ void widgetOfStart::exportSetting(const QString& fileName)
     QJsonArray first;
     QJsonArray second;
     /* progressOfCollection 数组长度为收藏总数，每一项是一个 QPair<int,int>，对应题目的题型下标、题号下标 */
-    for(int i=0;i<progressOfCollection.length();i++)
-    {
-        first.push_back(progressOfCollection[i].first);
-        second.push_back(progressOfCollection[i].second);
-    }
-    arrayOfCollectProcess.push_back(first);
-    arrayOfCollectProcess.push_back(second);
-    json.insert("progressOfCollection",arrayOfCollectProcess);
+    setting.add("progressOfCollection",progressOfCollection);
     /* 保存到 settings.json 文件中（只写、截断保存）  */
-    if(file.open(QIODevice::WriteOnly|QIODevice::Truncate))
-    {
-        QTextStream stream(&file);
-        #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            stream.setCodec("utf-8");
-        #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
-            stream.setEncoding(QStringConverter::Utf8);
-        #endif
-        doc.setObject(json);
-        stream<<doc.toJson();
-        file.close();
-    }
-    else
-        QMessageBox::warning(nullptr,"error","save \""+fileName+"\" is failed!");
+    #ifdef __ANDROID__
+        /* 安卓文件路径为包的私有路径 */
+        setting.save("/data/data/org.qtproject.example.CS_Contest/"+fileName);
+    #else
+        setting.save(fileName);
+    #endif
 }
 
 /* 导入答题信息（只执行一次） */
 void widgetOfStart::importSetting(const QString& fileName)
 {
-    /* 若已初始化，则返回（即该函数只调用一次） */
-    if(flagOfInital==1&&fileName=="settings.json")
-        return;
-    /* json 节点接收转化的 QJson 对象，doc 用于存储导入的 json 文件对象 */
-    QJsonObject json;
-    QJsonDocument doc;
-    #ifndef __ANDROID__
-    /* 默认配置文件路径为当前目录下的 settings.json 文件 */
-    QFile file(fileName);
+    settingFile setting;
+    #ifdef __ANDROID__
+        /* 安卓文件路径为包的私有路径 */
+        setting.load("/data/data/org.qtproject.example.CS_Contest/"+fileName);
     #else
-    /* 安卓文件路径为包的私有路径 */
-    QFile file("/data/data/org.qtproject.example.CS_Contest/"+fileName);
+        setting.load(fileName);
     #endif
-    /* 只读、转换行尾结束符为本地格式 */
-    if(file.open(QIODevice::ReadOnly|QFile::Text))
+    if(setting.isLoad())
     {
-        /*
-            error 用于接收解析错误
-            stream 用于读取文件
-            str 存储字符串格式的 json 文件
-        */
-        QJsonParseError error;
-        QTextStream stream(&file);
-        QString str=stream.readAll();
-        file.close();
-        /* 将 json 字符串解析为 QJson 文件对象，并存储错误信息 */
-        doc=QJsonDocument::fromJson(str.toUtf8(),&error);
-        if(error.error!=QJsonParseError::NoError&&!doc.isNull())
-        {
-            QMessageBox::warning(nullptr,"json parse error","json 格式错误!");
+        /* 若已初始化，则返回（即该函数只调用一次） */
+        if(flagOfInital==1&&fileName=="settings.json")
             return;
-        }
-        /* json 接收 QJson 文件对象里的 QJson 根节点 */
-        json=doc.object();
         /* 导入题库文件路径，选择页显示题库路径 */
-        pathOfExcel=json.value("pathOfExcel").toString();
+        pathOfExcel=setting.value("pathOfExcel").toString();
         /* 导入当前答题页题型下标 */
-        currTypeOfQuestion=json.value("currTypeOfQuestion").toInt();
+        currTypeOfQuestion=setting.value("currTypeOfQuestion").toInt();
         /* 导入当前收藏页题型下标 */
-        int currIndexOfCollection=json.value("currIndexOfCollection").toInt();
+        int currIndexOfCollection=setting.value("currIndexOfCollection").toInt();
         /* 导入答题页答题进度 */
-        QJsonArray arrayOfQuestionProcess=json.value("progressOfQuestion").toArray();
+        QJsonArray arrayOfQuestionProcess=setting.value("progressOfQuestion").toArray();
         /* 若答题进度不为空则清空再导入 */
         if(!progressOfQuestion.isEmpty())
             progressOfQuestion.clear();
         for(int i=0;i<arrayOfQuestionProcess.count();i++)
             progressOfQuestion.push_back(arrayOfQuestionProcess[i].toInt());
         /* 导入收藏页题目数据 */
-        QJsonArray arrayOfCollectProcess=json.value("progressOfCollection").toArray();
+        QJsonArray arrayOfCollectProcess=setting.value("progressOfCollection").toArray();
         const QJsonArray& first=arrayOfCollectProcess[0].toArray();
         const QJsonArray& second=arrayOfCollectProcess[1].toArray();
         /* 若收藏进度不为空则清空再导入 */
