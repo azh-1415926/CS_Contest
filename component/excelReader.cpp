@@ -160,10 +160,8 @@ void excelReader::readCSV(const QString &pathOfCSV)
             if(result!=QValidator::State::Acceptable)
             {
                 if(data.isEmpty())
-                {
                     data.push_back(vec);
-                }
-                else if(!data.isEmpty())
+                else
                 {
                     QVector<QString>& temp=data[data.length()-1];
                     if(!temp.isEmpty())

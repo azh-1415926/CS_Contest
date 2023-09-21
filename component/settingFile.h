@@ -44,7 +44,9 @@ class settingFile : public QObject
             array.push_back(second);
             m_Json.insert(key,array);
         }
+        /* 判定是否已导入 */
         inline bool isLoad() const { return m_LoadFlag==1; }
+        /* 获取配置中的的对应属性值 */
         inline QJsonValue value(const QString& key) const { return m_Json.value(key); }
 
     protected:

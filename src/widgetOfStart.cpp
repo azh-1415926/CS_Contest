@@ -29,12 +29,14 @@ widgetOfStart::~widgetOfStart()
 
 void widgetOfStart::resizeEvent(QResizeEvent *)
 {
-    /* 窗口大小调整，调用 loadSetting()，调用过程中会将 flagOfInital 置为 1（即只会在窗口第一次显示的时候调用） */
+    /* 窗口大小调整，调用 importSetting 后会将 flagOfInital 置为 1（即只会在窗口第一次显示的时候调用） */
     if(flagOfInital==0)
     {
+        /* 可选择题库有内置的 2022、2023 年题库，以及配置文件中的题库路径 */
         ui->textOfPaths->addItem(":/doc/2022.csv");
         ui->textOfPaths->addItem(":/doc/2023.csv");
         importSetting("settings.json");
+        /* 选择下拉菜单中最后一个题库，并加载该题库对应的配置文件 */
         ui->textOfPaths->setCurrentIndex(ui->textOfPaths->count()-1);
         loadSetting(ui->textOfPaths->currentText());
     }
@@ -43,11 +45,12 @@ void widgetOfStart::resizeEvent(QResizeEvent *)
 /* 保存当前答题信息 */
 void widgetOfStart::exportSetting(const QString& fileName)
 {
-
+    /* setting 用于加载配置文件 */
     settingFile setting;
     /* 将当前文件路径、当前答题页题型下标导入 */
     setting.add("pathOfExcel",pathOfExcel);
     setting.add("currTypeOfQuestion",currTypeOfQuestion);
+    /* 导入收藏页当前题目下标 */
     int currIndexOfCollection=ui->switchOfCollection->count()>0?ui->switchOfCollection->index():-1;
     setting.add("currIndexOfCollection",currIndexOfCollection);
     /*
@@ -55,17 +58,9 @@ void widgetOfStart::exportSetting(const QString& fileName)
         （导出数组长度与当前数组长度一致，为题型数量，存储的是对应题型的题号下标数组）
     */
     setting.add("progressOfQuestion",progressOfQuestion);
-    /*
-        将当前收藏页答题进度导入
-        （导出数组长度与当前数组长度不一致，导出长度为 2，存储着对应题目的题型下标数组、题号下标数组）
-        first 暂存题型下标
-        second 暂存题目下标
-    */
-    QJsonArray first;
-    QJsonArray second;
     /* progressOfCollection 数组长度为收藏总数，每一项是一个 QPair<int,int>，对应题目的题型下标、题号下标 */
     setting.add("progressOfCollection",progressOfCollection);
-    /* 保存到 settings.json 文件中（只写、截断保存）  */
+    /* 保存到 fileName 文件中  */
     #ifdef __ANDROID__
         /* 安卓文件路径为包的私有路径 */
         setting.save("/data/data/org.qtproject.example.CS_Contest/"+fileName);

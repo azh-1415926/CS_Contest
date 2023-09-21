@@ -12,6 +12,7 @@ settingFile::~settingFile()
 {
 }
 
+/* 导入 json 文件 */
 void settingFile::load(const QString &path)
 {
     QFile file(path);
@@ -39,19 +40,23 @@ void settingFile::load(const QString &path)
     emit loaded();
 }
 
+/* 导出为 json 文件 */
 void settingFile::save(const QString &path)
 {
     QFile file(path);
-    /* 保存到 settings.json 文件中（只写、截断保存）  */
+    /* 保存到 path 文件中（只写、截断保存） */
     if(file.open(QIODevice::WriteOnly|QIODevice::Truncate))
     {
+        /* stream 处理文件，设置编码为 utf-8 */
         QTextStream stream(&file);
         #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
             stream.setCodec("utf-8");
         #elif (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
             stream.setEncoding(QStringConverter::Utf8);
         #endif
+        /* 把 json 对象转成 json 文档格式 */
         m_Doc.setObject(m_Json);
+        /* 导出 json、并关闭文件 */
         stream<<m_Doc.toJson();
         file.close();
         emit saved();
