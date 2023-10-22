@@ -5,7 +5,7 @@
 4AZHCAZH如果给定一个带有通配符的文件名F *.？，则在下列各文件中，它能代表的文件名是（ ）AZHFA.EXEAZHF.CAZHEF.CAZHFABC.COMAZHBAZH1AZH
 5AZHCAZHWPS表格中数据输入时默认为“常规”样式。有关“样式”的说法中，以下不正确的是（ ）。AZH所谓“样式”即一组已定义并保存了的格式集合AZH用户也可以自己创建“样式”AZH用户可以删除自定义的“样式”AZH用户也可以删除“常规”样式AZHDAZH1AZH
 6AZHCAZH如果按字长来划分，微机可以分为8位机、16位机、32位机和64位机。所谓32位机是指该计算机所用的CPU（ ）AZH同时能处理32位二进制数AZH具有32位的寄存器AZH只能处理32位二进制定点数AZH有32个寄存器AZHAAZH1AZH
-7AZHCAZHWPS表格中，如果单元格B2中为“乙”，那么向下拖动填充柄到B4，则B4中应为（ ）。AZH丙AZH丁AZH戊AZH#refAZHCAZH1AZH
+7AZHCAZHWPS表格中，如果单元格B2中为“乙”，那么向下拖动填充柄到B4，则B4中应为（ ）。AZH丙AZH丁AZH戊AZH#refAZHBAZH1AZH
 8AZHCAZH下列设备中只能作为输入设备的是（   ）AZH磁盘驱动器AZH鼠标器AZH存储器AZH显示器AZHBAZH0AZH
 9AZHCAZH应用软件是指（ ）AZH所有能够使用的软件AZH能被各应用单位共同使用的某种软件AZH所有微机上都应使用的基本软件AZH专门为某一应用目的而编制的软件AZHDAZH0AZH
 10AZHCAZH下列述叙中错误的是（ ）AZH计算机要经常使用不要长期闲置不用AZH计算机要轻拿轻放AZH在计算机附近应避免磁场干扰AZH计算机用几小时后，应关机一会儿再用AZHDAZH0AZH
@@ -15,7 +15,7 @@
 14AZHCAZH计算机的软件系统可分类为（ ）AZH程序与数据AZH系统软件与应用软件AZH操作系统与语言处理程序AZH程序、数据与文档AZHBAZH1AZH
 15AZHCAZH通常所说的主机主要包括（ ）AZHCPUAZHCPU和内存AZHCPU、内存与外存AZHCPU、内存与硬盘AZHBAZH0AZH
 16AZHCAZH在微机系统中,最基本的输入输出模块BIOS存放在（ ）AZHRAM中AZHROM中AZH硬盘中AZH寄存器中AZHBAZH1AZH
-17AZHCAZH在WPS文字中，可以显示分页效果的有六种显示视图模式是（ ）AZH普通视图AZH大纲视图AZH页面视图AZH阅读视图AZHCAZH0AZH
+17AZHCAZH在WPS文字中，可以显示分页效果视图模式是（ ）AZH普通视图AZH大纲视图AZH页面视图AZH阅读视图AZHCAZH0AZH
 18AZHCAZHbit的意思是（ ）AZH字AZH字长AZH字节AZH二进制位AZHDAZH0AZH
 19AZHCAZH使用超大规模集成电路制造的计算机应该归属于（ ）AZH第一代AZH第二代AZH第三代AZH第四代AZHDAZH0AZH
 20AZHCAZH磁盘处处于写保护状态,那么磁盘中的数据（ ）AZH不能读出,不能删改,也不能定入新数据AZH可以读出,不能删改,也不能写入新数据AZH可以读出,可以删改,但不能写入新数据AZH可以读出,不能删改,但可以写入新数据AZHBAZH0AZH
@@ -76,7 +76,7 @@
 75AZHCAZH以下各类函数中，不属于WPS表格函数的是(      )AZH统计AZH文本AZH逻辑AZH类型转换AZHDAZH0AZH
 76AZHCAZHCPU不包含（ ）部分。AZH内部存储单元AZH控制单元AZH输出单元AZH运算逻辑单元AZHCAZH0AZH
 77AZHCAZHCPU由哪三部分组成（ ）。AZH运算器、控制器、寄存器AZH运算器、控制器、主存储器AZH数据寄存器、存储器、运算器AZH主存储器、辅存储器、控制器AZHAAZH0AZH
-78AZHCAZH一部典型的PC机硬件主要配置有哪些？（ ）AZH主机、鼠标、显示器和打印机。AZH主机、键盘、显示器和打印机。AZH主机、键盘、显示器和服务器。AZH主机、键盘、鼠标、显示器和扫描仪。AZHBAZH1AZH
+78AZHCAZH一部典型的PC机硬件主要配置有哪些？（ ）AZH主机、鼠标、显示器和打印机。AZH主机、键盘、显示器。AZH主机、键盘、显示器和服务器。AZH主机、键盘、鼠标、显示器和扫描仪。AZHBAZH1AZH
 79AZHCAZH显示器、（ ）等是计算机的输出设备。AZH绘图仪AZH键盘AZH软盘AZH硬盘AZHAAZH0AZH
 80AZHCAZH在WPS表格编辑时，清除命令针对的对象是数据，数据清除后，单元格本身(      )AZH仍留在原位置AZH向上移动AZH向下移动AZH向右移动AZHAAZH1AZH
 81AZHCAZH内存储器可与CPU（ ）交换信息。AZH不AZH直接AZH部分AZH间接AZHBAZH1AZH
@@ -246,7 +246,7 @@
 245AZHCAZHPowerPoint 2010演示文稿文件的扩展名是(      )AZHdocxAZHpptxAZHpptAZHxlsxAZHBAZH0AZH
 246AZHCAZH如果要输入符号“☆”，应执行（     ）操作AZH选择“开始”选项卡中的“字体”对话框中的“符号”标签AZH选择“插入”选项卡中的“符号”对话框中的“符号”标签AZH选择“引用”选项卡中的“段落”对话框中的“符号”标签AZH选择“编辑”选项卡中的“复制”对话框中的“符号”标签AZHBAZH0AZH
 247AZHCAZHPowerPoint 2010主窗口水平滚动条的下侧有四个显示方式切换按钮：“普通视图”、“阅读视图”、“幻灯片放映”和(      )AZH全屏显示AZH主控文档AZH幻灯片浏览视图AZH文本视图AZHCAZH1AZH
-248AZHCAZH如果在WPS表格的A1、B1和C1三个单元格分别输入数据1、2和3，再选择单元格D4，然后单击公式选项卡中“∑”，则在单元格D1显示(      )AZH=SUM(A1:C1)AZHAZH78AZH1AZHAAZH1AZH
+248AZHCAZH如果在WPS表格的A1、B1和C1三个单元格分别输入数据1、2和3，再选择单元格D1，然后单击公式选项卡中“∑”，则在单元格D1显示(      )AZH=SUM(A1:C1)AZHAZH78AZH1AZHAAZH1AZH
 249AZHCAZHROM是(      )AZH随机存储器AZH只读存储器AZH高速缓冲存储器AZH顺序存储器AZHBAZH0AZH
 250AZHCAZH如果在单元格输入数据“=22”，WPS表格 将把它识别为(      )数据。AZH文本型AZH数值型AZH日期时间型AZH公式AZHDAZH1AZH
 251AZHCAZHTCP/IP协议是Internet中计算机之间进行通信时必须共同遵循的一种(      )AZH通信规则AZH信息资源AZH软件系统AZH硬件系统AZHAAZH1AZH
@@ -305,7 +305,7 @@
 304AZHCAZH网页文件中，能起到动画效果的图形格式是 (  )AZHJPEGAZHGIFAZHTIFAZHBMPAZHBAZH0AZH
 305AZHCAZH网页制作“三剑客”不包括（     ）。AZHDreamweaverAZHFlashAZHPhotoshopAZHFireworksAZHCAZH0AZH
 306AZHCAZH微处理器又称为(      )。　　AZH运算器AZH控制器AZH逻辑器AZH中央处理器AZHDAZH0AZH
-307AZHCAZH在当前WPS演示中要删除一张幻灯片，采用(      )方式是错误的。AZH在幻灯片视图中，选择要删除的幻灯片，单击“文件|删除幻灯片”命令AZH在浏览视图，选中要删除的幻灯片，按Del键AZH在大纲视图，选中要删除的幻灯片，按Del键AZH在幻灯片视图中，选择要删除的幻灯片，右击在快捷菜单中选择删除命令AZHDAZH0AZH
+307AZHCAZH在当前WPS演示中要删除一张幻灯片，采用(      )方式是错误的。AZH在幻灯片视图中，选择要删除的幻灯片，单击“文件|删除幻灯片”命令AZH在浏览视图，选中要删除的幻灯片，按Del键AZH在大纲视图，选中要删除的幻灯片，按Del键AZH在幻灯片视图中，选择要删除的幻灯片，右击在快捷菜单中选择删除命令AZHAAZH0AZH
 308AZHCAZH微机病毒系指（     ）。AZH生物病毒感染AZH细菌感染AZH被损坏的程序AZH特制的具有损坏性的小程序AZHDAZH0AZH
 309AZHCAZH微机的性能指标中的内存容量是指（     ）。AZHRAM的容量　AZHRAM和ROM的容量AZH软盘的容量　AZHROM的容量AZHAAZH0AZH
 310AZHCAZH在WPS演示的幻灯片视图中版式的链接功能中(      )不能进行链接的设置。AZH文本内容AZH按钮对象AZH图片对象AZH声音对象AZHDAZH1AZH
@@ -447,7 +447,7 @@
 446AZHCAZH因特网上的服务都是基于某一种协议，Web服务是基于（     ）。AZHSNMP协议AZHSMTP协议AZHHTTP协议AZHTELNET协议AZHCAZH0AZH
 447AZHCAZH因特网上每台计算机有一个规定的“地址”，这个地址被称为（     ）地址。AZHTCPAZHIP　　AZHWeb　AZHHTMLAZHBAZH0AZH
 448AZHCAZH因特网上许多复杂网络和许多不同类型的计算机之间能够互相通信的基础是（     ）。AZHOSI/RMAZHWWWAZHHTTPAZHTCP/IPAZHDAZH0AZH
-449AZHCAZH在WPS文字中，要想对全文档的有关信息进行快速准确的替换，可以使用“查找和替换”对话框，以下方法中（    ）是错误的。AZH使用“文件”选项卡中的“替换”命令AZH使用“开始”选项卡中的“查找”命令AZH使用“开始”选项卡中的“替换”命令AZH使用“开始”选项卡中的“定位”命令AZHCAZH0AZH
+449AZHCAZH在WPS文字中，要想对全文档的有关信息进行快速准确的替换，可以使用“查找和替换”对话框，以下方法中（    ）是错误的。AZH使用“文件”选项卡中的“替换”命令AZH使用“开始”选项卡中的“查找”命令AZH使用“开始”选项卡中的“替换”命令AZH使用“开始”选项卡中的“定位”命令AZHAAZH0AZH
 450AZHCAZH因特网上专门提供网上搜索的工具叫（     ）。AZH查找AZH查询AZH搜索引擎AZH查看AZHCAZH0AZH
 451AZHCAZH因特网是（     ）。AZH局域网的简称AZH城域网的简称AZH广域网的简称AZH国际互联网(Intenet）的简称AZHDAZH0AZH
 452AZHCAZH因特网是目前全世界最大的计算机网络，采用（     ）通信协议将分布在世界各地的、各种计算机网络连接到一起，使它们能方便地交流信息。AZHASCⅡAZHTCP/IPAZH电报AZH电话AZHBAZH0AZH
@@ -1082,7 +1082,7 @@
 1081AZHCAZH在因特网中、各计算机之间使用（     ）协议交换信息。AZHE-mailAZHWordAZHTCP/IPAZHFoxProAZHCAZH0AZH
 1082AZHCAZH在中文Windows 的资源管理器窗口中, 要选择多个相邻的文件以便对其进行某些处理操作（如复制、移动）, 选择文件的方法为(      )。AZH用鼠标逐个单击各文件图标AZH用鼠标单击第一个文件图标, 再用鼠标右键逐个单击其余各文件图标AZH用鼠标单击第一个文件图标, 按下Ctrl键并保持, 再用鼠标单击最后一个文件图标AZH用鼠标单击第一个文件图标, 按下Shift 键并保持, 再用鼠标单击最后一个文件图标AZHDAZH1AZH
 1083AZHCAZH在中文Windows 中, 文件名不可以    。AZH包含空格AZH长达 255个字符AZH包含各种标点符AZH使用汉字字符AZHCAZH0AZH
-1084AZHCAZH在资源管理器窗口中，被选中的文件或文件夹会（     ）。AZH加框显示AZH反像显示AZH加亮显示AZH闪烁显示AZHBAZH0AZH
+1084AZHCAZH在资源管理器窗口中，被选中的文件或文件夹会（     ）。AZH加框显示AZH反像显示AZH加亮显示AZH闪烁显示AZHAAZH0AZH
 1085AZHCAZH早期的计算机采用（     ），所有的指令．数据都用1和0来表示。AZH机器语言AZHBASIC语言AZH数据库语言AZH阿拉伯数字语言AZHAAZH0AZH
 1086AZHCAZH主机板上CMOS芯片的主要用途是（     ）。AZH管理内存与CPU的通讯AZH增加内存的容量AZH储存时间、日期、硬盘参数与计算机配置信息AZH存放基本输入输出系统程序、引导程序和自检程序AZHCAZH1AZH
 1087AZHCAZH在PowerPoint中自定义动画时，以下不正确的说法是(      )AZH各种对象均可设置动画AZH动画设置后，先后顺序不可改变AZH同时还可配置声音AZH可将对象设置成播放后隐藏AZHBAZH1AZH
@@ -1223,7 +1223,7 @@
 1222AZHCAZH在幻灯片放映时，如果使用画笔，则错误的说法是（ ）。AZH可以在画面上随意图画AZH可以随时更换绘笔的颜色AZH在幻灯片上做的记号将在退出幻灯片时不予以保留AZH在当前幻灯片上所做的记号，当再次返回该页时仍然存在AZHCAZH0AZH
 1223AZHCAZH在设置超级链接时，可以从“(   )”标签中选中“(   )”命令。AZH插入  超链接AZH幻灯片放映  超级链接AZH幻灯片放映  动作设置AZH幻灯片放映  自定义放映AZHAAZH0AZH
 1224AZHCAZH在状态栏中出现了“幻灯片2/7”的文字，则表示（ ）。AZH.共有7张幻灯片，目前只编辑了2张AZH共有7张幻灯片，目前显示的是第2张AZH共编辑了七分之二张的幻灯片AZH共有9张幻灯片，目前显示的是第2张AZHBAZH0AZH
-1225AZHCAZH以下说法中，正确的是（ ）。AZH幻灯片中的图片和其他对象，在大纲窗格中也能反映出来AZH大纲窗格是可以用来编辑修改幻灯片中对象的位置AZH备注页视图中的幻灯片是一张图片，可以被拖动AZH对应于四种视图，Power Point有四种母版AZHBAZH0AZH
+1225AZHCAZH以下说法中，正确的是（ ）。AZH幻灯片中的图片和其他对象，在大纲窗格中也能反映出来AZH大纲窗格是可以用来编辑修改幻灯片中对象的位置AZH备注页视图中的幻灯片是一张图片，可以被拖动AZH对应于四种视图，Power Point有四种母版AZHCAZH0AZH
 1226AZHCAZH希望在编辑幻灯片内容时，其大小与窗口大小相适应，应选择（ ）。AZH页面设置”对话框中设置AZH缩至一页”命令AZH“显示比例”对话框中的“100%”AZH“显示比例”对话框中的“最佳”AZHDAZH0AZH
 1227AZHCAZH以下关于在大纲视图窗格编辑演示文稿的说法错误的是（ ）。AZH在大纲窗格中，可以移动或复制整张幻灯片AZH在大纲窗格中，不可以改变标题文字的颜色和大小AZH在大纲窗格中，可以查找或替换整个演示文稿中的所有文字AZH在大纲窗格中，单击幻灯片图标，可以选定幻灯片的所有标题AZHDAZH0AZH
 1228AZHCAZH在PowerPoint中，“视图”这个名词表示（ ）。AZH一种图形AZH显示幻灯片的方式AZH编辑演示文稿的方式AZH一张正在修改的幻灯片AZHBAZH0AZH
@@ -1294,7 +1294,7 @@
 1289AZHCAZH计算机病毒破坏的主要对象是(   )。AZH磁盘片AZH磁盘驱动器AZHCPUAZH程序和数据AZHDAZH0AZH
 1290AZHCAZH以下属于软件盗版行为的是(   )。AZH复制不属于许可协议允许范围之内的软件AZH对软件或文档进行租赁、二级授权或出借AZH在没有许可证的情况下从服务器进行下载AZH以上皆是AZHDAZH0AZH
 1291AZHCAZH软件盗版是指未经授权对软件进行复制、仿制、使用或生产。下列(   )属于软件盗版的主要形式。AZH最终用户盗版AZH盗版软件光盘AZHInternet在线软件盗版AZH使用试用版的软件AZHBAZH0AZH
-1292AZHCAZH有一种计算机病毒通常寄生在其他文件中，常常通过对编码加密或使用其他技术来隐藏自己，攻击可执行文件。这种计算机病毒被称为(   )。AZH文件型病毒AZH引导型病毒AZH脚本病毒AZH宏病毒AZHDAZH0AZH
+1292AZHCAZH有一种计算机病毒通常寄生在其他文件中，常常通过对编码加密或使用其他技术来隐藏自己，攻击可执行文件。这种计算机病毒被称为(   )。AZH文件型病毒AZH引导型病毒AZH脚本病毒AZH宏病毒AZHAAZH0AZH
 1293AZHCAZH计算机安全通常包括硬件、(   )。AZH数据和运行AZH软件和数据AZH软件、数据和操作AZH软件AZHCAZH0AZH
 1294AZHCAZH关于计算机病毒的预防，以下说法错误的是：(   )。AZH在计算机中安装防病毒软件，定期查杀病毒。AZH不要使用非法复制和解密的软件。AZH在网络上的软件也带有病毒，但不进行传播和复制。AZH采用硬件防范措施，如安装微机防病毒卡。AZHCAZH0AZH
 1295AZHCAZH下列现象中，可能感染了计算机病毒的是(   )。AZH键盘插头松动AZH电脑的运行速度明显变慢AZH操作电脑的水平越来越高AZH电脑操作者的视力越来越差AZHBAZH0AZH
@@ -1769,7 +1769,7 @@
 1764AZHWAZH帧中继技术是在（ ）用简化的方法传送和交换数据的一种技术。AZH物理层AZH数据链路层AZH网络层AZH传输层AZHBAZH0AZH
 1765AZHWAZH(  ) 技术可以防止信息收发双方的抵赖。AZH数据加密AZH访问控制AZH数字签名AZH审计AZHCAZH1AZH
 1766AZHWAZH“数字摘要”(也称为“数字指纹”)是指（ ）。AZH一种基于特定算法的文件，其内容和长度以及文件有关AZH一种和特定文件相关的数据，由指定文件可以生成这些数据AZH一种由特定文件得出的不可能由其他文件得出的数据AZH一种由特定文件得出的或者是文件略做调整后可以得出的数据AZHCAZH1AZH
-1767AZHWAZHADSL技术主要解决的问题是（ ）。AZH宽带传输AZH宽带接入AZH宽带交换AZH多媒体综合网络AZHDAZH1AZH
+1767AZHWAZHADSL技术主要解决的问题是（ ）。AZH宽带传输AZH宽带接入AZH宽带交换AZH多媒体综合网络AZHBAZH1AZH
 1768AZHWAZHATM采用的线路复用方式为 (  )。AZH频分多路复用AZH同步时分多路复用AZH异步时分多路复用AZH独占信道AZHCAZH1AZH
 1769AZHWAZHDES算法属于加密技术中的（ ）。AZH对称加密AZH不对称加密AZH不可逆加密AZH以上都是AZHAAZH1AZH
 1770AZHWAZHHDLC是哪一层的协议?(  )AZH物理层AZH数据链路层AZH网络层AZH高层AZHBAZH1AZH
@@ -1783,7 +1783,7 @@
 1778AZHWAZHMAC层是（ ）所特有的。AZH局域网和广域网AZH城域网和广域网AZH城域网和远程网AZH局域网和城域网AZHDAZH1AZH
 1779AZHWAZHNFS协议是TCP/IP协议集中（ ）协议。AZH应用层AZH表示层AZH会话层AZH传输层AZHAAZH1AZH
 1780AZHWAZHOSI应用层，在进行文件传输时，为了避免不同文件结构之间的映射、转换等问题，需采用的方案为  (    ) 。AZH系统文件AZH虚拟文件AZH实际文件AZH索引文件AZHBAZH1AZH
-1781AZHWAZHSDH通常在宽带网的哪部分使用？（ ）AZH传输网AZH交换网AZH接入网AZH存储网AZHBAZH1AZH
+1781AZHWAZHSDH通常在宽带网的哪部分使用？（ ）AZH传输网AZH交换网AZH接入网AZH存储网AZHAAZH1AZH
 1782AZHWAZHURL的一般格式为 (  ) 。AZH/＜路径＞/＜文件名＞/＜主机＞AZH＜通信协议＞://＜主机＞/＜路径＞/＜文件名＞AZH＜通信协议＞:/ ＜主机＞/(文件名＞AZH//＜机＞/＜路径＞/＜文件名＞:＜通信协议＞AZHBAZH1AZH
 1783AZHWAZHVLAN在现代组网技术中占有重要地位，在由多个VLAN组成的一个局域网中以下哪种说法是不正确的？（ ）AZH当站点从一个VLAN转移到另一个VLAN是，一般不需要物理连接AZHVLAN中的一个站点可以和另一个VLAN中的站点直接通信AZH当站点在一个VLAN中广播时，其他VLAN中的站点不能收到AZHVLAN可以通过MAC地址，交换机端口等进行定义AZHBAZH1AZH
 1784AZHWAZH报文交换技术说法不正确的是(  )。AZH服文交换采用的传送方式是“存储一转发”方式AZH报文交换方式中数据传输的数据块其长度不限且可变AZH报文交换可以把一个报文发送到多个目的地AZH报文交换方式适用于语言连接或交互式终端到计算机的连接AZHDAZH1AZH
@@ -2500,7 +2500,7 @@ INSERT INTO tab1 VALUES ('b')
 2436AZHKAZH下列聚合函数中不忽略空值 (null) 的是( )AZHSUM (列名)AZHMAX (列名)AZHCOUNT ( * )AZHAVG (列名)AZHCAZH0AZH
 2437AZHKAZHSQL中，下列涉及空值的操作，不正确的是( )AZHAGE IS NULLAZHAGE IS NOT NULLAZHAGE = NULLAZHNOT (AGE IS NULL)AZHCAZH0AZH
 2438AZHKAZHSQL语言中，条件“年龄BETWEEN 20 AND 30”表示年龄在20至30之间，且( )AZH包括20岁和30岁AZH不包括20岁和30岁AZH包括20岁但不包括30岁AZH包括30岁但不包括20岁AZHAAZH0AZH
-2439AZHKAZH在数据库与宿主语言之间传递信息是通过( )AZH全局变量AZH局部变量AZH公共数据区AZH系统缓冲区AZHBAZH0AZH
+2439AZHKAZH在数据库与宿主语言之间传递信息是通过( )AZH全局变量AZH局部变量AZH公共数据区AZH系统缓冲区AZHCAZH0AZH
 2440AZHKAZH在SELECT语句中使用MAX(列名)时，列名应该( )AZH必须是数值型AZH必须是字符型AZH必须是数值型或字符型AZH不限制数据类型AZHDAZH0AZH
 2441AZHKAZHSQL与C语言处理记录的方式是不同的。当将SQL语句嵌入到C语言程序时，为协调两者而引入( )AZH堆AZH栈AZH游标AZH缓冲区AZHCAZH0AZH
 2442AZHKAZH有关系S(S#,SNAME,SEX),C(C#,CNAME),SC(S#,C#)。其中S#为学生号，SNAME为学生姓名，SEX为性别，C#为课程号，CNAME为课程名。要查询选修“计算机”课的全体女学生姓名的SQL语句是SELECT SNAME FROM S，C，SC WHERE 子句。这里WHERE 子句的内容是( )AZHS.S#=SC.S# and SEX=“女” and CNAME=“计算机”AZHS.S#=SC.S# AND C.C#=SC.C# and CNAME=“计算机”AZHSEX=“女” and CNAME=“计算机”AZHS.S#=SC.S# and C.C#=SC.C# and SEX=“女” and CNAME=“计算机”AZHDAZH0AZH
@@ -6653,7 +6653,7 @@ ______
 　　char k='a',p='f';
 　　data=p-k;
 　　system.out.println(data);AZH0AZHaAZHfAZH5AZHDAZH1AZH
-3926AZH3AZH在Java中，下列数中为八进制的是：AZH27AZH0x25AZH26AZH28AZHCAZH0AZH
+3926AZH3AZH在Java中，下列数中为八进制的是：AZH27AZH0x25AZH026AZH28AZHCAZH0AZH
 3927AZH3AZH在Java中，下列方法中，不属于Throwable类的方法是：AZHprintMessageAZHgetMessageAZHtoStringAZHfillStackTraceAZHAAZH1AZH
 3928AZH3AZH下列Java程序的输出结果是：
 public class Test{
