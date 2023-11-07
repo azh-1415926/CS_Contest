@@ -115,8 +115,8 @@ void excelReader::readExcel(const QString& pathOfExcel)
     readFlag=1;
     process.setValue(100);
     #ifdef QT_DEBUG
-    importCSV("2022.csv");
-    importTestCSV();
+    // importCSV("2023.csv");
+    // importTestCSV();
     #endif
     emit readed();
     if(reloadFlag==1)
@@ -179,7 +179,7 @@ void excelReader::readCSV(const QString &pathOfCSV)
         rows=data.length();
         columns=data[0].length();
         #ifdef QT_DEBUG
-        importTestCSV();
+        // importTestCSV();
         #endif
         file.close();
         readFlag=1;

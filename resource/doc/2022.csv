@@ -1466,7 +1466,7 @@
 1464AZHHAZH下列（   ）是移动商务应用主体面临的安全威胁。AZH缺乏安全意识AZH资料失窃 AZH垃圾短信AZH欺诈行为AZHAAZH0
 1465AZHHAZH在公开密钥密码体制中，加密密钥即（   ）。AZH解密密钥AZH私密密钥AZH公开密钥AZH私有密钥AZHCAZH1
 1466AZHHAZH全球第一部电子签名法来自（  ）。 AZH美国AZH澳大利亚AZH英国AZH中国AZHAAZH0
-1467AZHHAZH移动支付系统按照交易额的数量分类，10元以上是（  ）。AZH宏支付 AZH微支付AZH小额支付AZH以上都不是AZHAAZH1
+1467AZHHAZH移动支付系统按照交易额的数量分类，10元人民币以下是（  ）。AZH宏支付 AZH微支付AZH小额支付AZH以上都不是AZHBAZH1
 1468AZHHAZH（  ）决定了商务活动的内容和范围，决定了我们能做什么和不能做什么。AZH顾客喜好AZH价值特性 AZH技术特性AZH电信业务发展目标AZHCAZH0
 1469AZHHAZH一般的移动支付系统中最复杂的部分是(  )，它为利润的分成最终实现提供了技术保证。AZH终端用户消费系统AZH商家管理系统AZH运营商综合管理系统AZH移动支付系统 AZHCAZH0
 1470AZHHAZH基于J2ME的移动支付系统使用的是(   )平台。AZHWAP AZHJAVAAZHTCP/IPAZH以上都不是AZHBAZH1
@@ -2360,7 +2360,7 @@ while (s<n)
 2280AZHJAZH高度为n、结点数也为n的二叉树，共有（ ）棵。AZHnAZH2<sup>n-1</sup>AZHn-1AZH2n-1AZHBAZH1
 2281AZHJAZH线性链表是通过何种方式表示元素之间的关系（ ）。AZH后继元素地址AZH元素的存储顺序AZH左、右孩子地址AZH元素的相对存储位置AZHAAZH1
 2282AZHJAZH对于经常要存取线性表任意指定位置元素的应用，线性表应采用（ ）存储结构。AZH顺序存储结构AZH链式存储结构AZH线性链表AZH栈AZHAAZH1
-2283AZHJAZH向一个栈顶指针为HS的链栈中将一个S指针所指的结点入栈，执行（ ）。AZHHS->next=sAZHS->next=HS->next;HS->next=sAZHS->next=HS;HS=sAZHS->next=HS;HS=HS->nextAZHBAZH1
+2283AZHJAZH向一个栈顶指针为HS的链栈中将一个S指针所指的结点入栈，执行（ ）。AZHHS->next=sAZHS->next=HS->next;HS->next=sAZHS->next=HS;HS=sAZHS->next=HS;HS=HS->nextAZHCAZH1
 2284AZHJAZH列说法正确的是( )。AZH堆栈是在两端操作、先进后出的线性表AZH堆栈是在一端操作、先进后出的线性表AZH队列是在一端操作、先进先出的线性表AZH队列是在两端操作、后进先出的线性表AZHBAZH1
 2285AZHJAZH向一个有127个元素的顺序表中插入一个新元素并保持原来顺序不变，平均要移动（ ）个元素。AZH8AZH63.5AZH63AZH7AZHBAZH1
 2286AZHJAZH线性表Ｌ在（ ）情况下适用于使用链式结构实现。AZH需经常修改Ｌ中的结点值AZH需不断对Ｌ进行删除插入AZHＬ中含有大量的结点AZHＬ中结点结构复杂AZHBAZH1

@@ -1580,7 +1580,7 @@
 1575AZHHAZH下列（   ）是移动商务应用主体面临的安全威胁。AZH缺乏安全意识AZH资料失窃AZH垃圾短信AZH欺诈行为AZHAAZH0AZH
 1576AZHHAZH在公开密钥密码体制中，加密密钥即（   ）。AZH解密密钥AZH私密密钥AZH公开密钥AZH私有密钥AZHCAZH1AZH
 1577AZHHAZH全球第一部电子签名法来自（  ）。AZH美国AZH澳大利亚AZH英国AZH中国AZHAAZH0AZH
-1578AZHHAZH移动支付系统按照交易额的数量分类，10元以上是（  ）。AZH宏支付AZH微支付AZH小额支付AZH以上都不是AZHAAZH1AZH
+1578AZHHAZH移动支付系统按照交易额的数量分类，10元人民币以下是（  ）。AZH宏支付AZH微支付AZH小额支付AZH以上都不是AZHBAZH1AZH
 1579AZHHAZH（  ）决定了商务活动的内容和范围，决定了我们能做什么和不能做什么。AZH顾客喜好AZH价值特性AZH技术特性AZH电信业务发展目标AZHCAZH0AZH
 1580AZHHAZH一般的移动支付系统中最复杂的部分是(  )，它为利润的分成最终实现提供了技术保证。AZH终端用户消费系统AZH商家管理系统AZH运营商综合管理系统AZH移动支付系统AZHCAZH0AZH
 1581AZHHAZH基于J2ME的移动支付系统使用的是(   )平台。AZHWAPAZHJAVAAZHTCP/IPAZH以上都不是AZHBAZH1AZH
@@ -1755,11 +1755,13 @@
 1750AZHWAZH以太网是目前普遍采用的一种局域网类型，其中，高速以太网上的数据传输速率为( ) 。AZH10MbpsAZH100MbpsAZH15MbpsAZH1000Mbp8AZHBAZH0AZH
 1751AZHWAZH以下哪个URL的表示是错误的？（ ）AZHhttp://netlab.abc.edu.cnAZHftp://netlab.abc.edu.cnAZHgopher://netlab.abc.edu.cnAZHunix://netlab.abc.edu.cnAZHDAZH0AZH
 1752AZHWAZH以下哪个命令用于测试网络连通（ ）。AZHtelnetAZHnslookupAZHpingAZHftpAZHCAZH0AZH
-1753AZHWAZH以下哪象不是UDP协议的特性？（ ）AZH提供可靠服务AZH提供无连接服务AZH提供端到端服务AZH提供全双工服务AZHAAZH0AZH
+1753AZHWAZH以下哪象不是UDP协议的特性？（ ）
+AZH提供可靠服务AZH提供无连接服务AZH提供端到端服务AZH提供全双工服务AZHAAZH0AZH
 1754AZHWAZH有关网络管理员的职责，下列哪种说法是不正确的？AZH网络管理员应该对网络的总体布局进行规划AZH网络管理员应该对网络故障进行检修AZH网络管理员应该对网络设备进行优化配置AZH网络管理员应该负责为用户编写网络应用程序AZHDAZH0AZH
 1755AZHWAZH有关网络域名系统的描述中，不正确的是( )。AZH网络域名系统的缩写为DNSAZH每个域名可以由几个域组成，域与域之间用“.”分开AZH域名中的最左端的域称为顶级域AZHCN是常用的顶级域名代码AZHCAZH0AZH
 1756AZHWAZH在Internet域名体系中，域的下面可以划分子域，各级域名用圆点分开，按照( )。AZH从左到右越来越小的方式分4层排列AZH从左到右越来越小的方式分多层排列AZH到左越来越小的方式分4层排列AZH从右到左越来越小的方式分多层排列AZHDAZH0AZH
-1757AZHWAZH在Internet中, WWW服务的TCP标准端口号是（ ）。AZH16AZH80AZH33AZH72AZHBAZH0AZH
+1757AZHWAZH在Internet中, WWW服务的TCP标准端口号是（ ）。
+AZH16AZH80AZH33AZH72AZHBAZH0AZH
 1758AZHWAZH在ISO/OSI参考模型中,网络层的主要功能是( )。AZH提供可靠的端...端服务,透明地传送报文AZH路由选择、拥塞控制与网络互连AZH在通信实体之间传送以帧为单位的数据AZH数据格式变换、数据加密与解密、数据压缩与恢复AZHBAZH0AZH
 1759AZHWAZH在计算机网络中，为了使计算机或终端之间能够正确传送信息，必须按照 (  ) 来相互通信。AZH信息交换方式AZH网卡AZH传输装置AZH网络协议AZHDAZH0AZH
 1760AZHWAZH在下列那个网络拓扑结构中，中心结点的故障可能造成全网瘫痪的是（ ）。AZH星型拓扑结构AZH环形拓扑结构AZH树型拓扑结构AZH网状拓扑结构AZHAAZH0AZH
@@ -1793,7 +1795,8 @@
 1788AZHWAZH当使用电子邮件访问POP3服务器时（ ）。AZH邮件服务器保留邮件副本AZH从不同的计算机上都可以阅读服务器上的邮件AZH比较适合用户从一台固定的客户机访问邮箱的情况AZH目前支持POP3协议的邮件服务器不多，一般都使用IMAP协议的邮件服务器AZHCAZH1AZH
 1789AZHWAZH电子邮件地址Wang@263.net中没有包含的信息是 (   )。AZH发送邮件服务器AZH接收邮件服务器AZH邮件客户机AZH邮箱所有者AZHCAZH1AZH
 1790AZHWAZH对明文字母重新排列，并不隐藏他们的加密方法属于（ ）。AZH置换密码AZH分组密码AZH易位密码AZH序列密码AZHCAZH1AZH
-1791AZHWAZH对网络的威胁包括：1、假冒 2、特洛伊木马 3、旁路控制 4、陷门 5、授权侵犯
+1791AZHWAZH对网络的威胁包括：1、假冒 2、特洛伊木马 3、旁路控制 4、陷门 5、授权侵犯
+
 在这些威胁中，属于渗入威胁的为（ ）。AZH1、3和5AZH3和4AZH2和4AZH1、2、3和4AZHAAZH1AZH
 1792AZHWAZH对于xDSL技术上行速率说，（ ）速率最大。AZHVDSLAZHRADSLAZHADSLAZHHDSLAZHAAZH1AZH
 1793AZHWAZH对于已经划分了VLAN后的交换式以太网，下列哪种说法是错误的？( )AZH交换机的每个端口自己是一个冲突域AZH位于一个VLAN的各端口属于一个冲突域AZH位于一个VLAN的各端口属于一个广播域AZH属于不同VLAN的各端口的计算机之间，不用路由器不能连通AZHBAZH1AZH
@@ -1809,10 +1812,14 @@
 1803AZHWAZH计算机网络拓扑结构主要取决于它的（ ）。AZH资源子网AZHFDDI网AZH通信子网AZH城域网AZHCAZH1AZH
 1804AZHWAZH计算机网络由通信子网和资源子网组成。下列设备中属于资源子网的是(  )。AZHPSEAZHPADAZHHOSTAZHNCCAZHCAZH1AZH
 1805AZHWAZH计算机网络中信息传递的调度控制技术可分为三类，以下不属于此控制技术的是（ ）。AZH流量控制AZH拥塞控制AZH防止死锁AZH时延控制AZHDAZH1AZH
-1806AZHWAZH家庭计算机用户上网可使用的技术是（ ）。
-l、电话线加上MODEM
-2、有线电视电缆加上Cable MODEM
-3、电话线加上ADSL
+1806AZHWAZH家庭计算机用户上网可使用的技术是（ ）。
+
+l、电话线加上MODEM
+
+2、有线电视电缆加上Cable MODEM
+
+3、电话线加上ADSL
+
 4、光纤到户(FTTH)AZH1，3AZH2，3AZH2，3，4AZH1，2，3，4AZHDAZH1AZH
 1807AZHWAZH建立EDI用户之间数据交换关系，通常使用的方式为（ ）。AZHEDI用户之间采用专线进行直接数据交换AZHEDI用户之间采用拨号线进行直接数据交换AZHEDI用户之间采用专用EDI平台进行数据交换AZHEDI用户之间采用专线和拨号进行直接数据交换AZHCAZH1AZH
 1808AZHWAZH宽带ISDN的核心技术是（ ）AZHATM技术AZH光纤接入技术AZH多媒体技术AZHSDH技术AZHAAZH1AZH
@@ -1834,7 +1841,8 @@ l、电话线加上MODEM
 1824AZHWAZH所谓电子支付是指（ ）。AZH在网络上支付现金AZH在网络上支付支票AZH在网络上进行交易AZH在网络上发出或者接收电子单证进行支付AZHDAZH1AZH
 1825AZHWAZH特洛伊木马攻击的威胁类型属于（ ）。AZH授权侵犯威胁AZH植入威胁AZH渗入威胁AZH旁路控制威胁AZHBAZH1AZH
 1826AZHWAZH通过哪种协议可以在网络中动态地获得IP地址（ ）。AZHDHCPAZHSNMPAZHPPPAZHUDPAZHAAZH1AZH
-1827AZHWAZH网络互联设备通常发成以下四种，在不同的网络间存储并转发分组，必要时可通过( )进行网络上的协议转换。AZH重发器AZH桥接器AZH网关AZH协议转换器AZHCAZH1AZH
+1827AZHWAZH网络互联设备通常发成以下四种，在不同的网络间存储并转发分组，必要时可通过( )进行网络上的协议转换。
+AZH重发器AZH桥接器AZH网关AZH协议转换器AZHCAZH1AZH
 1828AZHWAZH为防止企业内部人员对网络进行攻击的最有效的手段是( )。AZH防火墙AZHVPN（虚拟私用网）AZH网络侵入侦测仪（如CYBERCOP）AZH加密AZHCAZH1AZH
 1829AZHWAZH为了保障网络安全，防止外部网对内部网的侵犯，多在内部网络与外部网络之间设置（ ）。AZH密码认证AZH时间戳AZH防火墙AZH数字签名AZHCAZH1AZH
 1830AZHWAZH为了验证带数字签名邮件的合法性，电子邮件应用程序（Outlook Express）会向（ ）。AZH相应的数字证书授权机构索取该数字标识的有关信息AZH发件人索取该数字标识的有关信息AZH发件人的上级主管部门索取该数字标识的有关信息AZH发件人使用的ISP索取该数字标识的有关信息AZHAAZH1AZH
@@ -2032,46 +2040,69 @@ l、电话线加上MODEM
 2021AZHWAZH(  ) 是一种总线结构的局域网技术。AZHEthernetAZHFDDIAZHATMAZHDQDBAZHAAZH0AZH
 2022AZHWAZHATM技术的特点是(  )。AZH网状拓朴AZH以信元为数据传输单位AZH以帧为数据传输单位AZH同步传输AZHBAZH0AZH
 2023AZHWAZHDNS的中文含义是(  ) 。AZH邮件系统AZH地名系统AZH服务器系统AZH域名服务系统AZHDAZH0AZH
-2024AZHWAZHFDDI(光纤分布数据接口)采用(  )标准。AZH以太网AZH广域网AZH令牌网AZH令牌环网AZHDAZH0AZH
-2025AZHWAZHFDDI数据传输速率为（  ）。 AZH1GbpsAZH10MbpsAZH100MbpsAZH10GbpsAZHCAZH0AZH
+2024AZHWAZHFDDI(光纤分布数据接口)采用(  )标准
+。AZH以太网AZH广域网AZH令牌网AZH令牌环网AZHDAZH0AZH
+2025AZHWAZHFDDI数据传输速率为（  ）。 
+AZH1GbpsAZH10MbpsAZH100MbpsAZH10GbpsAZHCAZH0AZH
 2026AZHWAZHInternet上可以实现超文本链接的应用系统是（  ）。AZHBBSAZHGopherAZHWWWAZHTelnetAZHCAZH0AZH
-2027AZHWAZHInternet上许多不同的复杂网络和许多不同类型的计算机互相通信的基础是 (  )。AZHATMAZHTCP／IPAZHNovellAZHX.25AZHBAZH0AZH
-2028AZHWAZHInternet上有许多应用，其中可以用来访问其它主机的是（  ）。AZHE-mailAZHTelnetAZHWWWAZHFTPAZHBAZH0AZH
-2029AZHWAZHIP地址中，关于C类IP地址的说法正确的是（ ）。AZH可用于中型规模的网络AZH在一个网络中最多只能连接256台设备AZH此类IP地址用于多目的地址连接AZH此类IP地址保留为今后使用AZHBAZH0AZH
+2027AZHWAZHInternet上许多不同的复杂网络和许多不同类型
+的计算机互相通信的基础是 (  )
+。AZHATMAZHTCP／IPAZHNovellAZHX.25AZHBAZH0AZH
+2028AZHWAZHInternet上有许多应用，其中可以用来访问其它主机的是（  ）。
+AZHE-mailAZHTelnetAZHWWWAZHFTPAZHBAZH0AZH
+2029AZHWAZHIP地址中，关于C类IP地址的说法正确的是（ ）
+。AZH可用于中型规模的网络AZH在一个网络中最多只能连接256台设备AZH此类IP地址用于多目的地址连接AZH此类IP地址保留为今后使用AZHBAZH0AZH
 2030AZHWAZHISDN的含义是 (  ) 。AZH计算机网AZH广播电视网AZH综合业务数字网AZH光缆网AZHCAZH0AZH
-2031AZHWAZHISP的中文名称是（  ）。AZH传输的控制协议AZH因特网服务器提供商AZH网际协议AZH以上都不对AZHBAZH0AZH
-2032AZHWAZHTCP基本上可以相当于ISO七层协议中的（  ）。AZH应用层AZH网络层AZH传输层AZH物理层AZHCAZH0AZH
+2031AZHWAZHISP的中文名称是（  ）。
+AZH传输的控制协议AZH因特网服务器提供商AZH网际协议AZH以上都不对AZHBAZH0AZH
+2032AZHWAZHTCP基本上可以相当于ISO七层协议中的（  ）。
+AZH应用层AZH网络层AZH传输层AZH物理层AZHCAZH0AZH
 2033AZHWAZHWeb 浏览器向侦听标准端口的Web 服务器发出请求之后，在服务器响应的 TCP 报头中，源端口号是多少（  ）。AZH13AZH53AZH80AZH1024AZHCAZH0AZH
 2034AZHWAZHWeb每一个页面都有一个独立的地址，这些地址称为（ ）。AZHIP地址AZH域名AZHURLAZHLocationAZHBAZH0AZH
-2035AZHWAZHWWW服务是遵守（  ）模式来服务。AZH客户机/服务器AZH网络协议AZH网状结构AZH对等结构AZHAAZH0AZH
-2036AZHWAZH按密钥的使用个数，密码系统可以分为（  ）。AZH置换密码系统和易位密码系统AZH分组密码系统和序列密码系统AZH对称密码系统和非对称密码系统AZH密码学系统和密码分析学系统AZHCAZH0AZH
+2035AZHWAZHWWW服务是遵守（  ）模式来服务。
+AZH客户机/服务器AZH网络协议AZH网状结构AZH对等结构AZHAAZH0AZH
+2036AZHWAZH按密钥的使用个数，密码系统可以分为
+（  ）。AZH置换密码系统和易位密码系统AZH分组密码系统和序列密码系统AZH对称密码系统和非对称密码系统AZH密码学系统和密码分析学系统AZHCAZH0AZH
 2037AZHWAZH表征数据传输可靠性的指标是 (  ) 。AZH误码率AZH频带利用率AZH传输速度AZH信道容量AZHAAZH0AZH
-2038AZHWAZH城域网是介于广域网与局域网之间的一种高速网络。城域网设计的目标是要满足几十公里范围内的大量企业、机关、公司的（  ）。AZH多个计算机互联的需求AZH多个局域网互联的需求AZH多个广域网互联的需求AZH多个SDH网互联的需求AZHBAZH0AZH
+2038AZHWAZH城域网是介于广域网与局域网之间的一种高速网络。城域网设计的目标是要满足几十公里范围内的大量企业、机关、公司的
+（  ）。AZH多个计算机互联的需求AZH多个局域网互联的需求AZH多个广域网互联的需求AZH多个SDH网互联的需求AZHBAZH0AZH
 2039AZHWAZH一个子网网段地址为10.32.0.0 掩码为255.224.0.0 的网络，它允许的最大主机地址是（  ）。AZH10.32.254.254AZH10.32.255.254AZH10.63.255.254AZH10.63.255.255AZHCAZH1AZH
-2040AZHWAZH一台主机的IP地址为202.113.224.68，子网掩码为255.255.255.240，那么这台主机的主机号为（  ）。AZH4AZH6AZH8AZH68AZHAAZH1AZH
-2041AZHWAZH一台主机要解析www.abc.edu.cn的IP地址，如果这台主机配置的域名服务器为202.120.66.68，因特网顶级域名服务器为11.2.8.6，而存储www.abc.edu.cn与其IP地址对应关系的域名服务器为202.113.16.10，那么这台主机解析该域名通常首先查询（  ）。AZH202.120.66.68域名服务器AZH11.2.8.6域名服务器AZH202.113.16.10域名服务器AZH不能确定，可以从这3个域名服务器中任选一个AZHAAZH1AZH
+2040AZHWAZH一台主机的IP地址为202.113.224.68，子网掩码为255.255.255.240，那么这台主机的主机号为（  ）。
+AZH4AZH6AZH8AZH68AZHAAZH1AZH
+2041AZHWAZH一台主机要解析www.abc.edu.cn的IP地址，如果这台主机配置的域名服务器为202.120.66.68，因特网顶级域名服务器为11.2.8.6，而存储www.abc.edu.cn与其IP地址对应关系的域名服务器为202.113.16.10，那么这台主机解析该域名通常首先查询
+（  ）。AZH202.120.66.68域名服务器AZH11.2.8.6域名服务器AZH202.113.16.10域名服务器AZH不能确定，可以从这3个域名服务器中任选一个AZHAAZH1AZH
 2042AZHWAZH以下各项中,不是数据报操作特点的是(  ) 。AZH每个分组自身携带有足够的信息,它的传送是被单独处理的AZH在整个传送过程中,不需建立虚电路AZH使所有分组按顺序到达目的端系统AZH网络节点要为每个分组做出路由选择AZHCAZH1AZH
 2043AZHWAZH以下关于城域网建设方案特点的描述中，那些是正确的？（  ）
 1、主干传输介质采用光纤
 2、交换结点采用基于IP交换的高速路由交换机或ATM交换机
 3、采用ISO/OSI七层结构模型
 4、采用核心交换层，业务汇聚层与接入层3层模式AZH1、2、4AZH2、3AZH1、3、4AZH1、2、3AZHAAZH1AZH
-2044AZHWAZH以下哪项技术不属于预防病毒技术的范畴？（  ）AZH加密可执行程序AZH引导区保护AZH系统监控与读写控制AZH自身校验AZHDAZH1AZH
-2045AZHWAZH应用层DNS协议主要用于实现哪种网络服务功能？（  ）AZH网络设备名字到IP地址的映射AZH网络硬件地址到IP地址的映射AZH进程地址到IP地址的映射AZH用户名到进程地址的映射AZHAAZH1AZH
+2044AZHWAZH以下哪项技术不属于预防病毒技术的范畴？
+（  ）AZH加密可执行程序AZH引导区保护AZH系统监控与读写控制AZH自身校验AZHDAZH1AZH
+2045AZHWAZH应用层DNS协议主要用于实现哪种网络服务功能？（  ）
+AZH网络设备名字到IP地址的映射AZH网络硬件地址到IP地址的映射AZH进程地址到IP地址的映射AZH用户名到进程地址的映射AZHAAZH1AZH
 2046AZHWAZH用户A通过计算机网络向用户B发消息，表示自己同意签订某个合同，随后用户A反悔，不承认自己发过该条消息。为了防止这种情况，应采用（  ）。AZH数字签名技术AZH消息认证技术AZH数据加密技术AZH身份认证技术AZHAAZH1AZH
 2047AZHWAZH用户从CA安全认证找中心申请自己的证书，并奖该证书好浏览器的主要目的是（  ）。AZH以防他人假冒自己AZH验证WEB服务器的真实性AZH保护自己的计算机免受到病毒的危害AZH防止第三方头看传输的信息AZHAAZH1AZH
 2048AZHWAZH用于将MAC地址转换成IP地址的协议一般为（  ）。AZHARPAZHRARPAZHTCPAZHIPAZHBAZH1AZH
 2049AZHWAZH与190.1.10.20 mask 255.255.255.248属于同一网段的主机IP 地址是（  ）？AZH190.1.10.28AZH190.1.10.24AZH190.1.10.10AZH190.1.10.17AZHDAZH1AZH
-2050AZHWAZH域名解析的两种主要方式为（ ）。AZH直接解析和间接解析AZH直接解析和递归解析AZH间接解析和反复解析AZH反复解析和递归解析AZHDAZH1AZH
-2051AZHWAZH在TCP/IP参考模型中，传输层的主要作用是在互联网络的源主机与目的主机对等实体之间建立用于会话的（  ）。AZH点--点连接AZH操作连接AZH端--端连接AZH控制连接AZHCAZH1AZH
+2050AZHWAZH域名解析的两种主要方式为
+（ ）。AZH直接解析和间接解析AZH直接解析和递归解析AZH间接解析和反复解析AZH反复解析和递归解析AZHDAZH1AZH
+2051AZHWAZH在TCP/IP参考模型中，传输层的主要作用是在互联网络的源主机与目的主机对等实体之间建立用于会话的
+（  ）。AZH点--点连接AZH操作连接AZH端--端连接AZH控制连接AZHCAZH1AZH
 2052AZHWAZH在Telnet中，程序的（  ）。AZH执行和显示均在远程计算机上AZH执行和显示均在本地计算机上AZH执行在本地计算机上，显示在远程计算机上AZH执行在远程计算机上，显示在本地计算机上AZHDAZH1AZH
-2053AZHWAZH在访问因特网过程中，为了防止Web页面中恶意代码对自己计算机的损害，可以采取以下哪种防范措施？（  ）AZH利用SSL访问Web站点AZH将要访问的Web站点按其可信度分配到浏览器的不同安全区域AZH在浏览器中安装数字证书AZH要求Web站点安装数字证书AZHBAZH1AZH
+2053AZHWAZH在访问因特网过程中，为了防止Web页面中恶意代码对自己计算机的损害，可以采取以下哪种防范措施？（  ）
+AZH利用SSL访问Web站点AZH将要访问的Web站点按其可信度分配到浏览器的不同安全区域AZH在浏览器中安装数字证书AZH要求Web站点安装数字证书AZHBAZH1AZH
 2054AZHWAZH在局域网参考模型中，两个系统的同等实体按协议进行通信。在一个系统中，上下层之间则通过接口进行通信，用（ ）来定义接口。AZH服务原语AZH服务访问点AZH服务数据单元AZH协议数据单元AZHBAZH1AZH
-2055AZHWAZH在路由器互联的多个局域网中，通常要求每个局域网的（  ）。AZH数据链路层协议和物理层协议必须相同AZH数据链路层协议必须相同，而物理层协议可以不同AZH数据链路层协议可以不同，而物理层协议必须相同AZH数据链路层协议和物理层协议都可以不相同AZHDAZH1AZH
-2056AZHWAZH在数字信封技术中，发送方首先选择一个对称密钥并利用对称密钥加密技术对要发送的信息进行加密，然后再利用公开密钥加密技术并（  ）。AZH使用发送方自身的公钥对生成的对称密钥加密AZH使用发送方自身的私钥对生成的对称密钥加密AZH使用接收方的公钥对生成的对称密钥加密AZH使用接收方的私钥对生成的对称密钥加密AZHCAZH1AZH
-2057AZHWAZH在网络安全中，截取是指未授权的实体得到了资源的访问权。这是对（  ）。AZH可用性的攻击AZH完整性的攻击AZH保密性的攻击AZH真实性的攻击AZHCAZH1AZH
-2058AZHWAZH在网络管理中，通常需要监视网络吞吐率、利用率、错误率、和响应时间。监视这些参数主要是以下哪个功能的主要工作？（   ）AZH配置管理AZH故障管理AZH安全管理AZH性能管理AZHDAZH1AZH
-2059AZHWAZH在下列网络中，不属于局域网络是（  ）。AZH以太网AZHWANAZH3+网AZHNOVELL网AZHBAZH1AZH
+2055AZHWAZH在路由器互联的多个局域网中，通常要求每个局域网的
+（  ）。AZH数据链路层协议和物理层协议必须相同AZH数据链路层协议必须相同，而物理层协议可以不同AZH数据链路层协议可以不同，而物理层协议必须相同AZH数据链路层协议和物理层协议都可以不相同AZHDAZH1AZH
+2056AZHWAZH在数字信封技术中，发送方首先选择一个对称密钥并利用对称密钥加密技术对要发送的信息进行加密，然后再利用公开密钥加密技术并
+（  ）。AZH使用发送方自身的公钥对生成的对称密钥加密AZH使用发送方自身的私钥对生成的对称密钥加密AZH使用接收方的公钥对生成的对称密钥加密AZH使用接收方的私钥对生成的对称密钥加密AZHCAZH1AZH
+2057AZHWAZH在网络安全中，截取是指未授权的实体得到了资源的访问权。这是对（  ）。
+AZH可用性的攻击AZH完整性的攻击AZH保密性的攻击AZH真实性的攻击AZHCAZH1AZH
+2058AZHWAZH在网络管理中，通常需要监视网络吞吐率、利用率、错误率、和响应时间。监视这些参数主要是以下哪个功能的主要工作？（ 
+  ）AZH配置管理AZH故障管理AZH安全管理AZH性能管理AZHDAZH1AZH
+2059AZHWAZH在下列网络中，不属于局域网络是（  ）
+。AZH以太网AZHWANAZH3+网AZHNOVELL网AZHBAZH1AZH
 2060AZHWAZH在以下四个WWW网址中，（ ）网址不符合WWW网址书写规则。AZHwww．163．comAZHwww．nk．cn．eduAZHwww．863．org．cnAZHwww．tj．net.jpAZHBAZH1AZH
 2061AZHWAZH在以下网络威胁中，哪个不属于信息泄露(  )AZH数据窃听AZH流量分析AZH拒绝服务攻击AZH偷窃用户帐号AZHCAZH1AZH
 2062AZHWAZH支付网关的主要功能为（  ）。AZH进行通信和协议转换，完成数据加密与解密AZH代替银行等金融机构进行支付授权AZH处理交易中的资金划拨等事宜AZH为银行等金融机构申请证书AZHAAZH1AZH
@@ -2079,15 +2110,18 @@ l、电话线加上MODEM
 2064AZHWAZH10BASE-T使用标准的RJ-45接插件与3类或5类非屏蔽双绞线连接网卡与集线器。网卡与集线器之间的双绞线才长度最大为（  ）。AZH15米AZH50米AZH100米AZH500米AZHCAZH0AZH
 2065AZHWAZHCHINANET于(  )年向社会开放。AZH1998AZH1985AZH1990AZH1995AZHDAZH0AZH
 2066AZHWAZHFTP采用的目录结构是（  ）。AZH树型结构AZH链状结构AZH条状结构AZH网状结构AZHAAZH0AZH
-2067AZHWAZHIEEE802协议基本上覆盖OSI参考模型的(  )。AZH应用层与传输层AZH应用层与网络层AZH应用层与物理层AZH物理层与数据链路层AZHDAZH0AZH
+2067AZHWAZHIEEE802协议基本上覆盖OSI参考模型的(  )
+。AZH应用层与传输层AZH应用层与网络层AZH应用层与物理层AZH物理层与数据链路层AZHDAZH0AZH
 2068AZHWAZHIE浏览器将因特网世界划分为因特网区域、本地Intranet区域、可信站点区域和受限站点区域的主要目的是（  ）。AZH避免第三方窃视传输的信息AZH验证Web站点AZH避免他人假冒自己的身份AZH保护自己的计算机AZHDAZH0AZH
 2069AZHWAZHInternet协议IPv6 从原来的32位地址扩展到了（   ）位。AZH64AZH128AZH512AZH256AZHBAZH0AZH
 2070AZHWAZHISDN常用的传输介质是 (  ) 。AZH无线电波AZH光缆AZH双绞线AZH铜质电缆AZHBAZH0AZH
 2071AZHWAZHTCP/IP参考模型将网络分成4层，它们是：Ⅰ.网络接口层Ⅱ.互联层Ⅲ.传输层Ⅳ.应用层请问因特网中路由器必须实现哪几层功能(  )。AZHⅠ和ⅡAZHⅠ、Ⅱ和ⅢAZHⅡ、Ⅲ和ⅣAZHⅠ、Ⅱ、Ⅲ和ⅣAZHAAZH0AZH
-2072AZHWAZHTCP/IP参考模型中的主机-网络层对应于OSIRM中的(  ) 。AZH网络层AZH物理层AZH数据链路层AZH物理层与数据链路层AZHDAZH0AZH
+2072AZHWAZHTCP/IP参考模型中的主机-网络层对应于OSIRM中的(  ) 。
+AZH网络层AZH物理层AZH数据链路层AZH物理层与数据链路层AZHDAZH0AZH
 2073AZHWAZHTCP／IP协议是一种开放的协议标准，下列哪个不是它的特点？（  ）AZH独立于特定计算机硬件和操作系统AZH统一编址方案AZH政府标准AZH标准化的高层协议AZHCAZH0AZH
 2074AZHWAZH报文交换又可称为什么？(  )AZH无连接AZH数据报AZH存储转发AZH虚电路AZHCAZH0AZH
-2075AZHWAZH传输速率的单位是bps，其含义是(   )。AZHBytes Per SecondAZHBaud Per SecondAZHBit Per SecondAZHBillion Per SecondAZHCAZH0AZH
+2075AZHWAZH传输速率的单位是bps，其含义是(   )
+。AZHBytes Per SecondAZHBaud Per SecondAZHBit Per SecondAZHBillion Per SecondAZHCAZH0AZH
 2076AZHWAZH代表非盈利组织的顶级域名是(   )。AZHeduAZHgovAZHorgAZHmilAZHCAZH0AZH
 2077AZHWAZH带宽是对下列哪种媒体容量的度量？(  )AZH快速信息通信AZH传送数据AZH在高频范围内传送的信号AZH上述所有的AZHBAZH0AZH
 2078AZHWAZH当你在地址工具栏中键入URL时，尚未完全键入，地址栏就自动补填了其余的URL地址，请问是在何处作了何种设置。（  ）AZH是IE自带的，不须设置AZH无法设置AZH在Internet选项中的高级对话框中进行了自动完成功能的设置AZH在Internet选项中的内容对话框中进行了自动完成功能的设置AZHDAZH0AZH
@@ -2099,8 +2133,10 @@ l、电话线加上MODEM
 2084AZHWAZHInternet 2可以连接到现在的Internet上，但其宗旨是组建一个为其成员组织服务的专用网络，初始运行速率可以达到（  ）。AZH51.84mbpsAZH155.520MbpsAZH2.5GbpsAZH10GbpsAZHDAZH1AZH
 2085AZHWAZHIPV4版本的因特网总共有（  ）个A类地址网络。AZH65000AZH200万AZH126AZH128AZHCAZH1AZH
 2086AZHWAZHIP协议是对每个信息包都赋予一个地址，在Internet上的电脑（  ）发送。AZH选择固定的路径AZH根据线路闲忙，选择不同的路径AZH随机选择一个线路AZH选择一个不忙的路径AZHBAZH1AZH
-2087AZHWAZHSET协议是针对(  )。 AZH电子现金支付的网上交易而设计的规范AZH电子支票支付的网上交易而设计的规范AZH电子信用卡支付的网上交易而设计的规范AZH邮局汇款支付的网上交易而设计的规范AZHCAZH1AZH
-2088AZHWAZHTCP/IP代表传输控制协议/互联网协议，其实它代表一个标准协议组，下面不属于这个标准协议组的协议是(   )。AZH简单邮件传送协议SMTPAZH文件传送协议FTPAZH远程网TelenetAZHAppleTalkAZHDAZH1AZH
+2087AZHWAZHSET协议是针对(  )。 
+AZH电子现金支付的网上交易而设计的规范AZH电子支票支付的网上交易而设计的规范AZH电子信用卡支付的网上交易而设计的规范AZH邮局汇款支付的网上交易而设计的规范AZHCAZH1AZH
+2088AZHWAZHTCP/IP代表传输控制协议/互联网协议，其实它代表一个标准协议组，下面不属于这个标准协议组的协议是(   )。
+AZH简单邮件传送协议SMTPAZH文件传送协议FTPAZH远程网TelenetAZHAppleTalkAZHDAZH1AZH
 2089AZHWAZHTCP和UDP的一些端口保留给一些特定的应用使用。为HTTP协议保留的端口号为(  )。AZHTCP的80端口AZHUDP的80端口AZHTCP的25端口AZHUDP的25端口AZHAAZH1AZH
 2090AZHWAZHTCP要实现流量控制和阻塞控制须采用（ ）。AZH许可证法AZH丢弃分组法AZH预约缓冲区法AZH滑动窗口技术AZHDAZH1AZH
 2091AZHWAZH报文交换方式适用于下列哪些负载情况？(  )AZH间歇式轻负载AZH持续的实时要求高的负荷AZH中等或大量随时要传送的负荷AZH传输数据率需固定的负荷AZHAAZH1AZH
@@ -2317,13 +2353,20 @@ l、电话线加上MODEM
 2302AZHJAZH链接存储的存储结构所占存储空间（ ）。AZH分两部分，一部分存放结点值，另一部分存放表示结点间关系的指针AZH只有一部分，存放结点值AZH只有一部分，存储表示结点间关系的指针AZH分两部分，一部分存放结点值，另一部分存放结点所占单元数AZHAAZH0AZH
 2303AZHJAZH链表是一种采用（ ）存储结构存储的线性表。AZH顺序AZH链式AZH星式AZH网状AZHBAZH0AZH
 2304AZHJAZH线性表若采用链式存储结构时，要求内存中可用存储单元的地址（ ）。AZH必须是连续的AZH部分地址必须是连续的AZH一定是不连续的AZH连续或不连续都可以AZHDAZH0AZH
-2305AZHJAZH下列算法suanfa1中语句"x=x*2；"的执行次数是（ ）。
-void suanfa1(int n)
-{ int i,j,x=1；
-for(i=1；i<=n；i++)
-for(j=i；j<=n；j++)
-x=x*2；
-printf("%d",x)；
+2305AZHJAZH下列算法suanfa1中语句"x=x*2；"的执行次数是（ ）。
+
+void suanfa1(int n)
+
+{ int i,j,x=1；
+
+for(i=1；i<=n；i++)
+
+for(j=i；j<=n；j++)
+
+x=x*2；
+
+printf("%d",x)；
+
 }AZHn(n-1)/2AZHn(n+1)/2AZHn<sup>2</sup>AZHnlog<sub>2</sub>nAZHBAZH1AZH
 2306AZHJAZH设有一个二维数组A[m][n]，假设A[0][0]存放位置在644(10)，A[2][2]存放位置在676(10)，每个元素占一个空间，问A[3][3](10)存放在什么位置（ ）脚注(10)表示用10进制表示。AZH688AZH678AZH692AZH696AZHCAZH1AZH
 2307AZHJAZH对n个记录的文件进行快速排序，所需要的辅助存储空间大致为（ ）。AZHO（1）AZHO（n）AZHO（log<sub>2</sub>n）AZHO（n<sup>2</sup>）AZHCAZH1AZH
@@ -2362,8 +2405,10 @@ printf("%d",x)；
 2340AZHJAZH程序段s=i=0；do {i=i+1； s=s+i；}while(i<=n)；的时间复杂度为（ ）。AZHO(n)AZHO(nlog<sub>2</sub>n)AZHO(n<sup>2</sup>)AZHO(n<sup>3</sup>/2)AZHAAZH1AZH
 2341AZHJAZH建立一个长度为n的有序单链表的时间复杂度为（ ）。AZHO(n)AZHO(1)AZHO(n<sup>2</sup>)AZHO(log<sub>2</sub>n)AZHCAZH1AZH
 2342AZHJAZH在二叉排序树中插入一个关键字值的平均时间复杂度为（ ）。AZHO(n)AZHO(log<sub>2</sub>n)AZHO(nlog<sub>2</sub>n)AZHO(n<sup>2</sup>)AZHBAZH1AZH
-2343AZHJAZH下列程序段的时间复杂度为（ ）。
-for(i=0； i<m； i++) for(j=0； j<t； j++) c[i][j]=0；
+2343AZHJAZH下列程序段的时间复杂度为（ ）。
+
+for(i=0； i<m； i++) for(j=0； j<t； j++) c[i][j]=0；
+
 for(i=0； i<m； i++) for(j=0； j<t； j++) for(k=0； k<n； k++) c[i][j]=c[i][j]+a[i][k]*b[k][j]；AZHO(m*n*t)AZHO(m+n+t)AZHO(m+n*t)AZHO(m*t+n)AZHAAZH1AZH
 2344AZHJAZH设顺序线性表中有n个数据元素，则删除表中第i个元素需要移动（ ）个元素。AZHn-iAZHn+l -iAZHn-1-iAZHiAZHAAZH1AZH
 2345AZHJAZH设F是由T1、T2和T3三棵树组成的森林，与F对应的二叉树为B，T1、T2和T3的结点数分别为N1、N2和N3，则二叉树B的根结点的左子树的结点数为（ ）。AZHN1-1AZHN2-1AZHN2+N3AZHN1+N3AZHAAZH1AZH
@@ -2408,7 +2453,7 @@ s->next=p->next;p->next=s;t=p->data;p->data=s->data;s->data=t;AZH结点*p与结�
 2380AZHJAZH高度为n、结点数也为n的二叉树，共有（ ）棵。AZHnAZH2<sup>n-1</sup>AZHn-1AZH2n-1AZHBAZH1AZH
 2381AZHJAZH线性链表是通过何种方式表示元素之间的关系（ ）。AZH后继元素地址AZH元素的存储顺序AZH左、右孩子地址AZH元素的相对存储位置AZHAAZH1AZH
 2382AZHJAZH对于经常要存取线性表任意指定位置元素的应用，线性表应采用（ ）存储结构。AZH顺序存储结构AZH链式存储结构AZH线性链表AZH栈AZHAAZH1AZH
-2383AZHJAZH向一个栈顶指针为HS的链栈中将一个S指针所指的结点入栈，执行（ ）。AZHHS->next=sAZHS->next=HS->next;HS->next=sAZHS->next=HS;HS=sAZHS->next=HS;HS=HS->nextAZHBAZH1AZH
+2383AZHJAZH向一个栈顶指针为HS的链栈中将一个S指针所指的结点入栈，执行（ ）。AZHHS->next=sAZHS->next=HS->next;HS->next=sAZHS->next=HS;HS=sAZHS->next=HS;HS=HS->nextAZHCAZH1AZH
 2384AZHJAZH列说法正确的是( )。AZH堆栈是在两端操作、先进后出的线性表AZH堆栈是在一端操作、先进后出的线性表AZH队列是在一端操作、先进先出的线性表AZH队列是在两端操作、后进先出的线性表AZHBAZH1AZH
 2385AZHJAZH向一个有127个元素的顺序表中插入一个新元素并保持原来顺序不变，平均要移动（ ）个元素。AZH8AZH63.5AZH63AZH7AZHBAZH1AZH
 2386AZHJAZH线性表Ｌ在（ ）情况下适用于使用链式结构实现。AZH需经常修改Ｌ中的结点值AZH需不断对Ｌ进行删除插入AZHＬ中含有大量的结点AZHＬ中结点结构复杂AZHBAZH1AZH
@@ -2416,14 +2461,22 @@ s->next=p->next;p->next=s;t=p->data;p->data=s->data;s->data=t;AZH结点*p与结�
 2388AZHKAZH关于数据库管理系统下面哪个描述是最正确的AZH数据库管理系统是数据的集合.AZH数据库管理系统是数据的集合,并且存储着数据与数据之间的关系.AZH数据库管理系统是由一个互相关联的数据的集合和一组用以访问这些数据的程序组成.AZH数据库管理系统是由数据的集合和一组用以访问这些数据的程序组成AZHCAZH0AZH
 2389AZHKAZH关于数据库事务描述不正确的是AZH一个事务中的所有对数据库的改变可以部分完成和部分不完成.AZH一个事务中的所有对数据库的改变必须全部完成或全部不完成.AZH数据库的事务是不可以再次划分的.AZH如果事务在完成前被中断,数据库管理系统能把那些由未完成事务所产生的数据变化从数据库中恢复AZHAAZH0AZH
 2390AZHKAZH在DBMS的关系中AZH关键字属性值可以为空AZH外关键字属性值可以为空AZH任何属性值都可以为空AZH任何属性值都不可以为空.AZHBAZH0AZH
-2391AZHKAZHstaff的定义如下
-id INTEGER
-name CHAR(20)
-dept INTEGER
-job CHAR(20)
-years INTEGER
-salary DECIMAL(10,2)
-comm DECIMAL(10,2)
+2391AZHKAZHstaff的定义如下
+
+id INTEGER
+
+name CHAR(20)
+
+dept INTEGER
+
+job CHAR(20)
+
+years INTEGER
+
+salary DECIMAL(10,2)
+
+comm DECIMAL(10,2)
+
 下面哪个语句可以按照job和salary的升序排序来返回所有员工的AZHSELECT id,name,salary,dept,job,years,comm FROM staff ORDER BY 4,6AZHSELECT id,name,salary,dept,job,years,comm FROM staff GROUP BY 4,6AZHSELECT id,name,salary,dept,job,years,comm FROM staff ORDER BY 5,3AZHSELECT id,name,salary,dept,job,years,comm FROM staff GROUP BY 5,3AZHCAZH0AZH
 2392AZHKAZH关系模式R,R的属性集是{ABCDEG}有函数依赖集F={AB->C , C->A, BC->D , ACD->B,BE->C,D->EG,CG->BD,CE->AG},计算(BD)+的属性闭包.AZHBDEGAZHBDCAZHABCDEGAZHABCDAZHCAZH0AZH
 2393AZHKAZH关系模式Sailors(sid,sname,age,ratring)下面哪个语句能够查找出sname属性值至少为四个字符长,并且开始和结束字符都是B的水手信息.AZHSELECT * FROM SAILORS WHERE sname like 'B%%_B'AZHSELECT * FROM SAILORS WHERE sname like'B__%B'AZHSELECT * FROM SAILORS WHERE sname like 'B??*B'AZHSELECT * FROM SAILORS WHERE sname like'B**?B'AZHBAZH0AZH
@@ -2432,35 +2485,60 @@ comm DECIMAL(10,2)
 2396AZHKAZH如果有两个关系T1,T2.客户要求每当给T2删除一条记录时,T1中特定记录就需要被改变,我们需要定义什么来满足该要求.AZH在T1上定义视图AZH在T2上定义视图AZH在T1和T2上定义约束AZH定义triggerAZHDAZH0AZH
 2397AZHKAZH设有关系模式R(B,I,S,Q,D),其上函数依赖集F={S->D,I->B,IS->Q,B->Q,B->I}下面那些是R的关键字.AZHISAZHIBAZHIQAZHISBAZHAAZH0AZH
 2398AZHKAZH数据库系统的log中检查点的作用是:AZH事务取消时数据库关系系统需要重检查点开始取消.AZH事务正确完成时数据库系统会在log中设置检查点.AZH库重新启动时恢复系统中的重做阶段从检查点开始.AZH库重新启动时恢复系统中的分析阶段从检查点开始AZHDAZH0AZH
-2399AZHKAZH数据库系统管理员按照事务的方式执行下面的语句：
-Create table tab1 (a int,b int)
-insert into tabl values(1,2)
-insert into tab1 values(2,3)
-commit
-Insert into tab1 values(2,3)
-Insert into tab1 values(1,6)
-Commit
- Delete from tab1 where a=1
- Insert into tab1 values(1,7)
- Delete from tab1 where a=1
- Insert into tab1 values(1,8)
-数据库系统突然崩溃，系统重新启动后，该管理员执行 
- Select count(*) from tab1
+2399AZHKAZH数据库系统管理员按照事务的方式执行下面的语句：
+
+Create table tab1 (a int,b int)
+
+insert into tabl values(1,2)
+
+insert into tab1 values(2,3)
+
+commit
+
+Insert into tab1 values(2,3)
+
+Insert into tab1 values(1,6)
+
+Commit
+
+ Delete from tab1 where a=1
+
+ Insert into tab1 values(1,7)
+
+ Delete from tab1 where a=1
+
+ Insert into tab1 values(1,8)
+
+数据库系统突然崩溃，系统重新启动后，该管理员执行 
+
+ Select count(*) from tab1
+
 数据库系统的输出是多少?AZH6AZH3AZH4AZH5AZHCAZH0AZH
-2400AZHKAZH数据库中SAILORS表是由joe创建的.在DBMS完成下面的语句后
-Grant select on Sailors To Art With Grant option...Joe执行
-Grant select,update on Sailors To Bob With Grant option...Joe执行
-Grant select on Sailors To Bob With Grant option...Art执行
-Revoke select on Sailors From Art Cascade...Joe执行
+2400AZHKAZH数据库中SAILORS表是由joe创建的.在DBMS完成下面的语句后
+
+Grant select on Sailors To Art With Grant option...Joe执行
+
+Grant select,update on Sailors To Bob With Grant option...Joe执行
+
+Grant select on Sailors To Bob With Grant option...Art执行
+
+Revoke select on Sailors From Art Cascade...Joe执行
+
 Bob对Sailors表拥有AZHselect权AZHUpdate权AZH没有任何权利AZHselect和Update权AZHDAZH0AZH
 2401AZHKAZH我们在DBMS中记录数据库员工和员工工作信息,要求当某个员工离职后,数据库需要自动删除该员工的工作信息,在定义工作表时我们对于外关键字的删除规则应定义为AZHON DELETE ROLLBACKAZHON DELETE CASCADEAZHON DELETE SET NULLAZHON DELETE NO ACTIONAZHBAZH0AZH
 2402AZHKAZH我们在一个关系中AZH必须定义一个主关键字AZH只能创建一个聚集索引(cluster index)AZH只能创建一个稠密索引AZH只能定义一个约束.AZHBAZH0AZH
-2403AZHKAZH下面的语句按顺序成功执行后
-CREATE TABLE tab1 (c1 CHAR(1))
-INSERT INTO tab1 VALUES ('b')
-CREATE VIEW view1 AS SELECT c1 FROM tab1 WHERE c1 ='a'
-INSERT INTO view1 VALUES ('a')
-INSERT INTO tab1 VALUES ('b')
+2403AZHKAZH下面的语句按顺序成功执行后
+
+CREATE TABLE tab1 (c1 CHAR(1))
+
+INSERT INTO tab1 VALUES ('b')
+
+CREATE VIEW view1 AS SELECT c1 FROM tab1 WHERE c1 ='a'
+
+INSERT INTO view1 VALUES ('a')
+
+INSERT INTO tab1 VALUES ('b')
+
 执行SELECT c1 FROM tab1可以选择出多少条记录AZH0AZH1AZH2AZH3AZHDAZH0AZH
 2404AZHKAZH下面关于数据库事务处理描述错误的是( )AZH原子性:表示的是事务的所有操作在数据库中要么全部正确反映出来要么全部不反映.AZH一致性:事务在执行前如果数据库是一致性的那么执行后也是一致性的.AZH隔离性:事务在执行过程中可以感觉到系统中其他事务的执行AZH持久性:一个事务成功完成后,它对数据库的改变必须是永久的,即使是系统出现故障时也如此.AZHCAZH0AZH
 2405AZHKAZH下面关于索引说法正确的是( )AZH聚集索引必然是稠密索引AZH在数据库中只能创建一个稀松AZH在数据库中只能创建一个聚集索引AZH索引文件中一定不包括记录的详细数据AZHAAZH0AZH
@@ -2487,9 +2565,12 @@ INSERT INTO tab1 VALUES ('b')
 2426AZHKAZH数据库的概念模型独立于( )AZH具体的机器和DBMSAZHE-R图AZH信息世界AZH现实世界AZHAAZH0AZH
 2427AZHKAZH数据库中，数据的物理独立性是指( )AZH数据库与数据库管理系统的相互独立AZH用户程序与DBMS的相互独立AZH用户的应用程序与存储在磁盘上的数据库中的数据是相互独立的AZH应用程序与数据库中数据的逻辑结构相互独立AZHCAZH0AZH
 2428AZHKAZH关系模式的任何属性( )AZH不可再分AZH可再分AZH命名在该关系模式中可以不惟一AZH以上都不是AZHAAZH0AZH
-2429AZHKAZH下面的两个关系中，职工号和设备号分别为职工关系和设备关系的关键字：
-职工（职工号，职工名，部门号，职务，工资）
-设备（设备号，职工号，设备名，数量）
+2429AZHKAZH下面的两个关系中，职工号和设备号分别为职工关系和设备关系的关键字：
+
+职工（职工号，职工名，部门号，职务，工资）
+
+设备（设备号，职工号，设备名，数量）
+
 两个关系的属性中，存在一个外关键字为( )AZH职工关系的“职工号”AZH职工关系的“设备号”AZH设备关系的“职工号”AZH设备关系的“设备号”AZHCAZH0AZH
 2430AZHKAZH以下四个叙述中，哪一个不是对关系模式进行规范化的主要目的( )AZH减少数据冗余AZH解决更新异常问题AZH加快查询速度AZH提高存储空间效率AZHCAZH0AZH
 2431AZHKAZH保护数据库，防止未经授权或不合法的使用造成的数据泄漏、非法更改或破坏。这是指数据的( )AZH安全性AZH完整性AZH并发控制AZH恢复AZHAAZH0AZH
@@ -2918,22 +2999,34 @@ INSERT INTO tab1 VALUES ('b')
 2854AZHZAZH在请求调页中可采用多种置换算法，其中LRU是( )置换算法。AZH最佳AZH最近最久未用AZH最近未用AZH最少使用AZHBAZH0AZH
 2855AZHZAZHCPU的调度分为高级、中级和低级三种，其中低级调度是指( )调度。AZH作业AZH交换AZH进程AZH线程AZHCAZH0AZH
 2856AZHZAZH一个作业的完成要经过若干加工步骤，这每个步骤称为（ ）。AZH作业流AZH作业步AZH子进程AZH子程序AZHBAZH0AZH
-2857AZHZAZH下面6个系统中，必须是实时操作系统的有（ ）个。
-计算机辅助设计系统
-航空订票系统
-过程控制系统
-办公自动化系统
-计算机激光照排系统
+2857AZHZAZH下面6个系统中，必须是实时操作系统的有（ ）个。
+
+计算机辅助设计系统
+
+航空订票系统
+
+过程控制系统
+
+办公自动化系统
+
+计算机激光照排系统
+
 机器翻译系统AZH1AZH2AZH3AZH4AZHCAZH1AZH
 2858AZHZAZH一作业8：00到达系统，估计运行时间为1小时，若10：00开始执行该作业，其响应比是( )。AZH2AZH1AZH3AZH.5AZHCAZH1AZH
 2859AZHZAZH若系统中有五台绘图仪，有多个进程均需要使用两台，规定每个进程一次仅允许申请一台，则至多允许（ ）个进程参于竞争，而不会发生死锁。AZH5AZH2AZH3AZH4AZHDAZH1AZH
 2860AZHZAZH某系统中有3个并发进程，都需要同类资源4个，试问该系统不会发生死锁的最少资源数是（ ）。AZH9AZH10AZH11AZH12AZHBAZH1AZH
-2861AZHZAZH分时系统需要使用下面哪些成分? （ ）
-(1)多道程序设计技术
-(2)作业说明书
-(3)终端命令解释程序
-(4)中断处理
-(5)优先级调度
+2861AZHZAZH分时系统需要使用下面哪些成分? （ ）
+
+(1)多道程序设计技术
+
+(2)作业说明书
+
+(3)终端命令解释程序
+
+(4)中断处理
+
+(5)优先级调度
+
 (6)系统调用AZH(1)、(2)、(3)、(4)AZH(1)、(2)、(4)、(5)AZH(1)、(3)、(4)、(6)AZH(2)、(3)、(4)、(5)AZHCAZH1AZH
 2862AZHZAZH下列关于批处理操作系统的叙述中错误的是（ ）。AZH“通道”和“中断”技术的出现，使得输入/输出设备与CPU可并行工作AZH批处理系统可分为单道批处理系统和多道批处理系统AZH批处理系统具有用户与计算机的直接交互能力，提高了系统资源的利用率AZH单道批处理系统是一种单用户操作系统AZHCAZH1AZH
 2863AZHZAZH一个40G的硬盘，块的大小为1k，其FAT要占（　　　）空间。AZH100MAZH120MAZH140MAZH160MAZHCAZH1AZH
@@ -3013,11 +3106,16 @@ INSERT INTO tab1 VALUES ('b')
 2937AZHYAZH指令SCAS的寻址方式是( )。AZH源操作数为寄存器寻址，目的操作数为寄存器间接寻址AZH源操作数为寄存器间接寻址，目的操作数为寄存器间接寻址AZH源操作数为寄存器间接寻址，目的操作数为寄存器寻址AZH源操作数为寄存器寻址，目的操作数为寄存器寻址AZHAAZH1AZH
 2938AZHYAZH假定(SS)=2000H，(SP)=0100H，(AX)=2107H，执行指令PUSH AX后，存放数据21H的物理地址是( )。AZH20102HAZH20101HAZH200FEHAZH200FFHAZHDAZH0AZH
 2939AZHYAZH两个有符号的整数A和B比较后，为了判定A是否大于B，应使用下列哪条指令( )。AZHJGAZHJAAZHJNBAZHJNBEAZHAAZH0AZH
-2940AZHYAZH下列程序段执行完后，
-MOV CL, 3
-MOV BX, 0B7H
-ROL BX, 1
-ROR BX, CL
+2940AZHYAZH下列程序段执行完后，
+
+MOV CL, 3
+
+MOV BX, 0B7H
+
+ROL BX, 1
+
+ROR BX, CL
+
 BX寄存器中的内容是( )。AZH002DHAZH00EDHAZHC02DHAZH000DHAZHCAZH1AZH
 2941AZHYAZHJMP FAR PTR ABCD（ABCD是符号地址）是( )。AZH段内间接转移AZH段间间接转移AZH段内直接转移AZH段间直接转移AZHDAZH0AZH
 2942AZHYAZH已知JNC指令的机器代码是73FCH（FC是根据条件转移确定的偏移量），CF=0，IP=1000H，试问执行该指令后，IP＝( )。AZH0FFFHAZH10FEHAZH0FFEHAZH10FCHAZHCAZH1AZH
@@ -3026,16 +3124,25 @@ BX寄存器中的内容是( )。AZH002DHAZH00EDHAZHC02DHAZH000DHAZHCAZH1AZH
 2945AZHYAZH算术位移指令SAR用于带符号数除2，而逻辑位移指令SHR用于( )。AZH带符号数减2AZH带符号数除2AZH无符号数乘2AZH无符号数除2AZHDAZH0AZH
 2946AZHYAZH直接、间接、立即三种寻址方式指令的执行速度，由快至慢的排序为( )。AZH直接、立即、间接AZH直接、间接、立即AZH立即、直接、间接AZH不一定AZHCAZH0AZH
 2947AZHYAZH若AL，BL中是BCD数，且在执行ADD AL，BL之后，(AL)=0EH，CFAF＝10。再执行DAA后，(AL)=( )。AZH04HAZH14HAZH64HAZH74HAZHDAZH0AZH
-2948AZHYAZH下面程序段中，
-CMP AL，OFBH
-JNL NEXT
-......
-NEXT:......
+2948AZHYAZH下面程序段中，
+
+CMP AL，OFBH
+
+JNL NEXT
+
+......
+
+NEXT:......
+
 当满足条件转到NEXT标号执行时，AL中的值正确的是( )。AZHAL=80HAZHAL=8FHAZHAL=0F0HAZHAL=0FFHAZHDAZH1AZH
-2949AZHYAZH对于下列程序段：
-AGAIN: MOV ES:[DI],AL
-INC DI
-LOOP AGAIN
+2949AZHYAZH对于下列程序段：
+
+AGAIN: MOV ES:[DI],AL
+
+INC DI
+
+LOOP AGAIN
+
 完成相同功能的指令是( )。AZHREP  MOVSBAZHREP  LODSBAZHREP  STOSBAZHREPE  SCASBAZHCAZH1AZH
 2950AZHYAZH设AL和BL中都是带符号数，当AL≤BL时转至NEXT处，在CMP AL，BL指令后应选用正确的条件转移指令是( )。AZHJBEAZHJNGAZHJNAAZHJNLEAZHBAZH0AZH
 2951AZHYAZH使得JB指令执行转移操作的条件是( )。AZHCF=1AZHCF=1且ZF=0AZHZF=0AZHCF=0或ZF=1AZHBAZH0AZH
@@ -3048,10 +3155,14 @@ LOOP AGAIN
 2958AZHYAZH用ASSUME伪指令指定某个段分配给那个寄存器后，还需要通过MOV指令来给段寄存器赋值，下面哪个不能这样做，而是在程序初始化时自动完成的。( )。AZH数据段寄存器DSAZH堆栈段寄存器SSAZH代码段寄存器CSAZH附加段寄存器ESAZHCAZH0AZH
 2959AZHYAZH有关宏指令和子程序，下列说法哪一个不正确？( )。AZH宏指令并不能简化目标程序AZH子程序可以简化目标程序，但执行时间要长些AZH子程序或过程在执行时，由CPU处理AZH宏指令在执行时要保护现场和断点AZHDAZH0AZH
 2960AZHYAZH下列哪一个伪指令对符号名可以重复定义( )。AZH＝AZHEQUAZHDBAZHPURGEAZHAAZH0AZH
-2961AZHYAZH下面指令序列：
-MOV BX，0FFFCH
-MOV CL，2
-SAR BX，CL
+2961AZHYAZH下面指令序列：
+
+MOV BX，0FFFCH
+
+MOV CL，2
+
+SAR BX，CL
+
 执行后的正确结果是( )。AZH3FFFHAZH0FFFFHAZH0FFFCHAZH0FFF5HAZHBAZH0AZH
 2962AZHYAZH一般用条件转移指令JZ、JNZ、JC、JNC等来实现程序的什么结构( )。AZH顺序AZH分支AZH循环AZH模块化AZHBAZH0AZH
 2963AZHYAZH在“先判断后工作”的循环程序结构中，循环执行的次数最少是( )。AZH不定AZH0AZH1AZH2AZHBAZH0AZH
@@ -3069,8 +3180,10 @@ SAR BX，CL
 2975AZHYAZH下面哪个不是子程序的参数传递方法( )。AZH立即数传递AZH寄存器传递AZH堆栈传递AZH存储器传递AZHAAZH0AZH
 2976AZHYAZH如某存储器分段时，一个段最多允许16K个字节单元，那么表示一个段内偏移地址的二进制位数至少是( )。AZH14位AZH15位AZH16位AZH17位AZHAAZH1AZH
 2977AZHYAZH指令语句中标号的错误定义是( )。AZH在代码段中的名字项后面紧跟冒号定义AZH用EQU伪指令定义AZH用LABEL伪指令定义AZH由“JMP标号”指令定义AZHDAZH1AZH
-2978AZHYAZHBUFl DB 3 DUP(0，2DUP(1，2)，3)
-COUNT EQU $ -BUFl
+2978AZHYAZHBUFl DB 3 DUP(0，2DUP(1，2)，3)
+
+COUNT EQU $ -BUFl
+
 符号COUNT等价的值是( )。AZH6AZH8AZH16AZH18AZHDAZH1AZH
 2979AZHYAZH变量具有类型属性，错误的类型是( )。AZH字节型AZH字型AZH字符型AZH双字型AZHCAZH1AZH
 2980AZHYAZH下列指令中有语法错误的是( )。AZHADD AX，12HAZHSUB [BX]，CXAZHMOV 20H [BX]，[SI]AZHINC BYTE PTR  [BP]AZHCAZH0AZH
@@ -3078,8 +3191,10 @@ COUNT EQU $ -BUFl
 2982AZHYAZH用MOV指令将十进制数89以非压缩BCD码格式送入AX，可使用的指令是( )。AZHMOV AX，89AZHMOV AX，0809HAZHMOV AX，89HAZHMOV AX，0809AZHBAZH0AZH
 2983AZHYAZH下面有语法错误的语句是( )。AZHMOV AX，[BX][SI]AZHMOV AX，-2[BX][DI]AZHMOV AX，[BX][BP]AZHMOV AX，-1[BX][SI]AZHCAZH1AZH
 2984AZHYAZH设CL=05H，要获得CL=0AH，可选用的指令是( )。AZHXOR CL，0FHAZHNOT CLAZHOR CL，0AHAZHAND CL，0FHAZHAAZH0AZH
-2985AZHYAZHMOV AL，79
-ADD AL，0B1H
+2985AZHYAZHMOV AL，79
+
+ADD AL，0B1H
+
 上面指令执行后，设置的标志位CF和OF的值是( )。AZHCF=0， OF=1AZHCF=l， OF=1AZHCF=0， OF=0AZHCF=1， OF=0AZHDAZH1AZH
 2986AZHYAZH当执行条件转移指令JNS OPR时，如条件成立，相对于转移指令的转移距离是( )。AZH-128......+127字节AZH-126......+129字节AZH-128......+129字节AZH-126......+127字节AZHAAZH1AZH
 2987AZHYAZH下列指令执行后，能影响标志位的指令是( )。AZHPUSHFAZHPOPFAZHJNLE OPRAZHLOOPE LOPAZHBAZH1AZH
@@ -3103,24 +3218,35 @@ ADD AL，0B1H
 3005AZHYAZH设（AL）=07H，要使（AL）=-07H应执行的指令是( )。AZHOR AL，80HAZHNOT ALAZHNEG ALAZHADD AL，80HAZHCAZH1AZH
 3006AZHYAZH要使BL中的低四位变反，高四位不变，应执行指令( )。AZHNOT BLAZHOR BL，0FHAZHAND BL，0FHAZHXOR BL，0FHAZHDAZH0AZH
 3007AZHYAZH下列指令执行时操作数在数据段的是( )。AZHMOV AX，32768HAZHADD AL，AHAZHNEG BXAZHINC [DI]AZHDAZH0AZH
-3008AZHYAZHMOV AL，-1
-NEG AL
-XOR AL，65H
+3008AZHYAZHMOV AL，-1
+
+NEG AL
+
+XOR AL，65H
+
 上述指令序列执行后，AL的值是( )。AZH01HAZH40HAZH61HAZH64HAZHDAZH1AZH
 3009AZHYAZH设SP=4AH，执行段内返回指令RET 4后，SP的值是( )。AZH44HAZH48HAZH4CHAZH50HAZHDAZH1AZH
 3010AZHYAZH在查错程序DEBUG中，为查看或修改内存单元的内容，这时存储单元地址是使用( )。AZH逻辑地址AZH物理地址AZH逻辑地址或物理地址AZH由用户指定选择逻辑地址或物理地址AZHAAZH0AZH
-3011AZHYAZH对CS段寄存器赋段地址的方法是( )。AZHMOV AX，CODEAZHASSUME CS：CODE
+3011AZHYAZH对CS段寄存器赋段地址的方法是( )。AZHMOV AX，CODEAZHASSUME CS：CODE
+
 MOV CS，AXAZHEND 起始地址AZHMOV CS，2050HAZHCAZH0AZH
 3012AZHYAZH有数据定义BUF DB 8 DUP（3 DUP（2），2 DUP（3）），在BUF中能构成数据0302H有( )。AZH5个AZH6个AZH7个AZH8个AZHCAZH1AZH
 3013AZHYAZH有数据定义BUF DB 8DUP（3 DUP（2），2 DUP（3）），在BUF中能构成数据0203H有( )。AZH5个AZH6个AZH7个AZH8个AZHDAZH1AZH
-3014AZHYAZHX DW 1234H，0A9BH
-Y DB 7EH，8DH
-┇
-MOV BH，TYPE X
-MOV BL，TYPE Y
+3014AZHYAZHX DW 1234H，0A9BH
+
+Y DB 7EH，8DH
+
+┇
+
+MOV BH，TYPE X
+
+MOV BL，TYPE Y
+
 执行后BX的内容是( )。AZH0102HAZH0101HAZH1234HAZH0201HAZHDAZH1AZH
-3015AZHYAZHXOR AX， 426H
-JZ DONE
+3015AZHYAZHXOR AX， 426H
+
+JZ DONE
+
 上述程序段产生分支的条件是( )。AZH执行前AX=426HAZH执行前AX≠426HAZH执行前AX=全0AZH执行前AX=全1AZHAAZH0AZH
 3016AZHYAZHCPU要访问的某一存储单元的实际地址称( )。AZH段地址AZH偏移地址AZH物理地址AZH逻辑地址AZHCAZH0AZH
 3017AZHYAZH8086通用寄存器各有不同的特殊功能，其中DX寄存器的特定用法是( )。AZH在间接寻址中作变址寄存器AZH在循环指令作循环计数寄存器AZH在I/O指令间接寻址中作地址寄存器AZH在间接寻址中作基址寄存器AZHCAZH0AZH
@@ -3132,40 +3258,64 @@ JZ DONE
 3023AZHYAZH下列数据定义语句中可实现留空20H个字节存储单元的是( )。AZHDB 20 DUP(?)AZHDW 20H DUP(?)AZHDB 10H DUP(4 DUP(?))AZHDD 08H DUP(?)AZHDAZH1AZH
 3024AZHYAZH下列寄存器中用来指示堆栈中任意数据区的偏移地址的是( )。AZHBXAZHBPAZHSIAZHDIAZHBAZH0AZH
 3025AZHYAZH下列指令中有语法错误的是( )。AZHPUSH AXAZHPUSH [20H+SI+BX]AZHPOP CSAZHPUSH CSAZHCAZH1AZH
-3026AZHYAZH下面程序段完成测试DA-BYTE字节单元中数是否为负数，若是则将全l送DH中，否则全0送DH中：
-MOV CH,0
-TEST DA-BYTE,80H
-______________
-MOV CH,0FFH
-ZERO：MOV DH，CH
+3026AZHYAZH下面程序段完成测试DA-BYTE字节单元中数是否为负数，若是则将全l送DH中，否则全0送DH中：
+
+MOV CH,0
+
+TEST DA-BYTE,80H
+
+______________
+
+MOV CH,0FFH
+
+ZERO：MOV DH，CH
+
 那么程序段中空格里应填的语句是( )。AZHJNZ ZEROAZHJS ZEROAZHJZ ZEROAZHJC ZEROAZHCAZH1AZH
 3027AZHYAZH串操作指令中，每次操作后使SI／DI为减量应设置( )。AZHDF=0AZHTF=1AZHDF=1AZHTF=0AZHCAZH0AZH
 3028AZHYAZH已知BX=028AH，SI=0294H，(DS：051EH)=5432H。执行语句LEA BX，[BX+SI]后，BX中的内容是( )。AZH051EHAZH5423HAZH1E05HAZH3254HAZHAAZH0AZH
 3029AZHYAZH当执行ADD AX，BX指令后，若AX的内容为4E52H时，设置的奇偶标志位PF=0，下面的叙述正确的是( )。AZH表示结果中含1的个数是奇数AZH表示结果中含1的个数是偶数AZH表示该数是奇数AZH表示结果中低8位中含1的个数是奇数AZHDAZH0AZH
 3030AZHYAZH转移指令JMP NEAR PTR PROCA的转移范围是( )。AZH8000H～7FFFHAZH7FFFH～0FFFHAZH80H～7FHAZH0FH～7FHAZHCAZH1AZH
-3031AZHYAZHORG 200H
-BUF DB 12H，34H
-┇
-MOV AX， WORD PTR BUF
+3031AZHYAZHORG 200H
+
+BUF DB 12H，34H
+
+┇
+
+MOV AX， WORD PTR BUF
+
 上述指令语句执行后AX中的内容是( )。AZH3412HAZH1234HAZH0200HAZH0012HAZHAAZH1AZH
-3032AZHYAZH设AX=9ABCH，DX=8765H
-PUSH AX
-PUSH DX
-POP AX
-POP DX
-上述4条指令执行后，AX，DX中内容分别是( )。AZHAX=9ABCH
-DX=8765HAZHAX=9ABCH
-DX=9ABCHAZHAX=8765H
-DX=8765HAZHAX=8765H
+3032AZHYAZH设AX=9ABCH，DX=8765H
+
+PUSH AX
+
+PUSH DX
+
+POP AX
+
+POP DX
+
+上述4条指令执行后，AX，DX中内容分别是( )。AZHAX=9ABCH
+
+DX=8765HAZHAX=9ABCH
+
+DX=9ABCHAZHAX=8765H
+
+DX=8765HAZHAX=8765H
+
 DX=9ABCHAZHDAZH0AZH
 3033AZHYAZH执行POP BP指令时，源操作数的物理地址表达式是( )。AZH16*SS+SPAZH16*SS+BPAZH16*DS+BPAZH16*CS+BPAZHAAZH0AZH
 3034AZHYAZH在堆栈操作中，隐含使用的通用寄存器是( )。AZHAXAZHBXAZHSIAZHSPAZHDAZH0AZH
 3035AZHYAZH若(AL)=80H，执行 NEG AL指令后，CF和OF标志位的状态分别为( )。AZH0和0AZH0和1AZH1和0AZH1和1AZHCAZH1AZH
-3036AZHYAZH对于给定的数据定义,
-A1 DW 1,2,3,'ABC'
-A2 DB 6 DUP（？）
-A3 DB 0
-R1 EQU A3-A1
+3036AZHYAZH对于给定的数据定义,
+
+A1 DW 1,2,3,'ABC'
+
+A2 DB 6 DUP（？）
+
+A3 DB 0
+
+R1 EQU A3-A1
+
 变量R1的值为( )。AZH18AZH16AZH14AZH12AZHBAZH1AZH
 3037AZHYAZH用3片8259A级联，最多可管理的中断数是( )。AZH21级AZH22级AZH23级AZH24级AZHBAZH1AZH
 3038AZHYAZHCPU响应INTR和NMI中断时，相同的必要条件是( )。AZH当前指令执行结束AZH允许中断AZH当前访问内存结束AZH总线空闲AZHAAZH0AZH
@@ -4096,32 +4246,55 @@ p=a;
 *(p+3)+=2;
 printf("n1=%d,n2=%d\n:",*p,*(p+3));
 }
-其输出是（ ）。AZHn1=1;n2=5AZHn1=2,n2=6AZHn1=1
+其输出是（ ）。AZHn1=1;n2=5AZHn1=2,n2=6AZHn1=1
+
 n2=7AZHn1=1,n2=6AZHDAZH1AZH
-3412AZH1AZH下面的C程序完成的功能是（）。
-#define SIZE 5
-void func(int data[SIZE]);
-main()
+3412AZH1AZH下面的C程序完成的功能是（）。
+
+#define SIZE 5
+
+void func(int data[SIZE]);
+
+main()
+
 {
-int i,buf[SIZE];
-printf("Please input %d numbers:",SIZE);
-for(i=0;i<SIZE;i++)
-    scanf("%d",&amp;buf[i]);
-    func(buf);
-  for(i=0;i<SIZE;i++)
-    printf("%5d",buf[i]);
+int i,buf[SIZE];
+
+printf("Please input %d numbers:",SIZE);
+
+for(i=0;i<SIZE;i++)
+
+    scanf("%d",&amp;buf[i]);
+
+    func(buf);
+
+  for(i=0;i<SIZE;i++)
+
+    printf("%5d",buf[i]);
+
 }
-void func(int data[SIZE])
-{
-  int i,j,d;
-  for(i=0;i<SIZE-1;i++)
-    for(j=0;j<SIZE-i-1;j++)
-      if(data[j]>data[j+1])
-        {
-          d=data[j];
-          data[j]=data[j+1];
-          data[j+1]=d;        }
-}AZH对一维数组降序排序AZH对一维数组升序排序AZH对一维数组逆向排序AZH对一维数组顺序排序AZHBAZH1AZH
+void func(int data[SIZE])
+
+{
+
+  int i,j,d;
+
+  for(i=0;i<SIZE-1;i++)
+
+    for(j=0;j<SIZE-i-1;j++)
+
+      if(data[j]>data[j+1])
+
+        {
+
+          d=data[j];
+
+          data[j]=data[j+1];
+
+          data[j+1]=d;        }
+
+}
+AZH对一维数组降序排序AZH对一维数组升序排序AZH对一维数组逆向排序AZH对一维数组顺序排序AZHBAZH1AZH
 3413AZH1AZH下面C语言程序输出数组中的最大值，由s指针指向该元素.
 main()
 { int a[10]={6,7,2,9,1,10,5,8,4,3,},*p,*s;
@@ -4156,10 +4329,14 @@ scanf("%s",s);
 p=s[0];
 printf("%s",p);
 }
-请判断上面程序选出正确答案是（）。AZH错误:p=s[0];
-正确:p=*s;AZH错误:p=s[0];
-正确:p=s[];AZH错误:p=s[0];
-正确:p=s;AZH错误:p=s[0];
+请判断上面程序选出正确答案是（）。AZH错误:p=s[0];
+
+正确:p=*s;AZH错误:p=s[0];
+
+正确:p=s[];AZH错误:p=s[0];
+
+正确:p=s;AZH错误:p=s[0];
+
 正确:p=&amp;s;AZHCAZH1AZH
 3417AZH1AZH在C语言中对于用"r"方式打开文件下列说法正确的是（）。AZH用"r"方式打开的文件只输入不能输出AZH用"r"方式打开的文件只能输出，不能输入AZH用"r"方式可以打开任何文件AZH以上均不对AZHAAZH1AZH
 3418AZH1AZH以下C语言程序调用findmax函数返回数组中的最大值
@@ -4265,8 +4442,10 @@ main( )
 程序运行后输出结果是（）。AZH2AZH1AZH0AZH3AZHDAZH1AZH
 3426AZH1AZH在C语言的以下定义中，标识符p（ ）。
 int (*p)[3]；AZH定义不合法AZH是一个指针数组名，每个元素是一个指向整数变量的指针AZH是一个指针，它指向一个具有三个元素的一维数组AZH是一个指向整型变量的指针AZHCAZH1AZH
-3427AZH1AZH在C语言中，如果下面的变量都是int类型，则输出的结果是(　　)。
-sum=5,p=5;p=sum++,p++,++p;
+3427AZH1AZH在C语言中，如果下面的变量都是int类型，则输出的结果是(　　)。
+
+sum=5,p=5;p=sum++,p++,++p;
+
 printf("%d\n",p);AZH7AZH6AZH5AZH4AZHAAZH1AZH
 3428AZH1AZH有以下C语言程序段
 main()
@@ -4292,20 +4471,34 @@ main()
   fut (&amp;p,a);
   printf("%d\n",*p);
 }AZH1AZH7AZH9AZH11AZHCAZH1AZH
-3432AZH1AZH以下对C语言结构体类型变量的定义中，不正确的是（）。AZHtypedef struct aa
-{ int n; AA
-float m;
-}AA;AZH#define AA struct aa
-{int n;
-float m;
-}td1;
-AA td1;AZHstruct
-{ int n;
-float m;
-}aa;
-stuct aa td1;AZHstruct
-{ int n;
-float m;
+3432AZH1AZH以下对C语言结构体类型变量的定义中，不正确的是（）。AZHtypedef struct aa
+
+{ int n; AA
+
+float m;
+
+}AA;AZH#define AA struct aa
+
+{int n;
+
+float m;
+
+}td1;
+
+AA td1;AZHstruct
+
+{ int n;
+
+float m;
+
+}aa;
+
+stuct aa td1;AZHstruct
+
+{ int n;
+
+float m;
+
 }td1;AZHCAZH1AZH
 3433AZH1AZH有如下C语言定义
 struct person{char name[9]; int age;};
@@ -4346,10 +4539,13 @@ main()
   z.i[1]=0x36;
   printf("%c\n",z.c);
 }AZH6AZH9AZH0AZH3AZHBAZH1AZH
-3437AZH1AZH在C语言中以数据块为单位对数据进行整体读写时，如果ptr是指向内存中数据块的首地址，fp是文件指针，那么数据块中每个数据项的大小为(　　)。AZHsizeof(*ptr)AZH*ptrAZHsizeof(ptr)AZHsizeof(*fp)AZHAAZH1AZH
+3437AZH1AZH在C语言中以数据块为单位对数据进行整体读写时，如果ptr是指向内存中数据块的首地址，fp是文件指针，那么数据块中每个数据项的大小为(　　)。AZHsizeof(*ptr)
+AZH*ptr
+AZHsizeof(ptr)AZHsizeof(*fp)AZHAAZH1AZH
 3438AZH1AZH写出下列C语言程序段运行结果（）。
 unsigned int a=3,b=10;
-printf("%d\n",a<<2|b==1);AZH
+printf("%d\n",a<<2|b==1);AZH
+
 13AZH12AZH8AZH14AZHBAZH1AZH
 3439AZH1AZH下列C语言程序的输出结果是（）。
 int b=2;
@@ -4400,22 +4596,38 @@ main()
   printf("%d\n", ++p->x );
   printf("%d\n", (++p)->x);
   printf("%d\n", ++( *p->y));
-}AZH10
- 
-20
- 
-20AZH50
- 
-20
- 
-20AZH51
- 
-60
- 
-21AZH60
- 
-70
- 
+}AZH10
+
+ 
+
+20
+
+ 
+
+20AZH50
+
+ 
+
+20
+
+ 
+
+20AZH51
+
+ 
+
+60
+
+ 
+
+21AZH60
+
+ 
+
+70
+
+ 
+
 31AZHCAZH1AZH
 3445AZH1AZH设有C语言说明int(*ptr)[m];其中的标识符ptr是(　　)。AZHM个指向整型变量的指针AZH指向M个整型变量的函数指针AZH一个指向具有M个整型元素的一维数组的指针AZH具有M个指针元素的一维指针数组，每个元素都只能指向整型量AZHCAZH1AZH
 3446AZH1AZH设有如下C语言函数定义:
@@ -4432,7 +4644,10 @@ enum language { Basic=3,Assembly,Ada=100,COBOL,Fortran};
 枚举量Fortran的值为（）。AZH4AZH7AZH102AZH103AZHCAZH1AZH
 3448AZH1AZH设有如下C语言定义：
 int (*ptr)()；
-则以下叙述中正确的是（）。AZHptr是指向一维组数的指针变量AZHptr是指向int型数据的指针变量AZHptr是指向函数的指针，该函数返回一个int型数据AZHptr是一个函数名，该函数的返回值是指向int型数据的指针AZHCAZH1AZH
+则以下叙述中正确的是（）。AZHptr是指向一维组数的指针变量
+AZHptr是指向int型数据的指针变量
+AZHptr是指向函数的指针，该函数返回一个int型数据
+AZHptr是一个函数名，该函数的返回值是指向int型数据的指针AZHCAZH1AZH
 3449AZH1AZH设有如下C语言定义:
 struct sk
 {int a;float b;}data,*p;
@@ -4441,7 +4656,8 @@ struct sk
 ch=(ch>='A'&amp;&amp;ch<='Z')?(ch+32):ch 的值是（）。AZHAAZHaAZHZAZHzAZHBAZH1AZH
 3451AZH1AZH设a=3，b=2，则C语言表达式a^b>>2的值的二进制表示为(   )。AZH00000011AZH00000110AZH00000100AZH10AZHAAZH1AZH
 3452AZH1AZH设x、y、t均为int型变量，则执行C语言语句：x=y=3;t=++x||++y;后，y的值为()。AZH不定值AZH4AZH3AZH1AZHCAZH1AZH
-3453AZH1AZH设p1和p2是指向同一个int型一维数组的指针变量,k为int型变量,则不能正确执行的C语言语句是（）。AZH
+3453AZH1AZH设p1和p2是指向同一个int型一维数组的指针变量,k为int型变量,则不能正确执行的C语言语句是（）。AZH
+
 k=*p1+*p2;AZHp2=k;AZHp1=p2;AZHk=*p1 * (*p2);AZHBAZH1AZH
 3454AZH1AZH设x的值为4，则C语言表达式y=(++x)+(++x)+(++x)后,y的值是（ ）。AZH12AZH18AZH16AZH21AZHDAZH1AZH
 3455AZH1AZH在C语言中，设一整型(int)变量占用2个字节则下述共用体变量x所占用内存字节数为（）。
@@ -4449,7 +4665,8 @@ union exp
 { int i;
 float j;
 double k;
-}x;AZH14个AZH7个AZH8个AZH随机而定AZHCAZH1AZH
+}x;AZH14个AZH7个
+AZH8个AZH随机而定AZHCAZH1AZH
 3456AZH1AZH设有如下C语言程序:
 #include<stdio.h>
 main()
@@ -4462,12 +4679,18 @@ printf("%d\n", **k);
 for (x=3; x<6; x++)
 {
 printf((x%2) ? "##%d" : "**%d\n", x);
-}AZH##3
-**4
-##5AZH**3
-##4
-**5AZH**3
-##4**5AZH##3**4
+}AZH##3
+
+**4
+
+##5AZH**3
+
+##4
+
+**5AZH**3
+
+##4**5AZH##3**4
+
 ##5AZHDAZH1AZH
 3458AZH1AZH有以下C语言程序
 　　#include <stdio.h>

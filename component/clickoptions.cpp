@@ -4,7 +4,6 @@
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QPainterPath>
-#include <QMessageBox>
 
 clickOptions::clickOptions(QWidget *parent)
     : QGroupBox(parent)
