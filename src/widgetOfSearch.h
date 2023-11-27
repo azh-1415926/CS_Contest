@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ui_widgetOfSearch.h"
 
 #include <QWidget>

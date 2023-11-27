@@ -1,5 +1,7 @@
 #include "clickoptions.h"
 
+#include "clicklabel.h"
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPainter>

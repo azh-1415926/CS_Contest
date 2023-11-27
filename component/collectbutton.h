@@ -1,4 +1,5 @@
 #pragma once
+
 #include <QPushButton>
 
 class collectButton : public QPushButton

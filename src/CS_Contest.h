@@ -1,11 +1,13 @@
 #pragma once
+
 #include "ui_CS_Contest.h"
+
 #include <QMainWindow>
 
-#include "widgetOfStart.h"
-#include "widgetOfSearch.h"
-#include "widgetOfAbout.h"
-#include "widgetOfMore.h"
+class widgetOfStart;
+class widgetOfSearch;
+class widgetOfAbout;
+class widgetOfMore;
 
 class CS_Contest : public QMainWindow
 {

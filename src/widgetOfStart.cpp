@@ -1,9 +1,10 @@
 #include "widgetOfStart.h"
 
+#include "excelReader.h"
+#include "settingFile.h"
+
 #include <QFileDialog>
 #include <QTimer>
-
-#include "settingFile.h"
 
 widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)

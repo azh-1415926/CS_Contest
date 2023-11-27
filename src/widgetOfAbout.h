@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ui_widgetOfAbout.h"
 
 #include <QWidget>

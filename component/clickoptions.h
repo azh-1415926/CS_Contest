@@ -4,7 +4,7 @@
 #include <QEvent>
 #include <QRadioButton>
 
-#include "clicklabel.h"
+class clickLabel;
 
 class clickOptions : public QGroupBox
 {

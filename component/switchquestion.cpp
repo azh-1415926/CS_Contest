@@ -1,5 +1,7 @@
 #include "switchquestion.h"
 
+#include "collectbutton.h"
+
 #include <QGridLayout>
 
 switchQuestion::switchQuestion(QWidget *parent)

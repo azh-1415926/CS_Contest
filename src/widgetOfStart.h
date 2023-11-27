@@ -1,9 +1,10 @@
 #pragma once
+
 #include "ui_widgetOfStart.h"
 
 #include <QWidget>
 
-#include "excelReader.h"
+class excelReader;
 
 class widgetOfStart : public QWidget
 {

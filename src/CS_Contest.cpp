@@ -1,5 +1,10 @@
 #include "CS_Contest.h"
 
+#include "widgetOfStart.h"
+#include "widgetOfSearch.h"
+#include "widgetOfAbout.h"
+#include "widgetOfMore.h"
+
 #include <QTimer>
 #include <QTime>
 #include <QDateTime>

@@ -1,9 +1,11 @@
 #pragma once
+
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>
 
-#include "collectbutton.h"
+class collectButton;
+class clickOptions;
 
 class switchQuestion : public QWidget {
     Q_OBJECT
