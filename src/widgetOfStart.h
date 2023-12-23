@@ -56,4 +56,5 @@ class widgetOfStart : public QWidget
         void loadSetting(const QString& path);
         void resetCollection();
         QPair<QPair<QString,QStringList>,int> getInfoOfProblem(int index);
+        bool needToNext(const QString& id,int i,bool isHit);
 };

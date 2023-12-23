@@ -364,42 +364,25 @@ void widgetOfStart::initalQuestionPage()
     {
         if(!reader->isRead())
             return;
-        /*
-            optionsOfQuestion 返回当前被选择的选项
-            option 为接收到的选项下标
-            preOption 为上一次接收到的选项
-            n 为答题结束后，点击正确答案可跳转到下一题的点击次数，我们设为 1
-        */
-        static int preOption;
-        static int n;
         /* 获取当前题号 currIndexOfQuestion */
-        int currIndexOfQuestion=progressOfQuestion.at(currTypeOfQuestion);
-        /* 若题号为 0 且点击次数为 0，则将上个选项置为 -1 */
-        if(n==0&&currIndexOfQuestion==0)
-            preOption=-1;
-        /*
-            若当前选项和上一次选择的选项不一样，需要重置 n 为 1
-            或当前选项不等于答案，需要重置 n 为 1，直到选择了正确答案才置为 0
-            
-            这样会导致一种情况，若你答完上一道题，你又返回上一道题，选择正确答案会直接跳转到下一题，暂不处理这个问题
-        */
-        n=preOption!=currIndexOfQuestion||option!=ui->optionsOfQuestion->getAnswer()?1:n-1;
-        preOption=currIndexOfQuestion;
+        int currIndex=progressOfQuestion.at(currTypeOfQuestion);
+        /* 判断是否需要切换到下一题 */
+        bool isNeed = needToNext("Question", currIndex, option == ui->optionsOfQuestion->getAnswer());
         /* 跳转到下一题 */
-        if(n==0)
+        if(isNeed)
         {
-            if(currIndexOfQuestion+1<questionType.at(currTypeOfQuestion).second.at(0))
+            /* 若下一题存在，则刷新题目，否则隐藏正确选项与错误选项 */
+            if(currIndex+1<questionType.at(currTypeOfQuestion).second.at(0))
             {
-                emit updateIndexOfQuestion(currIndexOfQuestion+1);
-                showProblem("Question",currIndexOfQuestion+1);
+                emit updateIndexOfQuestion(currIndex+1);
+                showProblem("Question",currIndex+1);
             }
             else
                 ui->optionsOfQuestion->displayAnswer(false);
-            preOption=-1;
-            return;
         }
-        /* 展示正确答案、当前选择的错误答案（若没有选择错误答案便只显示正确答案） */
-        ui->optionsOfQuestion->displayAnswer(true);
+        else
+            /* 展示正确答案、当前选择的错误答案（若没有选择错误答案便只显示正确答案） */
+            ui->optionsOfQuestion->displayAnswer(true);
     });
     /* 更新答题页题号总数，绑定到当前类的 updateSumOfQuestion 信号上 */
     connect(this,&widgetOfStart::updateSumOfQuestion,ui->switchOfQuestion,&switchQuestion::setSum);
@@ -528,26 +511,20 @@ void widgetOfStart::initalCollectionPage()
         /* 在初始化答题窗口时已使用过该代码，不做解释 */
         if(!reader->isRead())
             return;
-        static int preOption;
-        static int n;
-        int currIndexOfCollection=ui->switchOfCollection->index();
-        if(n==0&&currIndexOfCollection==0)
-            preOption=-1;
-        n=preOption!=currIndexOfCollection||option!=ui->optionsOfCollection->getAnswer()?1:n-1;
-        preOption=currIndexOfCollection;
-        if(n==0)
+        int currIndex = ui->switchOfCollection->index();
+        bool isNeed=needToNext("Collection", currIndex,option==ui->optionsOfCollection->getAnswer());
+        if(isNeed)
         {
-            if(preOption+1<progressOfCollection.length())
+            if(currIndex +1<progressOfCollection.length())
             {
-                emit updateIndexOfCollection(preOption+1);
-                showProblem("Collection",preOption+1);
+                emit updateIndexOfCollection(currIndex +1);
+                showProblem("Collection", currIndex +1);
             }
             else
                 ui->optionsOfCollection->displayAnswer(false);
-            preOption=-1;
-            return;
         }
-        ui->optionsOfCollection->displayAnswer(true);
+        else
+            ui->optionsOfCollection->displayAnswer(true);
     });
     /* 更新收藏页题号总数，绑定到当前类的 updateSumOfCollection 信号上 */
     connect(this,&widgetOfStart::updateSumOfCollection,ui->switchOfCollection,&switchQuestion::setSum);
@@ -661,4 +638,37 @@ QPair<QPair<QString, QStringList>,int> widgetOfStart::getInfoOfProblem(int index
     QString textOfAnswer=data.at(index).at(7).trimmed().toUpper();
     info.second=textOfAnswer.at(0).unicode()-'A';
     return info;
+}
+
+bool widgetOfStart::needToNext(const QString &id, int i,bool isHit)
+{
+    /*
+        id 为标识符
+        i 为当前选择的下标
+        preIndex 为上一次接收到的下标
+        n 代表 i 的命中次数，每命中一次便减 1，为 0 时则跳转下一题，即返回 true
+    */
+    static QMap<QString,QPair<int,int>> map;
+    /* 若 id 已在 map 中，则插入一些初始的值 */
+    if(!map.contains(id))
+        map.insert(id,QPair<int,int>(-1,1));
+    /* 取出 map 中的数据 */
+    const auto& value=map.value(id);
+    int preIndex=value.first;
+    int n=value.second;
+    /*
+        若当前选项和上一次选择的选项不一样，需要重置 n 为 1
+        或当前选项不等于答案，需要重置 n 为 1，直到选择了正确答案才置为 0
+        
+        这样会导致一种情况，若你答完上一道题，你又返回上一道题，选择正确答案会直接跳转到下一题，暂不处理这个问题
+    */
+    n=preIndex!=i||!isHit?1:n-1;
+    map.insert(id,QPair<int,int>(i,n));
+    /* 跳转到下一题 */
+    if (n == 0)
+    {
+        map.insert(id, QPair<int, int>(-1, 1));
+        return true;
+    }
+    return false;
 }
