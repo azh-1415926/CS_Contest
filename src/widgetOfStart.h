@@ -33,15 +33,12 @@ class widgetOfStart : public QWidget
         void importSetting(const QString& fileName="settings.json");
         void handleData();
         void setQuestionType(int i);
-        void showQuestionByIndex(int i);
-        void showCollectionByIndex(int i);
+        void showProblem(const QString& type,int i);
 
     signals:
         void loadExcel(const QString& pathOfExcel);
         void loadCSV(const QString& pathOfCSV);
         void ready();
-        void updateTextOfQuestion(int i,const QString& text);
-        void updateTextOfCollection(int i,const QString& text);
         void updateIndexOfQuestion(int i);
         void updateIndexOfCollection(int i);
         void updateIndexOfCollection(const QString& text);
@@ -58,4 +55,5 @@ class widgetOfStart : public QWidget
         void initalCollectionPage();
         void loadSetting(const QString& path);
         void resetCollection();
+        QPair<QPair<QString,QStringList>,int> getInfoOfProblem(int index);
 };

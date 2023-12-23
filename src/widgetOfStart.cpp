@@ -112,7 +112,7 @@ void widgetOfStart::importSetting(const QString& fileName)
         {
             emit updateSumOfCollection(progressOfCollection.length());
             emit updateIndexOfCollection(currIndexOfCollection);
-            showCollectionByIndex(currIndexOfCollection);
+            showProblem("Collection",currIndexOfCollection);
         }
         else
             resetCollection();
@@ -253,67 +253,66 @@ void widgetOfStart::setQuestionType(int i)
     /* 更新 switchOfQuestion 的题目总数和当前题号，并显示该题目 */
     emit updateSumOfQuestion(questionType.at(currTypeOfQuestion).second.at(0));
     emit updateIndexOfQuestion(currIndexOfQuestion);
-    showQuestionByIndex(currIndexOfQuestion);
+    showProblem("Question",currIndexOfQuestion);
 }
 
-/* 显示答题页题目信息 */
-void widgetOfStart::showQuestionByIndex(int i)
+void widgetOfStart::showProblem(const QString& type, int i)
 {
     /* 若未读取文件则立即返回 */
     if(!reader->isRead())
         return;
-    /* 重置 optionsOfQuestion 的状态（清除正确选框、当前选项） */
-    ui->optionsOfQuestion->resetOption();
-    /*
-        所读取的数据位于 reader 模块中
-        题号从 1开始，0 位置为没有题目，故题号下标需要加一
-        并将当前显示题目的题号下标存入进度数组
-    */
-    const QVector<QVector<QString>>& data=reader->getData();
-    /* 从 questionType 数组中取出真实题号 */
-    int index=questionType.at(currTypeOfQuestion).second.at(i+1);
-    progressOfQuestion[currTypeOfQuestion]=i;
-    /* 题目的内容，位于第 2 列的单元格 */
-    ui->textOfQuestion->setText(QString::number(i+1)+". "+data.at(index).at(2));
-    /* 题目的选项，位于第 3、4、5、6 列的单元格 */
-    emit updateTextOfQuestion(0,data.at(index).at(3));
-    emit updateTextOfQuestion(1,data.at(index).at(4));
-    emit updateTextOfQuestion(2,data.at(index).at(5));
-    emit updateTextOfQuestion(3,data.at(index).at(6));
-    /* 题目的答案，位于第 7 列的单元格，转为大写，并将其转化为 0、1、2、3 的下标，更新 optionsOfQuestion 模块的答案*/
-    QString answer=data.at(index).at(7).trimmed().toUpper();
-    emit updateAnswerOfQuestion(answer.at(0).unicode()-'A');
-    /* 将该题目在收藏页的答题进度中查找，查找失败 status 的值为 -1 */
-    int status=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i));
-    /* 若该题在收藏列表中，将该题标记为收藏，即发送 isColllect(true) 信号 */
-    emit isCollect(status!=-1);
-}
-
-/* 显示收藏页题目信息 */
-void widgetOfStart::showCollectionByIndex(int i)
-{
-    /* 若未读取文件则立即返回 */
-    if(!reader->isRead())
+    /* 题目文本 */
+    QLabel* titleOfOption=nullptr;
+    /* 题目选项 */
+    clickOptions* option=nullptr;
+    /* 题目切换 */
+    switchQuestion* switchOfQuestion=nullptr;
+    /* 当前题目下标 */
+    int index=-1;
+    /* 收藏状态，默认为未收藏 */
+    bool statusOfCollected=false;
+    if(type=="Question")
+    {
+        /* 题目选项框位于答题页 */
+        option=ui->optionsOfQuestion;
+        /* 设置当前题目所在下标 index，设置当前题型答题进度为 i */
+        index=questionType.at(currTypeOfQuestion).second.at(i+1);
+        progressOfQuestion[currTypeOfQuestion]=i;
+        /* 设置题目文本 */
+        titleOfOption=ui->textOfQuestion;
+        /* 设置题目的切换 */
+        switchOfQuestion=ui->switchOfQuestion;
+        /* 将该题目在收藏页的答题进度中查找，查找失败则为 -1 */
+        statusOfCollected=progressOfCollection.indexOf(QPair<int,int>(currTypeOfQuestion,i))!=-1;
+    }
+    else if(type=="Collection")
+    {
+        /* 题目选项框位于收藏页 */
+        option=ui->optionsOfCollection;
+        /* 设置当前题目所在下标 index */
+        int row=progressOfCollection.at(i).first;
+        int column=progressOfCollection.at(i).second;
+        index=questionType.at(row).second.at(column+1);
+        /* 设置题目文本 */
+        titleOfOption=ui->textOfCollection;
+        /* 设置题目的切换 */
+        switchOfQuestion=ui->switchOfCollection;
+        /* 收藏页默认为收藏状态 */
+        statusOfCollected=true;
+    }
+    if(option==nullptr)
         return;
-    /* 重置 optionsOfCollection 的状态（清除正确选框、当前选项） */
-    ui->optionsOfCollection->resetOption();
-    const QVector<QVector<QString>>& data=reader->getData();
-    /* 从答题进度数组中读取 QPair<int,int>，first 对应题型下标，second 对应题号下标 */
-    int row=progressOfCollection.at(i).first;
-    int column=progressOfCollection.at(i).second;
-    int index=questionType.at(row).second.at(column+1);
-     /* 题目的内容，上面已做解释，就不重复赘述了 */
-    ui->textOfCollection->setText(QString::number(i+1)+". "+data.at(index).at(2));
-    /* 题目的选项 */
-    emit updateTextOfCollection(0,data.at(index).at(3));
-    emit updateTextOfCollection(1,data.at(index).at(4));
-    emit updateTextOfCollection(2,data.at(index).at(5));
-    emit updateTextOfCollection(3,data.at(index).at(6));
-    /* 题目的答案 */
-    QString answer=data.at(index).at(7).trimmed().toUpper();
-    emit updateAnswerOfCollection(answer.at(0).unicode()-'A');
-    /* 收藏页的收藏按钮状态默认是已收藏 */
-    ui->switchOfCollection->setCollect(true);
+    /* 重置 option 的状态（清除正确选框、当前选项） */
+    option->resetOption();
+    /* 当前题目信息 */
+    auto infoOfQuestion=getInfoOfProblem(index);
+    /* 设置题目文本、选项文本 */
+    titleOfOption->setText(QString::number(i+1)+". "+infoOfQuestion.first.first);
+    for(int i=0;i<4;i++)
+        option->setTextOfOption(i,infoOfQuestion.first.second.at(i));
+    /* 设置答案选项，设置收藏状态 */
+    option->setAnswer(infoOfQuestion.second);
+    switchOfQuestion->setCollect(statusOfCollected);
 }
 
 /* 获取用户选择 excel 文件的路径 */
@@ -392,7 +391,7 @@ void widgetOfStart::initalQuestionPage()
             if(currIndexOfQuestion+1<questionType.at(currTypeOfQuestion).second.at(0))
             {
                 emit updateIndexOfQuestion(currIndexOfQuestion+1);
-                showQuestionByIndex(currIndexOfQuestion+1);
+                showProblem("Question",currIndexOfQuestion+1);
             }
             else
                 ui->optionsOfQuestion->displayAnswer(false);
@@ -402,10 +401,6 @@ void widgetOfStart::initalQuestionPage()
         /* 展示正确答案、当前选择的错误答案（若没有选择错误答案便只显示正确答案） */
         ui->optionsOfQuestion->displayAnswer(true);
     });
-    /* 更新答题页题目选项的文本内容，绑定到当前类的 updateTextOfQuestion 信号上 */
-    connect(this,&widgetOfStart::updateTextOfQuestion,ui->optionsOfQuestion,&clickOptions::setTextOfOption);
-    /* 更新答题页答案选项，绑定到当前类的 updateAnswerOfQuestion 信号上 */
-    connect(this,&widgetOfStart::updateAnswerOfQuestion,ui->optionsOfQuestion,&clickOptions::setAnswer);
     /* 更新答题页题号总数，绑定到当前类的 updateSumOfQuestion 信号上 */
     connect(this,&widgetOfStart::updateSumOfQuestion,ui->switchOfQuestion,&switchQuestion::setSum);
     /* 更新答题页当前题号下标，绑定到当前类的 updateIndexOfQuestion 信号上 */
@@ -414,7 +409,10 @@ void widgetOfStart::initalQuestionPage()
     connect(this,&widgetOfStart::isCollect,ui->switchOfQuestion,&switchQuestion::setCollect);
     ui->switchOfQuestion->setTitle("答题页");
     /* 当 switchOfQuestion 中题号变化，显示该题号的题目信息 */
-    connect(ui->switchOfQuestion,&switchQuestion::changeQuestion,this,&widgetOfStart::showQuestionByIndex);
+    connect(ui->switchOfQuestion,&switchQuestion::changeQuestion,this,[=](int i)
+    {
+        showProblem("Question",i);
+    });
     /* 当 switchOfQuestion 中题号被收藏，则... */
     connect(ui->switchOfQuestion,&switchQuestion::collectQuestion,this,[=]()
     {
@@ -432,7 +430,7 @@ void widgetOfStart::initalQuestionPage()
             if(progressOfCollection.length()==1)
             {
                 emit updateIndexOfCollection(0);
-                showCollectionByIndex(0);
+                showProblem("Collection",0);
             }
         }
     });
@@ -462,7 +460,7 @@ void widgetOfStart::initalQuestionPage()
             /* 若此时收藏项下标大于等于收藏总数，即当前收藏项刚好为删除的收藏项，将当前收藏项下标-1 */
             else if(currIndexOfCollection>=progressOfCollection.length())
             {
-                showCollectionByIndex(progressOfCollection.length()-1);
+                showProblem("Collection",progressOfCollection.length()-1);
                 emit updateIndexOfCollection(progressOfCollection.length()-1);
             }
             /* 更新收藏总数 */
@@ -508,7 +506,7 @@ void widgetOfStart::initalSelectionPage()
         ui->questionType->setCurrentIndex(currTypeOfQuestion);
         if(ui->switchOfCollection->index()<progressOfCollection.length())
         {
-            showCollectionByIndex(ui->switchOfCollection->index());
+            showProblem("Collection",ui->switchOfCollection->index());
             emit updateIndexOfCollection(ui->switchOfCollection->index());
         }
     });
@@ -542,7 +540,7 @@ void widgetOfStart::initalCollectionPage()
             if(preOption+1<progressOfCollection.length())
             {
                 emit updateIndexOfCollection(preOption+1);
-                showCollectionByIndex(preOption+1);
+                showProblem("Collection",preOption+1);
             }
             else
                 ui->optionsOfCollection->displayAnswer(false);
@@ -551,10 +549,6 @@ void widgetOfStart::initalCollectionPage()
         }
         ui->optionsOfCollection->displayAnswer(true);
     });
-    /* 更新答题页题目选项的文本内容，绑定到当前类的 updateTextOfQuestion 信号上 */
-    connect(this,&widgetOfStart::updateTextOfCollection,ui->optionsOfCollection,&clickOptions::setTextOfOption);
-    /* 更新收藏页答案选项，绑定到当前类的 updateAnswerOfCollection 信号上 */
-    connect(this,&widgetOfStart::updateAnswerOfCollection,ui->optionsOfCollection,&clickOptions::setAnswer);
     /* 更新收藏页题号总数，绑定到当前类的 updateSumOfCollection 信号上 */
     connect(this,&widgetOfStart::updateSumOfCollection,ui->switchOfCollection,&switchQuestion::setSum);
     /* 更新答题页当前题号下标（int）、文本（QString），绑定到当前类的 updateIndexOfCollection 信号上 */
@@ -589,7 +583,10 @@ void widgetOfStart::initalCollectionPage()
         }
     });
     /* 当 switchOfCollection 题号改变时，显示当前收藏项的题目信息 */
-    connect(ui->switchOfCollection,&switchQuestion::changeQuestion,this,&widgetOfStart::showCollectionByIndex);
+    connect(ui->switchOfCollection,&switchQuestion::changeQuestion,this,[=](int i)
+    {
+        showProblem("Collection",i);
+    });
     /* 当 switchOfCollection 题号被取消收藏时，则将题号下标文本设置为 ？ */
     connect(ui->switchOfCollection,&switchQuestion::uncollectQuestion,this,[=]()
     {
@@ -637,10 +634,8 @@ void widgetOfStart::resetCollection()
 {
     /* 重置文本 */
     ui->textOfCollection->setText("暂无收藏");
-    emit updateTextOfCollection(0,"Option A");
-    emit updateTextOfCollection(1,"Option B");
-    emit updateTextOfCollection(2,"Option C");
-    emit updateTextOfCollection(3,"Option D");
+    for(int i=0;i<4;i++)
+        ui->optionsOfCollection->setTextOfOption(i,"");
     /* 重置答案、答案选框 */
     emit updateAnswerOfCollection(-1);
     ui->optionsOfCollection->displayAnswer(false);
@@ -648,4 +643,22 @@ void widgetOfStart::resetCollection()
     /* 重置收藏题目总数、下标 */
     emit updateSumOfCollection(0);
     emit updateIndexOfCollection(0);
+}
+
+QPair<QPair<QString, QStringList>,int> widgetOfStart::getInfoOfProblem(int index)
+{
+    QPair<QPair<QString,QStringList>,int> info;
+    /* 题库数据 */
+    const auto& data=reader->getData();
+    /* 题目文本，位于第二列的单元格 */
+    info.first.first=data.at(index).at(2);
+    /* 题目选项，位于第 3、4、5、6 列的单元格 */
+    info.first.second.push_back(data.at(index).at(3));
+    info.first.second.push_back(data.at(index).at(4));
+    info.first.second.push_back(data.at(index).at(5));
+    info.first.second.push_back(data.at(index).at(6));
+    /* 题目答案，位于第 7 列的单元格，转为大写，并将其转化为 0、1、2、3 的下标 */
+    QString textOfAnswer=data.at(index).at(7).trimmed().toUpper();
+    info.second=textOfAnswer.at(0).unicode()-'A';
+    return info;
 }
