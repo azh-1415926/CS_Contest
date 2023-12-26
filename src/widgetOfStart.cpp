@@ -2,6 +2,7 @@
 
 #include "excelReader.h"
 #include "settingFile.h"
+#include "constants.h"
 
 #include <QFileDialog>
 #include <QTimer>
@@ -145,39 +146,17 @@ void widgetOfStart::importSetting(const QString& fileName)
 /* 处理导入的题库数据 */
 void widgetOfStart::handleData()
 {
-    /* 列出题型所代表字符，用其下标代表该类题型 */
-    static char charOfType[]=
-    {
-        /* 计算机应用基础 数据结构 数据库原理 */
-        'C','J','K',
-        /* 网络 软件工程 操作系统 */
-        'W','R','Z',
-        /* 多媒体技术 硬件系统 移动互联网应用 */
-        'D','Y','H',
-        /* 数据表示和计算 离散数学 知识产权*/
-        'S','L','Q',
-        /* 1-6 C,C++,Java,JavaScript,C#,Python */
-        '1','2','3','4','5','6'
-    };
-    /* 列出题型字符对应的题型名称 */
-    static QString stringOfType[]=
-    {
-        "计算机应用基础","数据结构","数据库原理","网络","软件工程","操作系统",
-        "多媒体技术","硬件系统","移动互联网应用","数据表示和计算","离散数学","知识产权",
-        "C","C++","Java","JavaScript","C#","Python"
-    };
-    /* sumOfType 为题型总数 */
-    int sumOfType=sizeof(charOfType)/sizeof(char);
     /*
         questionType 数组存储着 QPair<QString,QList<int>>
         其中 questionType[i].first 是题型下标为 i 的题型名称
         其中 questionType[i].second[0] 是题型下标为 i 的题号总数
-        其中 questionType[i].second[1-n] 是题型下标为 i 的题号
+        其中 questionType[i].second[n] 是对应题型的第 n 道题(n>0)
     */
     if(!questionType.isEmpty())
     {
         /* 若题型数组不为空，说明可能导入过其他题库，需要重新统计对应题型的题目总数（即将重置题型名称、题号总数置为 0） */
-        for(int i=0;i<sumOfType;i++){
+        for(int i=0;i<sumOfType;i++)
+        {
             questionType[i].first=stringOfType[i];
             questionType[i].second.clear();
             questionType[i].second.push_back(0);

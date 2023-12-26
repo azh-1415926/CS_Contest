@@ -4,6 +4,7 @@
 #include "widgetOfSearch.h"
 #include "widgetOfAbout.h"
 #include "widgetOfMore.h"
+#include "constants.h"
 
 #include <QTimer>
 #include <QTime>
@@ -94,7 +95,7 @@ void CS_Contest::initalWindow()
 {
     installEventFilter(this);
     /* ui 文件里默认标题为 xxx，设置标题文本为 "知识竞赛答题" */
-    ui->textOfTitle->setText("知识竞赛答题");
+    ui->textOfTitle->setText(titleOfProgram);
     /* 插入显示文本、对应窗口到 windows 中 */
     windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfStart,windowOfStart));
     windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfSearch,windowOfSearch));
