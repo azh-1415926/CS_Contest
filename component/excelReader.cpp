@@ -12,23 +12,20 @@ excelReader::excelReader(QObject* parent)
     , rows(0), columns(0)
     , readFlag(0), reloadFlag(0)
     #ifdef _WIN32
-    , excel(new QAxObject("Excel.Application"))
+    , excel(nullptr)
     #endif
 {
-    /* 不显示 excel 进程的窗口 */
-    #ifdef _WIN32
-    excel->dynamicCall("SetVisible (bool Visible)","false");
-    /* 忽略所有警告退出（比如不保存退出）*/
-    excel->setProperty("DisplayAlerts", false);
-    #endif
 }
 
 excelReader::~excelReader()
 {
     #ifdef _WIN32
     /* 退出 excel 进程，并释放内存 */
-    excel->dynamicCall("Quit(void)");
-    delete excel;
+    if(excel!=nullptr)
+    {
+       excel->dynamicCall("Quit(void)");
+        delete excel; 
+    }
     #endif
 }
 
@@ -36,6 +33,8 @@ excelReader::~excelReader()
 void excelReader::readExcel(const QString& pathOfExcel)
 {
     #ifdef _WIN32
+    if(excel==nullptr)
+        initalExcel();
     /* 路径为空立即返回 */
     if(pathOfExcel.isEmpty())
         return;
@@ -211,7 +210,21 @@ void excelReader::importCSV(const QString &pathOfCSV)
     }
 }
 
+#ifdef _WIN32
+
+void excelReader::initalExcel()
+{
+    excel=new QAxObject("Excel.Application");
+    /* 不显示 excel 进程的窗口 */
+    excel->dynamicCall("SetVisible (bool Visible)","false");
+    /* 忽略所有警告退出（比如不保存退出）*/
+    excel->setProperty("DisplayAlerts", false);
+}
+
+#endif
+
 #ifdef QT_DEBUG
+
 /* 将数据处理错误的数据导出到 test.csv */
 void excelReader::importTestCSV()
 {

@@ -45,6 +45,9 @@ class excelReader : public QObject
         void reload();
 
     private:
+        #ifdef _WIN32
+            void initalExcel();
+        #endif
         #ifdef QT_DEBUG
         void importTestCSV();
         #endif
