@@ -93,17 +93,18 @@ void CS_Contest::updateTime()
 /* 初始化窗口 */
 void CS_Contest::initalWindow()
 {
+    /* 为此窗口安装事件过滤器 */
     installEventFilter(this);
-    /* ui 文件里默认标题为 xxx，设置标题文本为 "知识竞赛答题" */
+    /* ui 文件里默认标题为 xxx，设置标题文本为 constants.h 里面定义的 titleOfProgram */
     ui->textOfTitle->setText(titleOfProgram);
-    /* 插入显示文本、对应窗口到 windows 中 */
+    /* 插入 clickLabel 指针、子窗口指针到 windows 中 */
     windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfStart,windowOfStart));
     windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfSearch,windowOfSearch));
     windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfAbout,windowOfAbout));
     windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfMore,windowOfMore));
     for(int i=0;i<windows.length();i++)
     {
-        /* 连接到显示窗口的函数，及安装事件过滤器 */
+        /* 连接 clickLabel 的点击信号，触发子窗口的显示，及为子窗口安装事件过滤器 */
         connect(windows[i].first,&clickLabel::clicked,this,&CS_Contest::showWindow);
         windows[i].second->installEventFilter(this);
     }
@@ -112,7 +113,7 @@ void CS_Contest::initalWindow()
 /* 初始化计时器，更新主界面时间显示 */
 void CS_Contest::initalTimer()
 {
-    /* 将 updateTime 绑定到 timer 上，接收到 timeout 信号立即更新时间，并重置鼠标点击的标志位 */
+    /* 将 updateTime 绑定到 timer 上，接收到 timeout 信号立即更新时间 */
     QTimer* timer=new QTimer(this);
     connect(timer,&QTimer::timeout,this,[=]()
     {
