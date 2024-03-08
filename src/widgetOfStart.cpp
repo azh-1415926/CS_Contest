@@ -1,6 +1,6 @@
 #include "widgetOfStart.h"
 
-#include "excelReader.h"
+#include "questionBankReader.hpp"
 #include "settingFile.h"
 #include "constants.h"
 
@@ -10,7 +10,7 @@
 widgetOfStart::widgetOfStart(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui_widgetOfStart)
-    , reader(new excelReader)
+    , reader(new questionBankReader)
     , currTypeOfQuestion(0)
     , flagOfInital(0)
 {
@@ -460,7 +460,7 @@ void widgetOfStart::initalSelectionPage()
     /* 接收到 loadExcel 信号，触发 reader 的 readExcel 槽函数 */
     connect(this,&widgetOfStart::loadExcel,reader,&excelReader::readExcel);
     /* 接收到 loadCSV 信号，触发 reader 的 readCSV 槽函数 */
-    connect(this,&widgetOfStart::loadCSV,reader,&excelReader::readCSV);
+    connect(this,&widgetOfStart::loadCSV,reader,&questionBankReader::readCSV);
     /* 接收 reader 读取完数据发送的 readed 信号，调用 handleData 槽函数处理这些数据 */
     connect(reader,&excelReader::readed,this,&widgetOfStart::handleData);
     /* 接收 handleData 处理完数据发送的 ready 信号，若有收藏项则显示 */

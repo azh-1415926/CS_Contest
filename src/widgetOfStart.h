@@ -4,7 +4,7 @@
 
 #include <QWidget>
 
-class excelReader;
+class questionBankReader;
 
 class widgetOfStart : public QWidget
 {
@@ -13,7 +13,7 @@ class widgetOfStart : public QWidget
     private:
         Ui_widgetOfStart *ui;
         /* 读取题库文件模块，初始化比较慢，不要将初始化步骤写在构造函数内，会拖慢 ui 的显示 */
-        excelReader *reader;
+        questionBankReader *reader;
         /* 当前类型的题目(答题页) */
         int currTypeOfQuestion;
         /* 窗口初始化的标志 */

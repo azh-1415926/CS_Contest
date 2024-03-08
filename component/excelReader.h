@@ -10,7 +10,7 @@ class excelReader : public QObject
 {
     Q_OBJECT
 
-    private:
+    protected:
         int rows;
         int columns;
         int readFlag;
@@ -23,7 +23,7 @@ class excelReader : public QObject
 
     public:
         explicit excelReader(QObject* parent=nullptr);
-        ~excelReader();
+        virtual ~excelReader();
         /* 判定是否已读取 excel 文件 */
         inline bool isRead() const { return readFlag==1; }
         /* 判定当前是否重新读取过 excel 文件 */
@@ -37,8 +37,6 @@ class excelReader : public QObject
 
     public slots:
         void readExcel(const QString& pathOfExcel);
-        void readCSV(const QString& pathOfCSV);
-        void importCSV(const QString& pathOfCSV);
 
     signals:
         void readed();
@@ -47,8 +45,5 @@ class excelReader : public QObject
     private:
         #ifdef _WIN32
             void initalExcel();
-        #endif
-        #ifdef QT_DEBUG
-        void importTestCSV();
         #endif
 };
