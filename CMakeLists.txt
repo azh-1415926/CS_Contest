@@ -26,7 +26,7 @@ set(ROOT_DIR .)
 
 # 搜寻源文件
 aux_source_directory(${ROOT_DIR}/src srcs)
-aux_source_directory(${ROOT_DIR}/component components)
+file(GLOB_RECURSE components CONFIGURE_DEPENDS component/*.c* component/*.h*)
 file(GLOB_RECURSE qrcs ${CMAKE_CURRENT_SOURCE_DIR}/*.qrc)
 
 # ui 文件路径

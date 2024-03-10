@@ -1,7 +1,7 @@
 #include "widgetOfStart.h"
 
 #include "questionBankReader.hpp"
-#include "settingFile.h"
+#include "settingFile.hpp"
 #include "constants.h"
 
 #include <QFileDialog>
