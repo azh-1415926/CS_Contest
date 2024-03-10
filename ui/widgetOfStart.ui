@@ -187,13 +187,13 @@
   <customwidget>
    <class>clickOptions</class>
    <extends>QGroupBox</extends>
-   <header>component/clickoptions.h</header>
+   <header>clickoptions.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>switchQuestion</class>
    <extends>QWidget</extends>
-   <header>component/switchquestion.h</header>
+   <header>switchquestion.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

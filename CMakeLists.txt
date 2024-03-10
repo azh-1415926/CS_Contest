@@ -26,7 +26,6 @@ set(ROOT_DIR .)
 
 # 搜寻源文件
 aux_source_directory(${ROOT_DIR}/src srcs)
-file(GLOB_RECURSE components CONFIGURE_DEPENDS component/*.c* component/*.h*)
 file(GLOB_RECURSE qrcs ${CMAKE_CURRENT_SOURCE_DIR}/*.qrc)
 
 # ui 文件路径
@@ -38,9 +37,11 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 set(PROJECT_SOURCES
     ${srcs}
-    ${components}
     ${qrcs}
 )
+
+# include_directories(3rdparty/AZH_Qt_Component/include)
+add_subdirectory(3rdparty/AZH_Qt_Component)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
@@ -61,7 +62,7 @@ else()
 endif()
 
 # 链接的头文件、库
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets AZH_QT_Component)
 target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/component)
 target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/src)
 

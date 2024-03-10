@@ -319,7 +319,7 @@
   <customwidget>
    <class>clickLabel</class>
    <extends>QLabel</extends>
-   <header>component/clicklabel.h</header>
+   <header>clicklabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
