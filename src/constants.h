@@ -3,6 +3,13 @@
 /* 程序标题 */
 const QString titleOfProgram("知识竞赛答题");
 
+/* 全部题库，最后一个将为当前显示的题库 */
+const QStringList pathOfquestionBanks=
+{
+    ":/doc/2022.csv",
+    ":/doc/2023.csv"
+};
+
 /* 列出题型所代表字符，用其下标代表该类题型 */
 const char charOfType[]=
 {
@@ -28,3 +35,11 @@ const QString stringOfType[]=
 
 /* sumOfType 为题型总数 */
 const int sumOfType=sizeof(charOfType)/sizeof(char);
+
+/* 题目文本、选项ABCD、答案所对应单元格的下标 */
+const int indexOfProblemText=2;
+const int indexOfOptionA=3;
+const int indexOfOptionB=4;
+const int indexOfOptionC=5;
+const int indexOfOptionD=6;
+const int indexOfAnswer=7;

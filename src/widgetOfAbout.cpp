@@ -24,7 +24,8 @@ void widgetOfAbout::resizeEvent(QResizeEvent *e)
 {
     /* 当 pixmap 不为空时调整大小并重设图片，缺点是只能变大不能变小，之后再考虑修复 */
     if(!pixmap.isNull())
-        info->setPixmap(pixmap.scaled(info->size(),Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        // info->setPixmap(pixmap.scaled(info->size(),Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        info->setPixmap(pixmap);
 }
 
 /* 初始化窗口 */

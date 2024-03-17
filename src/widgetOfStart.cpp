@@ -37,9 +37,9 @@ void widgetOfStart::resizeEvent(QResizeEvent *)
         /* 暂时阻断 QComBox 的信号 */
         ui->textOfPaths->blockSignals(true);
 
-        /* 可选择题库有内置的 2022、2023 年题库，以及配置文件中的题库路径 */
-        ui->textOfPaths->addItem(":/doc/2022.csv");
-        ui->textOfPaths->addItem(":/doc/2023.csv");
+        /* 导入全部题库，以及配置文件中的题库路径 */
+        for(const QString& str : pathOfquestionBanks)
+            ui->textOfPaths->addItem(str);
         importSetting("settings.json");
 
         /* 阻断结束 */
@@ -603,15 +603,15 @@ QPair<QPair<QString, QStringList>,int> widgetOfStart::getInfoOfProblem(int index
     QPair<QPair<QString,QStringList>,int> info;
     /* 题库数据 */
     const auto& data=reader->getData();
-    /* 题目文本，位于第二列的单元格 */
-    info.first.first=data.at(index).at(2);
-    /* 题目选项，位于第 3、4、5、6 列的单元格 */
-    info.first.second.push_back(data.at(index).at(3));
-    info.first.second.push_back(data.at(index).at(4));
-    info.first.second.push_back(data.at(index).at(5));
-    info.first.second.push_back(data.at(index).at(6));
-    /* 题目答案，位于第 7 列的单元格，转为大写，并将其转化为 0、1、2、3 的下标 */
-    QString textOfAnswer=data.at(index).at(7).trimmed().toUpper();
+    /* 题目文本 */
+    info.first.first=data.at(index).at(indexOfProblemText);
+    /* 题目选项 */
+    info.first.second.push_back(data.at(index).at(indexOfOptionA));
+    info.first.second.push_back(data.at(index).at(indexOfOptionB));
+    info.first.second.push_back(data.at(index).at(indexOfOptionC));
+    info.first.second.push_back(data.at(index).at(indexOfOptionD));
+    /* 题目答案，转为大写，并将其转化为 0、1、2、3 的下标 */
+    QString textOfAnswer=data.at(index).at(indexOfAnswer).trimmed().toUpper();
     info.second=textOfAnswer.at(0).unicode()-'A';
     return info;
 }
