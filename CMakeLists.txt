@@ -25,7 +25,8 @@ endif()
 set(ROOT_DIR .)
 
 # 搜寻源文件
-aux_source_directory(${ROOT_DIR}/src srcs)
+file(GLOB_RECURSE incs ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h*)
+file(GLOB_RECURSE srcs ${CMAKE_CURRENT_SOURCE_DIR}/src/*.c*)
 file(GLOB_RECURSE qrcs ${CMAKE_CURRENT_SOURCE_DIR}/*.qrc)
 
 # ui 文件路径
@@ -36,6 +37,7 @@ add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 set(PROJECT_SOURCES
+    ${incs}
     ${srcs}
     ${qrcs}
 )
@@ -63,8 +65,7 @@ endif()
 
 # 链接的头文件、库
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets AZH_QT_Component)
-target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/component)
-target_include_directories(${PROJECT_NAME} PRIVATE ${ROOT_DIR}/src)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::AxContainer)
