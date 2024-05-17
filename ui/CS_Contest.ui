@@ -32,7 +32,7 @@
    <string>CS_Contest</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:black;</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -41,265 +41,299 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,6">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
     <property name="spacing">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="leftMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="topMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="rightMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>10</number>
+     <number>0</number>
     </property>
     <item>
-     <widget class="QWidget" name="areaOfTop" native="true">
-      <property name="styleSheet">
-       <string notr="true">background-color:white;</string>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,1,3">
-       <property name="spacing">
-        <number>10</number>
+     <widget class="QStackedWidget" name="allWidgets">
+      <widget class="QWidget" name="pageOfMain">
+       <property name="styleSheet">
+        <string notr="true">background-color:black;</string>
        </property>
-       <property name="leftMargin">
-        <number>10</number>
-       </property>
-       <property name="topMargin">
-        <number>10</number>
-       </property>
-       <property name="rightMargin">
-        <number>10</number>
-       </property>
-       <property name="bottomMargin">
-        <number>10</number>
-       </property>
-       <item>
-        <widget class="QLabel" name="textOfTitle">
-         <property name="font">
-          <font>
-           <family>华文彩云</family>
-           <pointsize>48</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>XX</string>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::AutoText</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QWidget" name="areaOfTime" native="true">
-         <property name="styleSheet">
-          <string notr="true">background-color:white;</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,1" columnstretch="1,1" rowminimumheight="1,1" columnminimumwidth="1,1">
-          <property name="leftMargin">
-           <number>5</number>
+       <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,6">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QWidget" name="areaOfTop" native="true">
+          <property name="styleSheet">
+           <string notr="true">background-color:white;</string>
           </property>
-          <property name="topMargin">
-           <number>5</number>
+          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,1,3">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="textOfTitle">
+             <property name="font">
+              <font>
+               <family>华文彩云</family>
+               <pointsize>48</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>XX</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::AutoText</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="areaOfTime" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:white;</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,1" columnstretch="1,1" rowminimumheight="1,1" columnminimumwidth="1,1">
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="topMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <property name="horizontalSpacing">
+               <number>10</number>
+              </property>
+              <property name="verticalSpacing">
+               <number>5</number>
+              </property>
+              <item row="0" column="0" rowspan="2">
+               <widget class="QLCDNumber" name="timeOfYMD">
+                <property name="smallDecimalPoint">
+                 <bool>false</bool>
+                </property>
+                <property name="digitCount">
+                 <number>10</number>
+                </property>
+                <property name="mode">
+                 <enum>QLCDNumber::Hex</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" rowspan="2">
+               <widget class="QLCDNumber" name="timeOfHMS">
+                <property name="smallDecimalPoint">
+                 <bool>false</bool>
+                </property>
+                <property name="digitCount">
+                 <number>8</number>
+                </property>
+                <property name="mode">
+                 <enum>QLCDNumber::Hex</enum>
+                </property>
+                <property name="intValue" stdset="0">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="areaOfBottom" native="true">
+          <property name="styleSheet">
+           <string notr="true">background-color:white;</string>
           </property>
-          <property name="rightMargin">
-           <number>5</number>
-          </property>
-          <property name="bottomMargin">
-           <number>10</number>
-          </property>
-          <property name="horizontalSpacing">
-           <number>10</number>
-          </property>
-          <property name="verticalSpacing">
-           <number>5</number>
-          </property>
-          <item row="0" column="0" rowspan="2">
-           <widget class="QLCDNumber" name="timeOfYMD">
-            <property name="smallDecimalPoint">
-             <bool>false</bool>
-            </property>
-            <property name="digitCount">
-             <number>10</number>
-            </property>
-            <property name="mode">
-             <enum>QLCDNumber::Hex</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" rowspan="2">
-           <widget class="QLCDNumber" name="timeOfHMS">
-            <property name="smallDecimalPoint">
-             <bool>false</bool>
-            </property>
-            <property name="digitCount">
-             <number>8</number>
-            </property>
-            <property name="mode">
-             <enum>QLCDNumber::Hex</enum>
-            </property>
-            <property name="intValue" stdset="0">
-             <number>0</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="areaOfBottom" native="true">
-      <property name="styleSheet">
-       <string notr="true">background-color:white;</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout" rowstretch="1,2,1" columnstretch="1,1" rowminimumheight="1,2,1" columnminimumwidth="1,1">
-       <property name="leftMargin">
-        <number>15</number>
+          <layout class="QGridLayout" name="gridLayout" rowstretch="1,2,1" columnstretch="1,1" rowminimumheight="1,2,1" columnminimumwidth="1,1">
+           <property name="leftMargin">
+            <number>15</number>
+           </property>
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <property name="rightMargin">
+            <number>15</number>
+           </property>
+           <property name="bottomMargin">
+            <number>15</number>
+           </property>
+           <property name="spacing">
+            <number>15</number>
+           </property>
+           <item row="0" column="0" rowspan="2">
+            <widget class="QWidget" name="areaOfStart" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:lightblue;</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="clickLabel" name="textOfStart">
+                <property name="font">
+                 <font>
+                  <family>华文琥珀</family>
+                  <pointsize>48</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>开始</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QWidget" name="areaOfAbout" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:orange;</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="clickLabel" name="textOfAbout">
+                <property name="font">
+                 <font>
+                  <family>华文琥珀</family>
+                  <pointsize>48</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>关于</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="1" rowspan="2">
+            <widget class="QWidget" name="areaOfMore" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:red;</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="clickLabel" name="textOfMore">
+                <property name="font">
+                 <font>
+                  <family>华文琥珀</family>
+                  <pointsize>48</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>敬请期待</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QWidget" name="areaOfSearch" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color:lightgreen;</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="clickLabel" name="textOfSearch">
+                <property name="font">
+                 <font>
+                  <family>华文琥珀</family>
+                  <pointsize>48</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>查询记录</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="widgetOfStart" name="pageOfStart"/>
+      <widget class="widgetOfSearch" name="pageOfSearch"/>
+      <widget class="widgetOfAbout" name="pageOfAbout"/>
+      <widget class="widgetOfMore" name="pageOfMore">
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
-       <property name="topMargin">
-        <number>15</number>
-       </property>
-       <property name="rightMargin">
-        <number>15</number>
-       </property>
-       <property name="bottomMargin">
-        <number>15</number>
-       </property>
-       <property name="spacing">
-        <number>15</number>
-       </property>
-       <item row="0" column="0" rowspan="2">
-        <widget class="QWidget" name="areaOfStart" native="true">
-         <property name="styleSheet">
-          <string notr="true">background-color:lightblue;</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="clickLabel" name="textOfStart">
-            <property name="font">
-             <font>
-              <family>华文琥珀</family>
-              <pointsize>48</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>开始</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QWidget" name="areaOfAbout" native="true">
-         <property name="styleSheet">
-          <string notr="true">background-color:orange;</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="clickLabel" name="textOfAbout">
-            <property name="font">
-             <font>
-              <family>华文琥珀</family>
-              <pointsize>48</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>关于</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="1" rowspan="2">
-        <widget class="QWidget" name="areaOfMore" native="true">
-         <property name="styleSheet">
-          <string notr="true">background-color:red;</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="clickLabel" name="textOfMore">
-            <property name="font">
-             <font>
-              <family>华文琥珀</family>
-              <pointsize>48</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>敬请期待</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QWidget" name="areaOfSearch" native="true">
-         <property name="styleSheet">
-          <string notr="true">background-color:lightgreen;</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <widget class="clickLabel" name="textOfSearch">
-            <property name="font">
-             <font>
-              <family>华文琥珀</family>
-              <pointsize>48</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>查询记录</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -321,7 +355,33 @@
    <extends>QLabel</extends>
    <header>clicklabel.h</header>
   </customwidget>
+  <customwidget>
+   <class>widgetOfStart</class>
+   <extends>QWidget</extends>
+   <header>widgetofstart.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>widgetOfSearch</class>
+   <extends>QWidget</extends>
+   <header>widgetofsearch.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>widgetOfAbout</class>
+   <extends>QWidget</extends>
+   <header>widgetofabout.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>widgetOfMore</class>
+   <extends>QWidget</extends>
+   <header>widgetofmore.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../resource/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

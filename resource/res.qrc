@@ -1,7 +1,10 @@
 <RCC>
+    <!-- 图片 -->
     <qresource prefix="/image">
         <file alias="info.png">image/info.png</file>
     </qresource>
+
+    <!-- 题库 -->
     <qresource prefix="/doc">
         <file alias="2022.csv">doc/2022.csv</file>
     </qresource>

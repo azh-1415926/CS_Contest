@@ -18,10 +18,6 @@
 CS_Contest::CS_Contest(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui_CS_Contest)
-    , windowOfStart(new widgetOfStart)
-    , windowOfSearch(new widgetOfSearch)
-    , windowOfAbout(new widgetOfAbout)
-    , windowOfMore(new widgetOfMore)
 {
     ui->setupUi(this);
     /* 初始化窗口 */
@@ -33,46 +29,20 @@ CS_Contest::CS_Contest(QWidget* parent)
 CS_Contest::~CS_Contest()
 {
     delete ui;
-    /* 释放各个窗口 */
-    delete windowOfStart;
-    delete windowOfSearch;
-    delete windowOfAbout;
-    delete windowOfMore;
 }
 
 bool CS_Contest::eventFilter(QObject *obj, QEvent *e)
 {
     if(e->type()==QEvent::Close)
     {
-        /* 关闭主窗口前，关闭所有子窗口 */
-        if(obj==this)
+        if(ui->allWidgets->currentIndex()!=0)
         {
-            windowOfStart->close();
-            windowOfSearch->close();
-            windowOfAbout->close();
-            windowOfMore->close();
+            e->ignore();
+            this->resetAllWidgets();
+            return true;
         }
-        #ifdef __ANDROID__
-        else
-        {
-            this->close();
-        }
-        #endif
-        return true;
+            
     }
-    #ifdef __ANDROID__
-    else if(e->type()==QEvent::KeyRelease&&static_cast<QKeyEvent*>(e)->key()==Qt::Key_Close)
-    {
-        this->close();
-        // if(parentWidget())
-        //     parentWidget()->raise();
-        // QWidget* widget=static_cast<QWidget*>(obj);
-        // widget->setWindowFlags(Qt::Widget);
-        // widget->close();
-        // e->ignore();
-        return true;
-    }
-    #endif
     return false;
 }
 
@@ -97,15 +67,19 @@ void CS_Contest::initalWindow()
     installEventFilter(this);
     /* ui 文件里默认标题为 xxx，设置标题文本为 constants.h 里面定义的 titleOfProgram */
     ui->textOfTitle->setText(titleOfProgram);
-    /* 插入 clickLabel 指针、子窗口指针到 windows 中 */
-    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfStart,windowOfStart));
-    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfSearch,windowOfSearch));
-    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfAbout,windowOfAbout));
-    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfMore,windowOfMore));
+
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfStart,ui->pageOfStart));
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfSearch,ui->pageOfSearch));
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfAbout,ui->pageOfAbout));
+    windows.push_back(QPair<clickLabel*,QWidget*>(ui->textOfMore,ui->pageOfMore));
     for(int i=0;i<windows.length();i++)
     {
         /* 连接 clickLabel 的点击信号，触发子窗口的显示，及为子窗口安装事件过滤器 */
-        connect(windows[i].first,&clickLabel::clicked,this,&CS_Contest::showWindow);
+        connect(windows[i].first,&clickLabel::clicked,this,[=]
+        {
+            ui->allWidgets->setCurrentIndex(i+1);
+        });
+        
         windows[i].second->installEventFilter(this);
     }
 }
@@ -123,22 +97,11 @@ void CS_Contest::initalTimer()
     timer->start(1000);
 }
 
-void CS_Contest::showWindow(const clickLabel* label)
+void CS_Contest::resetAllWidgets()
 {
-    int i=0;
-    while(i<windows.length())
-    {
-        if(windows[i].first==label)
-            break;
-        i++;
-    }
-    /* 若该区域对应窗口隐藏，便将其显示 */
-    if(!windows[i].second->isHidden())
-        windows[i].second->close();
-    #ifdef __ANDROID__
-    this->hide();
-    QFlags flags=windows[i].second->windowFlags();
-    windows[i].second->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
+    ui->allWidgets->setCurrentIndex(0);
+
+    #ifndef __ANDROID__
+        this->resize(800,600);
     #endif
-    windows[i].second->show();
 }

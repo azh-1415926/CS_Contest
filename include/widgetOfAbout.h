@@ -11,15 +11,11 @@ class widgetOfAbout : public QWidget
 
     private:
         Ui_widgetOfAbout* ui;
-        QLabel* info;
         QPixmap pixmap;
 
     public:
         explicit widgetOfAbout(QWidget* parent=nullptr);
         ~widgetOfAbout();
-
-    protected:
-        void resizeEvent(QResizeEvent* e) override;
 
     private:
         void initalWindow();

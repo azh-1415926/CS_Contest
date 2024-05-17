@@ -13,7 +13,12 @@
   <property name="windowTitle">
    <string>MoreWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resource/res.qrc"/>
+ </resources>
  <connections/>
 </ui>
